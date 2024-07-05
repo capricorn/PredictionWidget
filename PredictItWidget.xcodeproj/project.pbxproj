@@ -14,6 +14,11 @@
 		F00EC61B2C377ECA00AF1237 /* PredictItWidgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC61A2C377ECA00AF1237 /* PredictItWidgetTests.swift */; };
 		F00EC6252C377ECA00AF1237 /* PredictItWidgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6242C377ECA00AF1237 /* PredictItWidgetUITests.swift */; };
 		F00EC6272C377ECA00AF1237 /* PredictItWidgetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6262C377ECA00AF1237 /* PredictItWidgetUITestsLaunchTests.swift */; };
+		F00EC6372C3791D000AF1237 /* PredictItAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6362C3791D000AF1237 /* PredictItAPI.swift */; };
+		F00EC63A2C3792D100AF1237 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = F00EC6392C3792D100AF1237 /* XMLCoder */; };
+		F00EC63D2C37943C00AF1237 /* PIMarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC63C2C37943C00AF1237 /* PIMarketData.swift */; };
+		F00EC6402C3794B300AF1237 /* 7057.xml in Resources */ = {isa = PBXBuildFile; fileRef = F00EC63F2C3794B300AF1237 /* 7057.xml */; };
+		F00EC6422C37970700AF1237 /* PIMarketContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6412C37970700AF1237 /* PIMarketContract.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,10 @@
 		F00EC6202C377ECA00AF1237 /* PredictItWidgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PredictItWidgetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00EC6242C377ECA00AF1237 /* PredictItWidgetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictItWidgetUITests.swift; sourceTree = "<group>"; };
 		F00EC6262C377ECA00AF1237 /* PredictItWidgetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictItWidgetUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F00EC6362C3791D000AF1237 /* PredictItAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictItAPI.swift; sourceTree = "<group>"; };
+		F00EC63C2C37943C00AF1237 /* PIMarketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIMarketData.swift; sourceTree = "<group>"; };
+		F00EC63F2C3794B300AF1237 /* 7057.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 7057.xml; sourceTree = "<group>"; };
+		F00EC6412C37970700AF1237 /* PIMarketContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIMarketContract.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00EC63A2C3792D100AF1237 /* XMLCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +104,7 @@
 		F00EC6082C377EC900AF1237 /* PredictItWidget */ = {
 			isa = PBXGroup;
 			children = (
+				F00EC6332C3791BA00AF1237 /* API */,
 				F00EC6092C377EC900AF1237 /* PredictItWidgetApp.swift */,
 				F00EC60B2C377EC900AF1237 /* ContentView.swift */,
 				F00EC60D2C377ECA00AF1237 /* Assets.xcassets */,
@@ -113,6 +124,7 @@
 		F00EC6192C377ECA00AF1237 /* PredictItWidgetTests */ = {
 			isa = PBXGroup;
 			children = (
+				F00EC63E2C3794AB00AF1237 /* TestData */,
 				F00EC61A2C377ECA00AF1237 /* PredictItWidgetTests.swift */,
 			);
 			path = PredictItWidgetTests;
@@ -125,6 +137,40 @@
 				F00EC6262C377ECA00AF1237 /* PredictItWidgetUITestsLaunchTests.swift */,
 			);
 			path = PredictItWidgetUITests;
+			sourceTree = "<group>";
+		};
+		F00EC6332C3791BA00AF1237 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				F00EC6352C3791C500AF1237 /* PredictIt */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		F00EC6352C3791C500AF1237 /* PredictIt */ = {
+			isa = PBXGroup;
+			children = (
+				F00EC63B2C3792D400AF1237 /* Models */,
+				F00EC6362C3791D000AF1237 /* PredictItAPI.swift */,
+			);
+			path = PredictIt;
+			sourceTree = "<group>";
+		};
+		F00EC63B2C3792D400AF1237 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F00EC63C2C37943C00AF1237 /* PIMarketData.swift */,
+				F00EC6412C37970700AF1237 /* PIMarketContract.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F00EC63E2C3794AB00AF1237 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				F00EC63F2C3794B300AF1237 /* 7057.xml */,
+			);
+			path = TestData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +189,9 @@
 			dependencies = (
 			);
 			name = PredictItWidget;
+			packageProductDependencies = (
+				F00EC6392C3792D100AF1237 /* XMLCoder */,
+			);
 			productName = PredictItWidget;
 			productReference = F00EC6062C377EC900AF1237 /* PredictItWidget.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +264,9 @@
 				Base,
 			);
 			mainGroup = F00EC5FD2C377EC900AF1237;
+			packageReferences = (
+				F00EC6382C3792D100AF1237 /* XCRemoteSwiftPackageReference "XMLCoder" */,
+			);
 			productRefGroup = F00EC6072C377EC900AF1237 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -240,6 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00EC6402C3794B300AF1237 /* 7057.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,8 +310,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00EC63D2C37943C00AF1237 /* PIMarketData.swift in Sources */,
 				F00EC60C2C377EC900AF1237 /* ContentView.swift in Sources */,
 				F00EC60A2C377EC900AF1237 /* PredictItWidgetApp.swift in Sources */,
+				F00EC6372C3791D000AF1237 /* PredictItAPI.swift in Sources */,
+				F00EC6422C37970700AF1237 /* PIMarketContract.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +644,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F00EC6382C3792D100AF1237 /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CoreOffice/XMLCoder";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.17.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F00EC6392C3792D100AF1237 /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F00EC6382C3792D100AF1237 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F00EC5FE2C377EC900AF1237 /* Project object */;
 }
