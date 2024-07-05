@@ -19,6 +19,7 @@
 		F00EC63D2C37943C00AF1237 /* PIMarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC63C2C37943C00AF1237 /* PIMarketData.swift */; };
 		F00EC6402C3794B300AF1237 /* 7057.xml in Resources */ = {isa = PBXBuildFile; fileRef = F00EC63F2C3794B300AF1237 /* 7057.xml */; };
 		F00EC6422C37970700AF1237 /* PIMarketContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6412C37970700AF1237 /* PIMarketContract.swift */; };
+		F00EC6462C388AD700AF1237 /* all.xml in Resources */ = {isa = PBXBuildFile; fileRef = F00EC6452C388AD700AF1237 /* all.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		F00EC63C2C37943C00AF1237 /* PIMarketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIMarketData.swift; sourceTree = "<group>"; };
 		F00EC63F2C3794B300AF1237 /* 7057.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 7057.xml; sourceTree = "<group>"; };
 		F00EC6412C37970700AF1237 /* PIMarketContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIMarketContract.swift; sourceTree = "<group>"; };
+		F00EC6452C388AD700AF1237 /* all.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = all.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 		F00EC63E2C3794AB00AF1237 /* TestData */ = {
 			isa = PBXGroup;
 			children = (
+				F00EC6452C388AD700AF1237 /* all.xml */,
 				F00EC63F2C3794B300AF1237 /* 7057.xml */,
 			);
 			path = TestData;
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F00EC6402C3794B300AF1237 /* 7057.xml in Resources */,
+				F00EC6462C388AD700AF1237 /* all.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

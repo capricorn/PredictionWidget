@@ -28,3 +28,19 @@ struct PIMarketData: Codable, Identifiable {
         case status = "Status"
     }
 }
+
+struct PIMarkets: Codable {
+    var marketData: [PIMarketData]
+    
+    enum CodingKeys: String, CodingKey {
+        case marketData = "MarketData"
+    }
+}
+
+struct PIMarketList: Codable {
+    var markets: PIMarkets
+    
+    enum CodingKeys: String, CodingKey {
+        case markets = "Markets"
+    }
+}

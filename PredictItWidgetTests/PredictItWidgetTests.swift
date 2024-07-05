@@ -59,4 +59,15 @@ final class PredictItWidgetTests: XCTestCase {
         XCTAssert(firstContract.prevClosePrice == 36)
         XCTAssert(firstContract.displayOrder == "0")
     }
+    
+    func testDecodeAllMarkets() throws {
+        guard let url = Bundle(for: Self.self).url(forResource: "all", withExtension: "xml"),
+              let data = try? Data(contentsOf: url)
+        else {
+            XCTFail("Failed to load market XML from bundle.")
+            return
+        }
+        
+        _ = try XMLDecoder().decode(PIMarketList.self, from: data)
+    }
 }
