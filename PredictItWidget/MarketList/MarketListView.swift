@@ -48,13 +48,17 @@ struct MarketListView: View {
                     }
                     // TODO: Iterate contract list in separate view
                 }
+                .refreshable {
+                    await refreshMarkets()
+                }
             case .refreshError:
-                // TODO: Fix this to work with refreshable
-                Text("Failed to refresh markets. Try again.")
+                List {
+                    Text("Failed to refresh markets. Try again.")
+                }
+                .refreshable {
+                    await refreshMarkets()
+                }
             }
-        }
-        .refreshable {
-            await refreshMarkets()
         }
         .task {
             await refreshMarkets()
