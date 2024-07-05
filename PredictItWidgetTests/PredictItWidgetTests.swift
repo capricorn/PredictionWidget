@@ -58,6 +58,8 @@ final class PredictItWidgetTests: XCTestCase {
         XCTAssert(firstContract.bestNoBid == 57)
         XCTAssert(firstContract.prevClosePrice == 36)
         XCTAssert(firstContract.displayOrder == "0")
+        
+        XCTAssert(marketData.contracts.count > 1)
     }
     
     func testDecodeAllMarkets() throws {

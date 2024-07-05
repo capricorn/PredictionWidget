@@ -21,6 +21,7 @@
 		F00EC6422C37970700AF1237 /* PIMarketContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6412C37970700AF1237 /* PIMarketContract.swift */; };
 		F00EC6462C388AD700AF1237 /* all.xml in Resources */ = {isa = PBXBuildFile; fileRef = F00EC6452C388AD700AF1237 /* all.xml */; };
 		F00EC6492C3892A800AF1237 /* MarketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6482C3892A800AF1237 /* MarketListView.swift */; };
+		F00EC64B2C38969500AF1237 /* MarketContractListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC64A2C38969500AF1237 /* MarketContractListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		F00EC6412C37970700AF1237 /* PIMarketContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIMarketContract.swift; sourceTree = "<group>"; };
 		F00EC6452C388AD700AF1237 /* all.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = all.xml; sourceTree = "<group>"; };
 		F00EC6482C3892A800AF1237 /* MarketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketListView.swift; sourceTree = "<group>"; };
+		F00EC64A2C38969500AF1237 /* MarketContractListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketContractListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				F00EC6482C3892A800AF1237 /* MarketListView.swift */,
+				F00EC64A2C38969500AF1237 /* MarketContractListView.swift */,
 			);
 			path = MarketList;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				F00EC60C2C377EC900AF1237 /* ContentView.swift in Sources */,
 				F00EC60A2C377EC900AF1237 /* PredictItWidgetApp.swift in Sources */,
 				F00EC6372C3791D000AF1237 /* PredictItAPI.swift in Sources */,
+				F00EC64B2C38969500AF1237 /* MarketContractListView.swift in Sources */,
 				F00EC6422C37970700AF1237 /* PIMarketContract.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

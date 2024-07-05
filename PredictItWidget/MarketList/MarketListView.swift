@@ -40,11 +40,16 @@ struct MarketListView: View {
                 .font(.title.weight(.light))
                 .padding()
                 List(markets) { market in
-                    Text(market.name)
-                        .padding()
+                    VStack(alignment: .leading) {
+                        Text(market.name)
+                            .padding()
+                        MarketContractListView(contracts: market.contracts)
+                            .padding()
+                    }
                     // TODO: Iterate contract list in separate view
                 }
             case .refreshError:
+                // TODO: Fix this to work with refreshable
                 Text("Failed to refresh markets. Try again.")
             }
         }
