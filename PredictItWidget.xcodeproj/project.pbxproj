@@ -20,6 +20,7 @@
 		F00EC6402C3794B300AF1237 /* 7057.xml in Resources */ = {isa = PBXBuildFile; fileRef = F00EC63F2C3794B300AF1237 /* 7057.xml */; };
 		F00EC6422C37970700AF1237 /* PIMarketContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6412C37970700AF1237 /* PIMarketContract.swift */; };
 		F00EC6462C388AD700AF1237 /* all.xml in Resources */ = {isa = PBXBuildFile; fileRef = F00EC6452C388AD700AF1237 /* all.xml */; };
+		F00EC6492C3892A800AF1237 /* MarketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6482C3892A800AF1237 /* MarketListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		F00EC63F2C3794B300AF1237 /* 7057.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 7057.xml; sourceTree = "<group>"; };
 		F00EC6412C37970700AF1237 /* PIMarketContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIMarketContract.swift; sourceTree = "<group>"; };
 		F00EC6452C388AD700AF1237 /* all.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = all.xml; sourceTree = "<group>"; };
+		F00EC6482C3892A800AF1237 /* MarketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		F00EC6082C377EC900AF1237 /* PredictItWidget */ = {
 			isa = PBXGroup;
 			children = (
+				F00EC6472C38929D00AF1237 /* MarketList */,
 				F00EC6332C3791BA00AF1237 /* API */,
 				F00EC6092C377EC900AF1237 /* PredictItWidgetApp.swift */,
 				F00EC60B2C377EC900AF1237 /* ContentView.swift */,
@@ -174,6 +177,14 @@
 				F00EC63F2C3794B300AF1237 /* 7057.xml */,
 			);
 			path = TestData;
+			sourceTree = "<group>";
+		};
+		F00EC6472C38929D00AF1237 /* MarketList */ = {
+			isa = PBXGroup;
+			children = (
+				F00EC6482C3892A800AF1237 /* MarketListView.swift */,
+			);
+			path = MarketList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00EC6492C3892A800AF1237 /* MarketListView.swift in Sources */,
 				F00EC63D2C37943C00AF1237 /* PIMarketData.swift in Sources */,
 				F00EC60C2C377EC900AF1237 /* ContentView.swift in Sources */,
 				F00EC60A2C377EC900AF1237 /* PredictItWidgetApp.swift in Sources */,
