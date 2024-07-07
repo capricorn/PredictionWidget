@@ -92,7 +92,7 @@ struct PredictionMarketWidgetEntryView : View {
             Text(entry.name)
                 .lineLimit(2)
                 .truncationMode(.tail)
-                .font(.caption)
+                .font(.caption.bold())
                 .padding(.bottom, 8)
             ForEach(contracts) { contract in
                 HStack {
