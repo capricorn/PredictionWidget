@@ -98,6 +98,8 @@ struct PredictionMarketWidgetEntryView : View {
                 HStack {
                     Text(contract.name.uppercased())
                         .font(.caption2.smallCaps())
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                         .padding(.bottom, 2)
                     Spacer()
                     Text("\(contract.cents!)¢")
