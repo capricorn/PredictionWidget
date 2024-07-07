@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MarketContractListView: View {
-    let contracts: [PIMarketContract]
+    let contracts: [PIJSONMarketContract]
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,8 +18,13 @@ struct MarketContractListView: View {
                         .lineLimit(1)
                         .truncationMode(.tail)
                     Spacer()
-                    Text("\(contract.lastTradePrice)¢")
-                        .monospaced()
+                    if let lastTradePrice = contract.lastTradePrice {
+                        Text("\(lastTradePrice)¢")
+                            .monospaced()
+                    } else {
+                        Text("--¢")
+                            .monospaced()
+                    }
                 }
             }
         }

@@ -14,7 +14,7 @@ struct MarketListView: View {
         case refreshError
     }
     
-    @State private var markets: [PIMarketData] = []
+    @State private var markets: [PIJSONMarket] = []
     @State private var viewState: ViewState = .loading
     
     private func refreshMarkets() async {

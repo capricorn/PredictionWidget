@@ -22,6 +22,10 @@
 		F00EC6462C388AD700AF1237 /* all.xml in Resources */ = {isa = PBXBuildFile; fileRef = F00EC6452C388AD700AF1237 /* all.xml */; };
 		F00EC6492C3892A800AF1237 /* MarketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6482C3892A800AF1237 /* MarketListView.swift */; };
 		F00EC64B2C38969500AF1237 /* MarketContractListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC64A2C38969500AF1237 /* MarketContractListView.swift */; };
+		F00EC64D2C38E52F00AF1237 /* 7057.json in Resources */ = {isa = PBXBuildFile; fileRef = F00EC64C2C38E52F00AF1237 /* 7057.json */; };
+		F00EC64F2C38E55000AF1237 /* all.json in Resources */ = {isa = PBXBuildFile; fileRef = F00EC64E2C38E55000AF1237 /* all.json */; };
+		F00EC6512C38E57100AF1237 /* PIJSONMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6502C38E57100AF1237 /* PIJSONMarket.swift */; };
+		F00EC6532C38E63B00AF1237 /* PIJSONMarketContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6522C38E63B00AF1237 /* PIJSONMarketContract.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		F00EC6452C388AD700AF1237 /* all.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = all.xml; sourceTree = "<group>"; };
 		F00EC6482C3892A800AF1237 /* MarketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketListView.swift; sourceTree = "<group>"; };
 		F00EC64A2C38969500AF1237 /* MarketContractListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketContractListView.swift; sourceTree = "<group>"; };
+		F00EC64C2C38E52F00AF1237 /* 7057.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 7057.json; sourceTree = "<group>"; };
+		F00EC64E2C38E55000AF1237 /* all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = all.json; sourceTree = "<group>"; };
+		F00EC6502C38E57100AF1237 /* PIJSONMarket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIJSONMarket.swift; sourceTree = "<group>"; };
+		F00EC6522C38E63B00AF1237 /* PIJSONMarketContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIJSONMarketContract.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +176,8 @@
 			children = (
 				F00EC63C2C37943C00AF1237 /* PIMarketData.swift */,
 				F00EC6412C37970700AF1237 /* PIMarketContract.swift */,
+				F00EC6502C38E57100AF1237 /* PIJSONMarket.swift */,
+				F00EC6522C38E63B00AF1237 /* PIJSONMarketContract.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,6 +185,8 @@
 		F00EC63E2C3794AB00AF1237 /* TestData */ = {
 			isa = PBXGroup;
 			children = (
+				F00EC64E2C38E55000AF1237 /* all.json */,
+				F00EC64C2C38E52F00AF1237 /* 7057.json */,
 				F00EC6452C388AD700AF1237 /* all.xml */,
 				F00EC63F2C3794B300AF1237 /* 7057.xml */,
 			);
@@ -310,7 +322,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F00EC6402C3794B300AF1237 /* 7057.xml in Resources */,
+				F00EC64F2C38E55000AF1237 /* all.json in Resources */,
 				F00EC6462C388AD700AF1237 /* all.xml in Resources */,
+				F00EC64D2C38E52F00AF1237 /* 7057.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,8 +344,10 @@
 			files = (
 				F00EC6492C3892A800AF1237 /* MarketListView.swift in Sources */,
 				F00EC63D2C37943C00AF1237 /* PIMarketData.swift in Sources */,
+				F00EC6532C38E63B00AF1237 /* PIJSONMarketContract.swift in Sources */,
 				F00EC60C2C377EC900AF1237 /* ContentView.swift in Sources */,
 				F00EC60A2C377EC900AF1237 /* PredictItWidgetApp.swift in Sources */,
+				F00EC6512C38E57100AF1237 /* PIJSONMarket.swift in Sources */,
 				F00EC6372C3791D000AF1237 /* PredictItAPI.swift in Sources */,
 				F00EC64B2C38969500AF1237 /* MarketContractListView.swift in Sources */,
 				F00EC6422C37970700AF1237 /* PIMarketContract.swift in Sources */,
