@@ -108,6 +108,8 @@ struct PredictionMarketWidgetEntryView : View {
                 .font(.caption2)
             }
             Spacer()
+            Text("\(Image(systemName: "clock.arrow.2.circlepath")) \(entry.date.formatted())")
+                .font(.system(size: 8).weight(.light))
         }
     }
 }
