@@ -33,5 +33,12 @@ extension UserDefaults {
             UserDefaults.predictionWidget.set(marketId, forKey: value.key.rawValue)
         }
     }
+    
+    func value(_ key: PredictionWidgetUserDefaultsKeys) -> Any? {
+        switch key {
+        case .widgetMarket:
+            UserDefaults.predictionWidget.value(forKey: key.rawValue)
+        }
+    }
 }
 

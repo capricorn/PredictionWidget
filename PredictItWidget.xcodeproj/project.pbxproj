@@ -38,6 +38,7 @@
 		F00EC6762C3A488E00AF1237 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = F00EC6752C3A488E00AF1237 /* XMLCoder */; };
 		F00EC6782C3A489900AF1237 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = F00EC6772C3A489900AF1237 /* XMLCoder */; };
 		F00EC67C2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC67B2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift */; };
+		F00EC67E2C3B4F5A00AF1237 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC67B2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		F00EC6672C3A387000AF1237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F00EC6792C3B4AB000AF1237 /* PredictItWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PredictItWidget.entitlements; sourceTree = "<group>"; };
 		F00EC67B2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
+		F00EC67F2C3B50E400AF1237 /* PredictionMarketWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PredictionMarketWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 		F00EC5FD2C377EC900AF1237 = {
 			isa = PBXGroup;
 			children = (
+				F00EC67F2C3B50E400AF1237 /* PredictionMarketWidgetExtension.entitlements */,
 				F00EC6082C377EC900AF1237 /* PredictItWidget */,
 				F00EC6192C377ECA00AF1237 /* PredictItWidgetTests */,
 				F00EC6232C377ECA00AF1237 /* PredictItWidgetUITests */,
@@ -501,6 +504,7 @@
 				F00EC6622C3A386E00AF1237 /* PredictionMarketWidget.swift in Sources */,
 				F00EC6602C3A386E00AF1237 /* PredictionMarketWidgetBundle.swift in Sources */,
 				F00EC6642C3A386E00AF1237 /* AppIntent.swift in Sources */,
+				F00EC67E2C3B4F5A00AF1237 /* UserDefaultsExtensions.swift in Sources */,
 				F00EC6712C3A44D500AF1237 /* PredictItAPI.swift in Sources */,
 				F00EC6722C3A451D00AF1237 /* PIJSONMarketContract.swift in Sources */,
 			);
@@ -793,6 +797,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PredictionMarketWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q49KLF9VPG;
@@ -821,6 +826,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PredictionMarketWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q49KLF9VPG;

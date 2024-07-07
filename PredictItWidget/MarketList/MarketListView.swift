@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct MarketListView: View {
     enum ViewState {
@@ -55,6 +56,8 @@ struct MarketListView: View {
                     }
                     .onTapGesture {
                         UserDefaults.predictionWidget.set(.widgetMarket(marketId: market.id))
+                        // TODO: Shared identifier
+                        WidgetCenter.shared.reloadTimelines(ofKind: "PredictionMarketWidget")
                     }
                     // TODO: Iterate contract list in separate view
                 }
