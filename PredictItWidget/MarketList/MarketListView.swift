@@ -16,6 +16,7 @@ struct MarketListView: View {
     
     @State private var markets: [PIJSONMarket] = []
     @State private var viewState: ViewState = .loading
+    @AppStorage(PredictionWidgetUserDefaultsKeys.widgetMarket.rawValue, store: .predictionWidget) var selectedMarketId: Int?
     
     private func refreshMarkets() async {
         do {
@@ -41,10 +42,19 @@ struct MarketListView: View {
                 .padding()
                 List(markets) { market in
                     VStack(alignment: .leading) {
-                        Text(market.name)
-                            .padding()
+                        HStack {
+                            Text(market.name)
+                                .padding()
+                            if market.id == selectedMarketId {
+                                Spacer()
+                                Image(systemName: "star")
+                            }
+                        }
                         MarketContractListView(contracts: market.contracts)
                             .padding()
+                    }
+                    .onTapGesture {
+                        UserDefaults.predictionWidget.set(.widgetMarket(marketId: market.id))
                     }
                     // TODO: Iterate contract list in separate view
                 }
