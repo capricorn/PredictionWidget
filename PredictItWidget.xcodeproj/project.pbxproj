@@ -15,7 +15,6 @@
 		F00EC6252C377ECA00AF1237 /* PredictItWidgetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6242C377ECA00AF1237 /* PredictItWidgetUITests.swift */; };
 		F00EC6272C377ECA00AF1237 /* PredictItWidgetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6262C377ECA00AF1237 /* PredictItWidgetUITestsLaunchTests.swift */; };
 		F00EC6372C3791D000AF1237 /* PredictItAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6362C3791D000AF1237 /* PredictItAPI.swift */; };
-		F00EC63A2C3792D100AF1237 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = F00EC6392C3792D100AF1237 /* XMLCoder */; };
 		F00EC63D2C37943C00AF1237 /* PIMarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC63C2C37943C00AF1237 /* PIMarketData.swift */; };
 		F00EC6402C3794B300AF1237 /* 7057.xml in Resources */ = {isa = PBXBuildFile; fileRef = F00EC63F2C3794B300AF1237 /* 7057.xml */; };
 		F00EC6422C37970700AF1237 /* PIMarketContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6412C37970700AF1237 /* PIMarketContract.swift */; };
@@ -33,6 +32,11 @@
 		F00EC6642C3A386E00AF1237 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6632C3A386E00AF1237 /* AppIntent.swift */; };
 		F00EC6662C3A387000AF1237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F00EC6652C3A387000AF1237 /* Assets.xcassets */; };
 		F00EC66A2C3A387000AF1237 /* PredictionMarketWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F00EC6582C3A386E00AF1237 /* PredictionMarketWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F00EC6712C3A44D500AF1237 /* PredictItAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6362C3791D000AF1237 /* PredictItAPI.swift */; };
+		F00EC6722C3A451D00AF1237 /* PIJSONMarketContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6522C38E63B00AF1237 /* PIJSONMarketContract.swift */; };
+		F00EC6732C3A452100AF1237 /* PIJSONMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6502C38E57100AF1237 /* PIJSONMarket.swift */; };
+		F00EC6762C3A488E00AF1237 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = F00EC6752C3A488E00AF1237 /* XMLCoder */; };
+		F00EC6782C3A489900AF1237 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = F00EC6772C3A489900AF1237 /* XMLCoder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F00EC63A2C3792D100AF1237 /* XMLCoder in Frameworks */,
+				F00EC6762C3A488E00AF1237 /* XMLCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00EC6782C3A489900AF1237 /* XMLCoder in Frameworks */,
 				F00EC65D2C3A386E00AF1237 /* SwiftUI.framework in Frameworks */,
 				F00EC65B2C3A386E00AF1237 /* WidgetKit.framework in Frameworks */,
 			);
@@ -290,7 +295,7 @@
 			);
 			name = PredictItWidget;
 			packageProductDependencies = (
-				F00EC6392C3792D100AF1237 /* XMLCoder */,
+				F00EC6752C3A488E00AF1237 /* XMLCoder */,
 			);
 			productName = PredictItWidget;
 			productReference = F00EC6062C377EC900AF1237 /* PredictItWidget.app */;
@@ -345,6 +350,9 @@
 			dependencies = (
 			);
 			name = PredictionMarketWidgetExtension;
+			packageProductDependencies = (
+				F00EC6772C3A489900AF1237 /* XMLCoder */,
+			);
 			productName = PredictionMarketWidgetExtension;
 			productReference = F00EC6582C3A386E00AF1237 /* PredictionMarketWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -385,7 +393,7 @@
 			);
 			mainGroup = F00EC5FD2C377EC900AF1237;
 			packageReferences = (
-				F00EC6382C3792D100AF1237 /* XCRemoteSwiftPackageReference "XMLCoder" */,
+				F00EC6742C3A488E00AF1237 /* XCRemoteSwiftPackageReference "XMLCoder" */,
 			);
 			productRefGroup = F00EC6072C377EC900AF1237 /* Products */;
 			projectDirPath = "";
@@ -475,9 +483,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00EC6732C3A452100AF1237 /* PIJSONMarket.swift in Sources */,
 				F00EC6622C3A386E00AF1237 /* PredictionMarketWidget.swift in Sources */,
 				F00EC6602C3A386E00AF1237 /* PredictionMarketWidgetBundle.swift in Sources */,
 				F00EC6642C3A386E00AF1237 /* AppIntent.swift in Sources */,
+				F00EC6712C3A44D500AF1237 /* PredictItAPI.swift in Sources */,
+				F00EC6722C3A451D00AF1237 /* PIJSONMarketContract.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,7 +565,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -611,7 +622,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -638,6 +649,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -668,6 +680,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -690,7 +703,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q49KLF9VPG;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.goatfish.PredictItWidgetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -710,7 +723,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q49KLF9VPG;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.goatfish.PredictItWidgetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -729,6 +742,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q49KLF9VPG;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.goatfish.PredictItWidgetUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -747,6 +761,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q49KLF9VPG;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.goatfish.PredictItWidgetUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -769,6 +784,7 @@
 				INFOPLIST_FILE = PredictionMarketWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PredictionMarketWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -796,6 +812,7 @@
 				INFOPLIST_FILE = PredictionMarketWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PredictionMarketWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -862,7 +879,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F00EC6382C3792D100AF1237 /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
+		F00EC6742C3A488E00AF1237 /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CoreOffice/XMLCoder";
 			requirement = {
@@ -873,9 +890,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F00EC6392C3792D100AF1237 /* XMLCoder */ = {
+		F00EC6752C3A488E00AF1237 /* XMLCoder */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F00EC6382C3792D100AF1237 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			package = F00EC6742C3A488E00AF1237 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
+		};
+		F00EC6772C3A489900AF1237 /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F00EC6742C3A488E00AF1237 /* XCRemoteSwiftPackageReference "XMLCoder" */;
 			productName = XMLCoder;
 		};
 /* End XCSwiftPackageProductDependency section */

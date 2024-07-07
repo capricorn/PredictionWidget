@@ -8,45 +8,104 @@
 import WidgetKit
 import SwiftUI
 
+private extension PIJSONMarketContract {
+    var contract: MarketContract {
+        MarketContract(id: self.id, name: self.shortName, cents: self.lastTradePrice)
+    }
+}
+
 struct Provider: AppIntentTimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
+    func placeholder(in context: Context) -> MarketEntry {
+        MarketEntry(date: Date.now, configuration: ConfigurationAppIntent(), name: "Test Market", contracts: [])
     }
 
-    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
+    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> MarketEntry {
+        MarketEntry(date: Date.now, configuration: ConfigurationAppIntent(), name: "Test Market", contracts: [])
     }
     
-    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
+    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<MarketEntry> {
+        //var entries: [SimpleEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
+        /*
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             let entry = SimpleEntry(date: entryDate, configuration: configuration)
             entries.append(entry)
         }
+         */
+        
+        // What was the rule for async requests again..?
+        // TODO: Error handling
+        var entries: [MarketEntry] = []
+        do {
+            let market = try await PredictItAPI.fetchMarketData(marketId: "7057")
+            // TODO: Map contracts
+            entries.append(MarketEntry(date: Date.now, configuration: configuration, name: market.shortName, contracts: market.contracts.map({$0.contract})))
+        } catch {}
 
-        return Timeline(entries: entries, policy: .atEnd)
+        return Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(60*15)))
     }
 }
 
+/*
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationAppIntent
 }
+ */
+
+struct MarketContract: Identifiable {
+    let id: Int
+    let name: String
+    let cents: Int?
+}
+
+// TODO: -- define necessary fields
+struct MarketEntry: TimelineEntry {
+    let date: Date
+    let configuration: ConfigurationAppIntent
+    let name: String
+    let contracts: [MarketContract]
+}
 
 struct PredictionMarketWidgetEntryView : View {
     var entry: Provider.Entry
+    
+    /*
+    let marketEntry = MarketEntry(
+        date: Date.now,
+        configuration: .smiley,
+        name: "Democratic 2024 presidential nominee?",  // Shortnmae
+        contracts: [
+            MarketContract(id: 0, name: "Trump", cents: 64),
+            MarketContract(id: 1, name: "Biden", cents: 33),
+        ])
+     */
+    
+    var contracts: [MarketContract] {
+        Array(entry.contracts.sorted(by: { ($0.cents ?? 0) > ($1.cents ?? 0) }).prefix(3))
+    }
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Favorite Emoji:")
-            Text(entry.configuration.favoriteEmoji)
+        VStack(alignment: .leading) {
+            Text(entry.name)
+                .lineLimit(2)
+                .truncationMode(.tail)
+                .font(.caption)
+                .padding(.bottom, 8)
+            ForEach(contracts) { contract in
+                HStack {
+                    Text(contract.name.uppercased())
+                        .font(.caption2.smallCaps())
+                        .padding(.bottom, 2)
+                    Spacer()
+                    Text("\(contract.cents!)¢")
+                        .monospaced()
+                }
+                .font(.caption2)
+            }
+            Spacer()
         }
     }
 }
@@ -80,6 +139,12 @@ extension ConfigurationAppIntent {
 #Preview(as: .systemSmall) {
     PredictionMarketWidget()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
+    MarketEntry(
+        date: Date.now,
+        configuration: .smiley,
+        name: "Democratic 2024 presidential nominee?",  // Shortnmae
+        contracts: [
+            MarketContract(id: 0, name: "Trump", cents: 64),
+            MarketContract(id: 1, name: "Biden", cents: 33),
+        ])
 }
