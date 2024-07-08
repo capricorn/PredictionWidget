@@ -39,6 +39,7 @@
 		F00EC6782C3A489900AF1237 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = F00EC6772C3A489900AF1237 /* XMLCoder */; };
 		F00EC67C2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC67B2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift */; };
 		F00EC67E2C3B4F5A00AF1237 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC67B2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift */; };
+		F00EC6822C3C87E000AF1237 /* TimestampContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6802C3C87AE00AF1237 /* TimestampContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		F00EC6792C3B4AB000AF1237 /* PredictItWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PredictItWidget.entitlements; sourceTree = "<group>"; };
 		F00EC67B2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		F00EC67F2C3B50E400AF1237 /* PredictionMarketWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PredictionMarketWidgetExtension.entitlements; sourceTree = "<group>"; };
+		F00EC6802C3C87AE00AF1237 /* TimestampContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				F00EC60B2C377EC900AF1237 /* ContentView.swift */,
 				F00EC60D2C377ECA00AF1237 /* Assets.xcassets */,
 				F00EC60F2C377ECA00AF1237 /* Preview Content */,
+				F00EC6802C3C87AE00AF1237 /* TimestampContainerView.swift */,
 			);
 			path = PredictItWidget;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F00EC6732C3A452100AF1237 /* PIJSONMarket.swift in Sources */,
+				F00EC6822C3C87E000AF1237 /* TimestampContainerView.swift in Sources */,
 				F00EC6622C3A386E00AF1237 /* PredictionMarketWidget.swift in Sources */,
 				F00EC6602C3A386E00AF1237 /* PredictionMarketWidgetBundle.swift in Sources */,
 				F00EC6642C3A386E00AF1237 /* AppIntent.swift in Sources */,
