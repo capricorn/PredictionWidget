@@ -42,17 +42,27 @@ struct MarketListView: View {
                 .font(.title.weight(.light))
                 .padding()
                 List(markets) { market in
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text(market.name)
-                                .padding()
-                            if market.id == selectedMarketId {
-                                Spacer()
-                                Image(systemName: "star")
+                    HStack {
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Text(market.name)
+                                    .padding()
+                                if market.id == selectedMarketId {
+                                    Spacer()
+                                    Image(systemName: "star")
+                                }
                             }
+                            MarketContractListView(contracts: market.contracts)
+                                .padding()
                         }
-                        MarketContractListView(contracts: market.contracts)
-                            .padding()
+                        VStack {
+                            Image(systemName: "link")
+                                .padding(.top, 8)
+                                .onTapGesture {
+                                    UIApplication.shared.open(market.marketURL)
+                                }
+                            Spacer()
+                        }
                     }
                     .onTapGesture {
                         if (UserDefaults.predictionWidget.value(.widgetMarket) as? Int) == market.id {
