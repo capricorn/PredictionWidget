@@ -25,17 +25,18 @@ struct Provider: AppIntentTimelineProvider {
     
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<MarketEntry> {
         let defaults = UserDefaults.predictionWidget
-        
-        // What was the rule for async requests again..?
-        // TODO: Error handling
         var entries: [MarketEntry] = []
         
         if let marketId = defaults?.value(.widgetMarket) as? Int {
             do {
                 let market = try await PredictItAPI.fetchMarketData(marketId: "\(marketId)")
-                // TODO: Map contracts
-                entries.append(MarketEntry(date: Date.now, configuration: configuration, type: .market(Market(id: market.id, name: market.shortName, contracts: market.contracts.map({$0.contract})))))
-            } catch {}
+                let entry = MarketEntry(date: Date.now, configuration: configuration, type: .market(Market(id: market.id, name: market.shortName, contracts: market.contracts.map({$0.contract}))))
+                entries.append(entry)
+            } catch {
+                entries.append(MarketEntry(date: .now, configuration: configuration, type: .error))
+            }
+        } else {
+            entries.append(MarketEntry(date: .now, configuration: configuration, type: .market(nil)))
         }
 
         return Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(60*15)))
