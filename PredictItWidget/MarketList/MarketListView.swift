@@ -55,7 +55,11 @@ struct MarketListView: View {
                             .padding()
                     }
                     .onTapGesture {
-                        UserDefaults.predictionWidget.set(.widgetMarket(marketId: market.id))
+                        if (UserDefaults.predictionWidget.value(.widgetMarket) as? Int) == market.id {
+                            UserDefaults.predictionWidget.set(.widgetMarket(marketId: nil))
+                        } else {
+                            UserDefaults.predictionWidget.set(.widgetMarket(marketId: market.id))
+                        }
                         // TODO: Shared identifier
                         WidgetCenter.shared.reloadTimelines(ofKind: "PredictionMarketWidget")
                     }
