@@ -45,11 +45,11 @@ struct MarketListView: View {
                     HStack {
                         VStack(alignment: .leading) {
                             HStack {
-                                Text(market.name)
-                                    .padding()
                                 if market.id == selectedMarketId {
-                                    Spacer()
-                                    Image(systemName: "star")
+                                    Text("\(Image(systemName: "star"))\(market.name)")
+                                } else {
+                                    Text(market.name)
+                                        .padding()
                                 }
                             }
                             MarketContractListView(contracts: market.contracts)
