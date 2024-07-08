@@ -24,17 +24,6 @@ struct Provider: AppIntentTimelineProvider {
     }
     
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<MarketEntry> {
-        //var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        /*
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
-        }
-         */
-        
         let defaults = UserDefaults.predictionWidget
         
         // What was the rule for async requests again..?
@@ -52,13 +41,6 @@ struct Provider: AppIntentTimelineProvider {
         return Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(60*15)))
     }
 }
-
-/*
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let configuration: ConfigurationAppIntent
-}
- */
 
 struct MarketContract: Identifiable {
     let id: Int
@@ -83,25 +65,10 @@ struct MarketEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationAppIntent
     let type: EntryType
-    /*
-    let name: String
-    let contracts: [MarketContract]
-     */
 }
 
 struct PredictionMarketWidgetEntryView : View {
     var entry: Provider.Entry
-    
-    /*
-    let marketEntry = MarketEntry(
-        date: Date.now,
-        configuration: .smiley,
-        name: "Democratic 2024 presidential nominee?",  // Shortnmae
-        contracts: [
-            MarketContract(id: 0, name: "Trump", cents: 64),
-            MarketContract(id: 1, name: "Biden", cents: 33),
-        ])
-     */
     
     var contracts: [MarketContract] {
         switch entry.type {
@@ -150,28 +117,8 @@ struct PredictionMarketWidgetEntryView : View {
                     TimestampContainerView(entry: entry) {
                         Text("No market selected.")
                     }
-                    /*
-                    ZStack {
-                        HStack {
-                            Text("No market selected.")
-                            Spacer()
-                        }
-                        VStack {
-                            Spacer()
-                            HStack {
-                                refreshTimestamp
-                                Spacer()
-                            }
-                        }
-                    }
-                     */
                 }
             case .error:
-                /*
-                Spacer()
-                Text("Market fetch failed.")
-                refreshTimestamp
-                 */
                 TimestampContainerView(entry: entry) {
                     Text("Market fetch failed.")
                 }
