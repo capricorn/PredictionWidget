@@ -40,6 +40,11 @@
 		F00EC67C2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC67B2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift */; };
 		F00EC67E2C3B4F5A00AF1237 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC67B2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift */; };
 		F00EC6822C3C87E000AF1237 /* TimestampContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6802C3C87AE00AF1237 /* TimestampContainerView.swift */; };
+		F00EC6892C3DD10D00AF1237 /* PreviousMarketDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6872C3DD10D00AF1237 /* PreviousMarketDataModel.swift */; };
+		F00EC68C2C3DD18300AF1237 /* ContractEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC68A2C3DD18300AF1237 /* ContractEntryModel.swift */; };
+		F00EC6902C3DDB3B00AF1237 /* DBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC68D2C3DDA2300AF1237 /* DBTests.swift */; };
+		F00EC6912C3DDC1F00AF1237 /* PreviousMarketDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6872C3DD10D00AF1237 /* PreviousMarketDataModel.swift */; };
+		F00EC6922C3DDC2B00AF1237 /* ContractEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC68A2C3DD18300AF1237 /* ContractEntryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +119,9 @@
 		F00EC67B2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		F00EC67F2C3B50E400AF1237 /* PredictionMarketWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PredictionMarketWidgetExtension.entitlements; sourceTree = "<group>"; };
 		F00EC6802C3C87AE00AF1237 /* TimestampContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampContainerView.swift; sourceTree = "<group>"; };
+		F00EC6872C3DD10D00AF1237 /* PreviousMarketDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousMarketDataModel.swift; sourceTree = "<group>"; };
+		F00EC68A2C3DD18300AF1237 /* ContractEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEntryModel.swift; sourceTree = "<group>"; };
+		F00EC68D2C3DDA2300AF1237 /* DBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +187,7 @@
 		F00EC6082C377EC900AF1237 /* PredictItWidget */ = {
 			isa = PBXGroup;
 			children = (
+				F00EC6852C3DD06D00AF1237 /* DB */,
 				F00EC67A2C3B4B1F00AF1237 /* Extensions */,
 				F00EC6792C3B4AB000AF1237 /* PredictItWidget.entitlements */,
 				F00EC6472C38929D00AF1237 /* MarketList */,
@@ -205,6 +214,7 @@
 			children = (
 				F00EC63E2C3794AB00AF1237 /* TestData */,
 				F00EC61A2C377ECA00AF1237 /* PredictItWidgetTests.swift */,
+				F00EC68D2C3DDA2300AF1237 /* DBTests.swift */,
 			);
 			path = PredictItWidgetTests;
 			sourceTree = "<group>";
@@ -293,6 +303,23 @@
 				F00EC67B2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F00EC6852C3DD06D00AF1237 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				F00EC6862C3DD07200AF1237 /* Models */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		F00EC6862C3DD07200AF1237 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F00EC6872C3DD10D00AF1237 /* PreviousMarketDataModel.swift */,
+				F00EC68A2C3DD18300AF1237 /* ContractEntryModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,8 +501,10 @@
 				F00EC67C2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift in Sources */,
 				F00EC6532C38E63B00AF1237 /* PIJSONMarketContract.swift in Sources */,
 				F00EC60C2C377EC900AF1237 /* ContentView.swift in Sources */,
+				F00EC6912C3DDC1F00AF1237 /* PreviousMarketDataModel.swift in Sources */,
 				F00EC60A2C377EC900AF1237 /* PredictItWidgetApp.swift in Sources */,
 				F00EC6512C38E57100AF1237 /* PIJSONMarket.swift in Sources */,
+				F00EC6922C3DDC2B00AF1237 /* ContractEntryModel.swift in Sources */,
 				F00EC6372C3791D000AF1237 /* PredictItAPI.swift in Sources */,
 				F00EC64B2C38969500AF1237 /* MarketContractListView.swift in Sources */,
 				F00EC6422C37970700AF1237 /* PIMarketContract.swift in Sources */,
@@ -487,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F00EC61B2C377ECA00AF1237 /* PredictItWidgetTests.swift in Sources */,
+				F00EC6902C3DDB3B00AF1237 /* DBTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,11 +533,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00EC6892C3DD10D00AF1237 /* PreviousMarketDataModel.swift in Sources */,
 				F00EC6732C3A452100AF1237 /* PIJSONMarket.swift in Sources */,
 				F00EC6822C3C87E000AF1237 /* TimestampContainerView.swift in Sources */,
 				F00EC6622C3A386E00AF1237 /* PredictionMarketWidget.swift in Sources */,
 				F00EC6602C3A386E00AF1237 /* PredictionMarketWidgetBundle.swift in Sources */,
 				F00EC6642C3A386E00AF1237 /* AppIntent.swift in Sources */,
+				F00EC68C2C3DD18300AF1237 /* ContractEntryModel.swift in Sources */,
 				F00EC67E2C3B4F5A00AF1237 /* UserDefaultsExtensions.swift in Sources */,
 				F00EC6712C3A44D500AF1237 /* PredictItAPI.swift in Sources */,
 				F00EC6722C3A451D00AF1237 /* PIJSONMarketContract.swift in Sources */,
