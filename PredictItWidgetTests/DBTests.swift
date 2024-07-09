@@ -20,6 +20,18 @@ final class DBTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testCacheStateEmpty() throws {
+        let state = try PreviousMarketDataModel.cacheState(selectedMarketId: 0, context: modelContext)
+        switch state {
+        case .empty:
+            return
+        case .currentSet(_):
+            XCTFail("Unexpected state: current")
+        case .currentAndPreviousSet(_,_):
+            XCTFail("Unexpected state: current and previous")
+        }
+    }
 
     func testCacheStateCurrent() throws {
         let model = PreviousMarketDataModel(marketId: 0, refreshDate: .now, entryType: .current, contracts: [])
