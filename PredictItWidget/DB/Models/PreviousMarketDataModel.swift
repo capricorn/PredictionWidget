@@ -23,10 +23,11 @@ class PreviousMarketDataModel {
         case currentAndPreviousSet(current: PreviousMarketDataModel, previous: PreviousMarketDataModel)
     }
     
-    @Attribute(.unique)
     let marketId: Int
     let refreshDate: Date
     // Would use the enum here but swift predicates fail.
+    // (Should only have a single set of current + previous
+    @Attribute(.unique)
     let entryType: String
     
     @Relationship(deleteRule: .cascade) var contracts: [ContractEntryModel]

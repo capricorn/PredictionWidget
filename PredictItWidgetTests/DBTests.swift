@@ -48,4 +48,21 @@ final class DBTests: XCTestCase {
         }
     }
 
+    func testCacheStateCurrentPrevious() throws {
+        let currModel = PreviousMarketDataModel(marketId: 0, refreshDate: .now, entryType: .current, contracts: [])
+        modelContext.insert(currModel)
+        
+        let prevModel = PreviousMarketDataModel(marketId: 0, refreshDate: .now, entryType: .previous, contracts: [])
+        modelContext.insert(prevModel)
+        
+        let state = try PreviousMarketDataModel.cacheState(selectedMarketId: 0, context: modelContext)
+        switch state {
+        case .empty:
+            XCTFail("Unexpected state: empty")
+        case .currentSet(_):
+            XCTFail("Unexpected state: current")
+        case .currentAndPreviousSet(_,_):
+            return
+        }
+    }
 }
