@@ -80,18 +80,23 @@ struct PredictionMarketWidgetEntryView : View {
     
     // TODO: Relying on cache state is one thing -- should it also take timeline state into account..?
     var contracts: [MarketContract] {
-        switch cacheState {
+        let c: [MarketContract] = switch cacheState {
         case .empty:
-            return []
+            []
         case .currentSet(let previousMarketDataModel):
-            return previousMarketDataModel.contracts.map {
+            previousMarketDataModel.contracts.map {
                 MarketContract(id: $0.id, name: $0.name, cents: $0.price, change: nil)
             }
         case .currentAndPreviousSet(let current, let previous):
-            return zip(current.contracts, previous.contracts).map {
-                MarketContract(id: $0.id, name: $0.name, cents: $0.price, change: $0.price-$1.price)
+            zip(current.contracts.sorted(by: { $0.id < $1.id }), previous.contracts.sorted(by: { $0.id < $1.id })).map {
+                let change = $0.price - $1.price
+                return MarketContract(id: $0.id, name: $0.name, cents: $0.price, change: (change == 0) ? nil : change)
             }
         }
+        
+        return Array(c
+            .sorted(by: { ($0.cents ?? 0) > ($1.cents ?? 0) })
+            .prefix(3))
     }
     
     var refreshTimestamp: some View {
