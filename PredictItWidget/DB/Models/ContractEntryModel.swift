@@ -12,9 +12,11 @@ import SwiftData
 class ContractEntryModel {
     let id: Int
     let price: Int
+    let name: String
     
-    init(id: Int, price: Int) {
+    init(id: Int, price: Int, name: String) {
         self.id = id
         self.price = price
+        self.name = name
     }
 }
