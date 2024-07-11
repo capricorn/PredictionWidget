@@ -8,17 +8,62 @@
 import SwiftUI
 
 struct PriceValueView: View {
+    // TODO: Switch on these three states
+    enum PriceSign {
+        case positive
+        case negative
+        
+        var prefix: String {
+            switch self {
+            case .positive:
+                "+"
+            case .negative:
+                ""
+            }
+        }
+        
+        var color: Color {
+            switch self {
+            case .positive:
+                .green
+            case .negative:
+                .red
+            }
+        }
+    }
+    
+    var changeSign: PriceSign {
+        // Don't care case
+        guard let change else {
+            return .positive
+        }
+        
+        return (change >= 0) ? .positive : .negative
+    }
+    
+    var changeExists: Bool {
+        guard let change else {
+            return false
+        }
+        
+        return change != 0
+    }
+    
+    var twoDigitChange: Bool {
+        guard let change else {
+            return false
+        }
+        
+        return abs(change) > 9
+    }
+    
+    var twoDigitPrice: Bool {
+        abs(price) >= 10
+    }
+    
     let price: Int
     // TODO: Handle when change is zero? (Always nil in that case?)
     let change: Int?
-    
-    var changeSign: String? {
-        guard let change else {
-            return nil
-        }
-        
-        return (change > 0) ? "+" : ""
-    }
     
     var changeColor: Color? {
         guard let change else {
@@ -29,29 +74,41 @@ struct PriceValueView: View {
     }
     
     var priceLabel: String {
-        (price < 10) ? " \(price)¢" : "\(price)¢"
+        "\(price)¢"
     }
     
-    var changePricePadding: String {
-        guard let change else {
-            return "    "
-        }
-        
-        return (abs(change) > 9) ? " " : "  "
-    }
-    
+    // TODO: Subviews for these (less repetition..?) Want to keep state machine..
     var body: some View {
-        if let change {
-            // TODO: Padding price <10
-            Group {
-                Text("\(changeSign!)\(change)")
-                    .foregroundStyle(changeColor!) +
-                Text(changePricePadding) +
-                Text(priceLabel)
-            }
-            .monospaced()
-        } else {
-            Text("\(changePricePadding)\(priceLabel)")
+        switch (change: changeExists, changeSign: changeSign, twoDigitChange: twoDigitChange, twoDigitPrice: twoDigitPrice) {
+        case (change: false,_,_,twoDigitPrice: true):
+            Text("    \(priceLabel)")
+                .monospaced()
+        case (change: false,_,_,twoDigitPrice: false):
+            Text("     \(priceLabel)")
+                .monospaced()
+        case (change: true, _, twoDigitChange: false, twoDigitPrice: false):
+            Text(" \(changeSign.prefix)\(change!)")
+                .foregroundStyle(changeSign.color)
+                .monospaced()
+            + Text("  \(priceLabel)")
+                .monospaced()
+        case (change: true, _, twoDigitChange: true, twoDigitPrice: false):
+            Text("\(changeSign.prefix)\(change!)")
+                .foregroundStyle(changeSign.color)
+                .monospaced()
+            + Text("  \(priceLabel)")
+                .monospaced()
+        case (change: true, _, twoDigitChange: false, twoDigitPrice: true):
+            Text(" \(changeSign.prefix)\(change!)")
+                .foregroundStyle(changeSign.color)
+                .monospaced()
+            + Text(" \(priceLabel)")
+                .monospaced()
+        case (change: true, _, twoDigitChange: true, twoDigitPrice: true):
+            Text("\(changeSign.prefix)\(change!)")
+                .foregroundStyle(changeSign.color)
+                .monospaced()
+            + Text(" \(priceLabel)")
                 .monospaced()
         }
     }
@@ -59,12 +116,14 @@ struct PriceValueView: View {
 
 #Preview {
     VStack(alignment: .leading) {
-        // TODO: Change nil should just take up empty space
+        // TODO: Implement switch that covers all preview cases
         PriceValueView(price: 8, change: nil)
         PriceValueView(price: 54, change: nil)
         PriceValueView(price: 54, change: -3)
         PriceValueView(price: 54, change: 7)
         PriceValueView(price: 9, change: 7)
+        PriceValueView(price: 91, change: 16)
         PriceValueView(price: 9, change: 32)
+        PriceValueView(price: 9, change: -3)
     }
 }
