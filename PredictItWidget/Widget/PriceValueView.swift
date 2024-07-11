@@ -22,6 +22,15 @@ struct PriceValueView: View {
             }
         }
         
+        var changeArrow: Text {
+            switch self {
+            case .positive:
+                Text("↑")
+            case .negative:
+                Text("↓")
+            }
+        }
+        
         var color: Color {
             switch self {
             case .positive:
@@ -87,25 +96,25 @@ struct PriceValueView: View {
             Text("     \(priceLabel)")
                 .monospaced()
         case (change: true, _, twoDigitChange: false, twoDigitPrice: false):
-            Text(" \(changeSign.prefix)\(change!)")
+            Text(" \(changeSign.changeArrow)\(abs(change!))")
                 .foregroundStyle(changeSign.color)
                 .monospaced()
             + Text("  \(priceLabel)")
                 .monospaced()
         case (change: true, _, twoDigitChange: true, twoDigitPrice: false):
-            Text("\(changeSign.prefix)\(change!)")
+            Text("\(changeSign.changeArrow)\(abs(change!))")
                 .foregroundStyle(changeSign.color)
                 .monospaced()
             + Text("  \(priceLabel)")
                 .monospaced()
         case (change: true, _, twoDigitChange: false, twoDigitPrice: true):
-            Text(" \(changeSign.prefix)\(change!)")
+            Text(" \(changeSign.changeArrow)\(abs(change!))")
                 .foregroundStyle(changeSign.color)
                 .monospaced()
             + Text(" \(priceLabel)")
                 .monospaced()
         case (change: true, _, twoDigitChange: true, twoDigitPrice: true):
-            Text("\(changeSign.prefix)\(change!)")
+            Text("\(changeSign.changeArrow)\(abs(change!))")
                 .foregroundStyle(changeSign.color)
                 .monospaced()
             + Text(" \(priceLabel)")
