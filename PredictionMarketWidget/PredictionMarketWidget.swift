@@ -31,6 +31,10 @@ actor CacheActor {
         }
     }
     
+    func clearCache(modelContext: ModelContext) throws {
+        modelContext.container.deleteAllData()
+    }
+    
     // Compute cache state here and perform insert accordingly
     func insertCache(marketData: PIJSONMarket, now: Date = Date.now, modelContext: ModelContext) throws {
         let contracts = marketData.contracts.map {
