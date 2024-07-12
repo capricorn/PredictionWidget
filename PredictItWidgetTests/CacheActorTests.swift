@@ -106,4 +106,16 @@ final class CacheActorTests: XCTestCase {
             XCTFail("Unexpected cache state: \(state)")
         }
     }
+    
+    func testCachedTooRecentlyError() async throws {
+        let firstCacheDate = Date.now
+        let nextCacheDate = Date.now.addingTimeInterval(1)
+        do {
+            try await cache.insertCache(marketData: market, now: firstCacheDate)
+            try await cache.insertCache(marketData: market, now: nextCacheDate)
+            XCTFail("Expected an error.")
+        } catch {
+            XCTAssert((error as? CacheActor.CachedTooRecentlyError) != nil)
+        }
+    }
 }
