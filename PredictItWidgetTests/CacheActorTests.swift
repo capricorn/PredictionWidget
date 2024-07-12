@@ -45,4 +45,25 @@ final class CacheActorTests: XCTestCase {
             XCTFail("Unexpected state: \(state)")
         }
     }
+    
+    func testClearCache() async throws {
+        try await cache.insertCache(marketData: market)
+        var state = await cache.state
+        
+        switch state {
+        case .currentSet(_):
+            break
+        default:
+            XCTFail("Unexpected cache state: \(state)")
+        }
+        
+        try await cache.clearCache()
+        state = await cache.state
+        switch state {
+        case .empty:
+            return
+        default:
+            XCTFail("Unexpected cache state: \(state)")
+        }
+    }
 }
