@@ -66,7 +66,7 @@ struct MarketListView: View {
                     }
                     .onTapGesture {
                         Task {
-                            // TODO: Consider bad state?
+                            // TODO: Guarantee of all of this in a transaction..? (Worried about bad state)
                             await MainActor.run {
                                 if (UserDefaults.predictionWidget.value(.widgetMarket) as? Int) == market.id {
                                     UserDefaults.predictionWidget.set(.widgetMarket(marketId: nil))

@@ -23,9 +23,14 @@ enum PredictionWidgetUserDefaultsValue {
 }
 
 extension UserDefaults {
+    /*
     static var predictionWidget: UserDefaults! {
         UserDefaults(suiteName: "group.goatfish.PredictionWidget")
     }
+     */
+    // TODO: Consider confining to actor?
+    //@MainActor
+    static let predictionWidget = UserDefaults(suiteName: "group.goatfish.PredictionWidget")!
     
     func set(_ value: PredictionWidgetUserDefaultsValue) {
         switch value {

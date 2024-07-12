@@ -98,6 +98,7 @@ final class CacheActorTests: XCTestCase {
         state = await cache.state
         switch state {
         case .empty:
+            // TODO: Verify that no models of a given type exist
             return
         default:
             XCTFail("Unexpected cache state: \(state)")

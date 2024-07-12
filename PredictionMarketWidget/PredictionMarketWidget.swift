@@ -31,7 +31,7 @@ struct Provider: AppIntentTimelineProvider {
         let defaults = UserDefaults.predictionWidget
         var entries: [MarketEntry] = []
         
-        if let marketId = defaults?.value(.widgetMarket) as? Int {
+        if let marketId = defaults.value(.widgetMarket) as? Int {
             do {
                 let marketData = try await PredictItAPI.fetchMarketData(marketId: "\(marketId)")
                 // TODO
@@ -41,6 +41,7 @@ struct Provider: AppIntentTimelineProvider {
                 let entry = MarketEntry(date: Date.now, type: .market(Market(id: marketData.id, name: marketData.shortName, contracts: marketData.contracts.map({$0.contract}))))
                 entries.append(entry)
             } catch {
+                // TODO: Handle cache error
                 print("Failed timeline update: \(error)")
             }
         } else {

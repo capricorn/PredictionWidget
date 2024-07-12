@@ -13,7 +13,6 @@ class ContractEntryModel {
     var id: Int
     var price: Int
     var name: String
-    //var market: PreviousMarketDataModel? = nil
     var market: PreviousMarketDataModel
 
     init(id: Int, price: Int, name: String, market: PreviousMarketDataModel) {
