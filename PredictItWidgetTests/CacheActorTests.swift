@@ -34,9 +34,6 @@ final class CacheActorTests: XCTestCase {
 
     func testCacheSetCurrent() async throws {
         try await cache.insertCache(marketData: market)
-        // TODO: Verify cache state via PreviousMarketDataModel
-        // TODO: (IMO, move that to CacheActor instead)
-        //switch PreviousMarketDataModel.cacheState(selectedMarketId: marketJson.id, context: cache.mod)
         let state = await cache.state
         switch state {
         case .currentSet(let currentMarket):
@@ -109,13 +106,24 @@ final class CacheActorTests: XCTestCase {
     
     func testCachedTooRecentlyError() async throws {
         let firstCacheDate = Date.now
-        let nextCacheDate = Date.now.addingTimeInterval(1)
+        let nextCacheDate = Date.now.addingTimeInterval(CacheActor.minimumCacheInterval-1)
         do {
             try await cache.insertCache(marketData: market, now: firstCacheDate)
             try await cache.insertCache(marketData: market, now: nextCacheDate)
             XCTFail("Expected an error.")
         } catch {
             XCTAssert((error as? CacheActor.CachedTooRecentlyError) != nil)
+        }
+    }
+    
+    func testCacheAfterMinimumInterval() async throws {
+        let firstCacheDate = Date.now
+        let nextCacheDate = Date.now.addingTimeInterval(CacheActor.minimumCacheInterval + 1)
+        do {
+            try await cache.insertCache(marketData: market, now: firstCacheDate)
+            try await cache.insertCache(marketData: market, now: nextCacheDate)
+        } catch {
+            XCTFail("Cache failed: \(error)")
         }
     }
 }

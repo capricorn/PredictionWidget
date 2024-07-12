@@ -20,9 +20,10 @@ actor CacheActor {
     }
     
     struct CachedTooRecentlyError: Error {}
+    static let minimumCacheInterval: TimeInterval = 1*60
     
     func guardCachedRecently(prevCacheDate: Date, now: Date) throws {
-        if now.timeIntervalSince(prevCacheDate) < 1*60 {
+        if now.timeIntervalSince(prevCacheDate) < CacheActor.minimumCacheInterval {
             throw CachedTooRecentlyError()
         }
     }
