@@ -46,6 +46,25 @@ final class CacheActorTests: XCTestCase {
         }
     }
     
+    func testCacheSetPrevious() async throws {
+        let previousCacheDate = Date.now
+        let currentCacheDate = Date.now.addingTimeInterval(60*15)
+        
+        try await cache.insertCache(marketData: market, now: previousCacheDate)
+        try await cache.insertCache(marketData: market, now: currentCacheDate)
+        
+        let state = await cache.state
+        switch state {
+        case .currentAndPreviousSet(let current, let previous):
+            XCTAssert(current.marketId == market.id)
+            XCTAssert(current.refreshDate == currentCacheDate)
+            XCTAssert(previous.marketId == market.id)
+            XCTAssert(previous.refreshDate == previousCacheDate)
+        default:
+            XCTFail("Unexpected state: \(state)")
+        }
+    }
+    
     func testClearCache() async throws {
         try await cache.insertCache(marketData: market)
         var state = await cache.state
