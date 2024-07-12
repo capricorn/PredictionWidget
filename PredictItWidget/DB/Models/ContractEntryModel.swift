@@ -10,15 +10,16 @@ import SwiftData
 
 @Model
 class ContractEntryModel {
-    let id: Int
-    let price: Int
-    let name: String
-    //@Attribute(.ephemeral)
+    var id: Int
+    var price: Int
+    var name: String
     //var market: PreviousMarketDataModel? = nil
-    
-    init(id: Int, price: Int, name: String) {
+    var market: PreviousMarketDataModel
+
+    init(id: Int, price: Int, name: String, market: PreviousMarketDataModel) {
         self.id = id
         self.price = price
         self.name = name
+        self.market = market
     }
 }

@@ -65,13 +65,27 @@ struct MarketListView: View {
                         }
                     }
                     .onTapGesture {
-                        if (UserDefaults.predictionWidget.value(.widgetMarket) as? Int) == market.id {
-                            UserDefaults.predictionWidget.set(.widgetMarket(marketId: nil))
-                        } else {
-                            UserDefaults.predictionWidget.set(.widgetMarket(marketId: market.id))
+                        Task {
+                            // TODO: Consider bad state?
+                            await MainActor.run {
+                                if (UserDefaults.predictionWidget.value(.widgetMarket) as? Int) == market.id {
+                                    UserDefaults.predictionWidget.set(.widgetMarket(marketId: nil))
+                                } else {
+                                    UserDefaults.predictionWidget.set(.widgetMarket(marketId: market.id))
+                                }
+                            }
+                            
+                            do {
+                                try await CacheActor.shared.clearCache()
+                            } catch {
+                                print("Failed to clear cache: \(error)")
+                            }
+                            
+                            await MainActor.run {
+                                WidgetCenter.shared.reloadTimelines(ofKind: "PredictionMarketWidget")
+                            }
+                            // TODO: Shared identifier
                         }
-                        // TODO: Shared identifier
-                        WidgetCenter.shared.reloadTimelines(ofKind: "PredictionMarketWidget")
                     }
                     // TODO: Iterate contract list in separate view
                 }

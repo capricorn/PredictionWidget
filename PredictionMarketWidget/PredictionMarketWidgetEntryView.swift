@@ -148,15 +148,20 @@ struct PredictionMarketWidgetEntryView : View {
     let context = ModelContext(container)
     let marketId = 0
     
-    context.insert(PreviousMarketDataModel(marketId: marketId, refreshDate: .now, entryType: .current, contracts: [
-        .init(id: 1, price: 50, name: "Biden"),
-        .init(id: 2, price: 36, name: "Trump"),
-    ]))
+    let entry1 = PreviousMarketDataModel(marketId: marketId, refreshDate: .now, entryType: .current)
+    entry1.contracts = [
+        .init(id: 1, price: 50, name: "Biden", market: entry1),
+        .init(id: 2, price: 36, name: "Trump", market: entry1),
+    ]
+    context.insert(entry1)
     
-    context.insert(PreviousMarketDataModel(marketId: marketId, refreshDate: .now, entryType: .previous, contracts: [
-        .init(id: 1, price: 54, name: "Biden"),
-        .init(id: 2, price: 30, name: "Trump"),
-    ]))
+    let entry2 = PreviousMarketDataModel(marketId: marketId, refreshDate: .now, entryType: .current)
+    entry2.contracts = [
+        .init(id: 1, price: 50, name: "Biden", market: entry2),
+        .init(id: 2, price: 36, name: "Trump", market: entry2),
+    ]
+    
+    context.insert(entry2)
 
     return PredictionMarketWidgetEntryView(entry: MarketEntry(
         date: Date.now,

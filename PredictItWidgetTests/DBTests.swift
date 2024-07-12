@@ -34,7 +34,7 @@ final class DBTests: XCTestCase {
     }
 
     func testCacheStateCurrent() throws {
-        let model = PreviousMarketDataModel(marketId: 0, refreshDate: .now, entryType: .current, contracts: [])
+        let model = PreviousMarketDataModel(marketId: 0, refreshDate: .now, entryType: .current)
         modelContext.insert(model)
         
         let state = try PreviousMarketDataModel.cacheState(selectedMarketId: 0, context: modelContext)
@@ -49,10 +49,10 @@ final class DBTests: XCTestCase {
     }
 
     func testCacheStateCurrentPrevious() throws {
-        let currModel = PreviousMarketDataModel(marketId: 0, refreshDate: .now, entryType: .current, contracts: [])
+        let currModel = PreviousMarketDataModel(marketId: 0, refreshDate: .now, entryType: .current)
         modelContext.insert(currModel)
         
-        let prevModel = PreviousMarketDataModel(marketId: 0, refreshDate: .now, entryType: .previous, contracts: [])
+        let prevModel = PreviousMarketDataModel(marketId: 0, refreshDate: .now, entryType: .previous)
         modelContext.insert(prevModel)
         
         let state = try PreviousMarketDataModel.cacheState(selectedMarketId: 0, context: modelContext)
