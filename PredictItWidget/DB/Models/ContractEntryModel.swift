@@ -13,6 +13,8 @@ class ContractEntryModel {
     let id: Int
     let price: Int
     let name: String
+    //@Attribute(.ephemeral)
+    //var market: PreviousMarketDataModel? = nil
     
     init(id: Int, price: Int, name: String) {
         self.id = id

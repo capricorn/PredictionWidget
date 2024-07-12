@@ -30,7 +30,7 @@ class PreviousMarketDataModel {
     @Attribute(.unique)
     var entryType: String
     
-    @Relationship(deleteRule: .cascade) var contracts: [ContractEntryModel]
+    @Relationship(deleteRule: .cascade) var contracts: [ContractEntryModel] = []
     
     init(marketId: Int, refreshDate: Date, entryType: EntryType, contracts: [ContractEntryModel]) {
         self.marketId = marketId

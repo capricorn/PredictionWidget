@@ -9,62 +9,6 @@ import WidgetKit
 import SwiftUI
 import SwiftData
 
-// Use this to isolate access to the cache?
-// TODO: Global actor options
-//@ModelActor
-actor CacheActor {
-    /*
-    static var shared: CacheActor {
-        //return CacheActor(modelContainer: try! ModelContainer(for: PreviousMarketDataModel.self, ContractEntryModel.self, configurations: ModelConfiguration()))
-        CacheActor()
-    }
-     */
-    static let shared: CacheActor = CacheActor()
-    
-    private init() {}
-    
-    struct CachedTooRecentlyError: Error {}
-    
-    func guardCachedRecently(prevCacheDate: Date, now: Date) throws {
-        if now.timeIntervalSince(prevCacheDate) < 1*60 {
-            throw CachedTooRecentlyError()
-        }
-    }
-    
-    func clearCache(modelContext: ModelContext) throws {
-        modelContext.container.deleteAllData()
-    }
-    
-    // Compute cache state here and perform insert accordingly
-    func insertCache(marketData: PIJSONMarket, now: Date = Date.now, modelContext: ModelContext) throws {
-        let contracts = marketData.contracts.map {
-            // TODO: Support nil price
-            ContractEntryModel(id: $0.id, price: $0.lastTradePrice ?? 0, name: $0.shortName)
-        }
-        
-        switch try PreviousMarketDataModel.cacheState(selectedMarketId: marketData.id, context: modelContext) {
-        case .empty:
-            let curr = PreviousMarketDataModel(marketId: marketData.id, refreshDate: now, entryType: .current, contracts: contracts)
-            modelContext.insert(curr)
-        case .currentSet(let prev):
-            try guardCachedRecently(prevCacheDate: prev.refreshDate, now: now)
-            // TODO: Guard against cache being invalidated too quickly (ie require say 3 min between now and then)
-            let newCurr = PreviousMarketDataModel(marketId: marketData.id, refreshDate: now, entryType: .current, contracts: contracts)
-            try modelContext.transaction {
-                prev.entryType = PreviousMarketDataModel.EntryType.previous.rawValue
-                modelContext.insert(newCurr)
-            }
-        case .currentAndPreviousSet(let current, let previous):
-            try guardCachedRecently(prevCacheDate: previous.refreshDate, now: now)
-            let newCurr = PreviousMarketDataModel(marketId: marketData.id, refreshDate: now, entryType: .current, contracts: contracts)
-            try modelContext.transaction {
-                modelContext.delete(previous)
-                current.entryType = PreviousMarketDataModel.EntryType.previous.rawValue
-                modelContext.insert(newCurr)
-            }
-        }
-    }
-}
 
 private extension PIJSONMarketContract {
     var contract: MarketContract {
@@ -91,7 +35,7 @@ struct Provider: AppIntentTimelineProvider {
             do {
                 let marketData = try await PredictItAPI.fetchMarketData(marketId: "\(marketId)")
                 // TODO
-                try await CacheActor.shared.insertCache(marketData: marketData, now: .now, modelContext: modelContext)
+                try await CacheActor.shared.insertCache(marketData: marketData, now: .now)
                 // TODO: New timeline approach (just to indicate that a valid market exists)
                 // May not even need these enums
                 let entry = MarketEntry(date: Date.now, type: .market(Market(id: marketData.id, name: marketData.shortName, contracts: marketData.contracts.map({$0.contract}))))
