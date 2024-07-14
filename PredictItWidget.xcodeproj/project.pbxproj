@@ -54,6 +54,8 @@
 		F00EC6A12C4192CA00AF1237 /* CacheActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A02C4192CA00AF1237 /* CacheActor.swift */; };
 		F00EC6A22C4192CA00AF1237 /* CacheActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A02C4192CA00AF1237 /* CacheActor.swift */; };
 		F00EC6A32C437B9E00AF1237 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6632C3A386E00AF1237 /* AppIntent.swift */; };
+		F00EC6A52C437E2E00AF1237 /* MarketEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */; };
+		F00EC6A62C437E2E00AF1237 /* MarketEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,7 @@
 		F00EC6982C3EFB7A00AF1237 /* PriceValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceValueView.swift; sourceTree = "<group>"; };
 		F00EC69E2C41900600AF1237 /* CacheActorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheActorTests.swift; sourceTree = "<group>"; };
 		F00EC6A02C4192CA00AF1237 /* CacheActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheActor.swift; sourceTree = "<group>"; };
+		F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEntryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +338,7 @@
 			children = (
 				F00EC6872C3DD10D00AF1237 /* PreviousMarketDataModel.swift */,
 				F00EC68A2C3DD18300AF1237 /* ContractEntryModel.swift */,
+				F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -521,6 +525,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00EC6A52C437E2E00AF1237 /* MarketEntryModel.swift in Sources */,
 				F00EC6492C3892A800AF1237 /* MarketListView.swift in Sources */,
 				F00EC63D2C37943C00AF1237 /* PIMarketData.swift in Sources */,
 				F00EC6992C3EFB7A00AF1237 /* PriceValueView.swift in Sources */,
@@ -564,6 +569,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F00EC6A62C437E2E00AF1237 /* MarketEntryModel.swift in Sources */,
 				F00EC6892C3DD10D00AF1237 /* PreviousMarketDataModel.swift in Sources */,
 				F00EC6732C3A452100AF1237 /* PIJSONMarket.swift in Sources */,
 				F00EC69A2C3EFB7A00AF1237 /* PriceValueView.swift in Sources */,

@@ -15,6 +15,7 @@ struct MarketListView: View {
         case refreshError
     }
     
+    @Environment(\.modelContext) var modelContext
     @State private var markets: [PIJSONMarket] = []
     @State private var viewState: ViewState = .loading
     @AppStorage(PredictionWidgetUserDefaultsKeys.widgetMarket.rawValue, store: .predictionWidget) var selectedMarketId: Int?
@@ -22,6 +23,14 @@ struct MarketListView: View {
     private func refreshMarkets() async {
         do {
             let data = try await PredictItAPI.fetchMarketData()
+            
+            try modelContext.delete(model: MarketEntryModel.self)
+            
+            for market in data {
+                let entry = MarketEntryModel(id: market.id, name: market.shortName)
+                modelContext.insert(entry)
+            }
+            
             await MainActor.run {
                 markets = data
                 viewState = .ready

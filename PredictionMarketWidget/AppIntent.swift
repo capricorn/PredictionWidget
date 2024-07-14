@@ -17,26 +17,23 @@ struct MarketQuery: EntityQuery {
     }
     
     func suggestedEntities() async throws -> [Entity] {
-        guard let detail = await CacheActor.shared.marketDetail else {
-            return []
-        }
+        let entries = await CacheActor.shared.markets
         
-        return [detail]
+        return entries.map { MarketDetail(id: $0.id, name: $0.name) }
     }
 }
 
 struct MarketDetail: AppEntity {
     let id: Int
+    let name: String
 
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "MarketDetails"
     static var defaultQuery: MarketQuery = MarketQuery()
 
     var displayRepresentation: DisplayRepresentation {
-        // TODO: Market shortname (truncated?)
-        DisplayRepresentation(stringLiteral: "\(id)")
+        DisplayRepresentation(stringLiteral: "\(name)")
     }
 }
-
 
 struct ConfigurationAppIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Configuration"

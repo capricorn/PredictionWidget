@@ -72,7 +72,7 @@ struct Provider: AppIntentTimelineProvider {
 
 struct PredictionMarketWidget: Widget {
     let kind: String = "PredictionMarketWidget"
-    let context = ModelContext(try! ModelContainer(for: PreviousMarketDataModel.self, ContractEntryModel.self, configurations: ModelConfiguration()))
+    let context = ModelContext(try! ModelContainer(for: PreviousMarketDataModel.self, ContractEntryModel.self, MarketEntryModel.self, configurations: ModelConfiguration()))
     
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider(modelContext: context)) { entry in

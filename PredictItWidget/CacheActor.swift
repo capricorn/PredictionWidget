@@ -13,7 +13,7 @@ actor CacheActor {
     private let modelContext: ModelContext
     
     init(configuration: ModelConfiguration = ModelConfiguration()) {
-        self.modelContext = ModelContext(try! ModelContainer(for: PreviousMarketDataModel.self, ContractEntryModel.self, configurations: configuration))
+        self.modelContext = ModelContext(try! ModelContainer(for: PreviousMarketDataModel.self, ContractEntryModel.self, MarketEntryModel.self, configurations: configuration))
     }
     
     struct CachedTooRecentlyError: Error {}
@@ -29,6 +29,11 @@ actor CacheActor {
         try modelContext.delete(model: PreviousMarketDataModel.self)
     }
     
+    // TODO: Move out of cache
+    var markets: [MarketEntryModel] {
+        return (try? modelContext.fetch(FetchDescriptor<MarketEntryModel>())) ?? []
+    }
+    
     // TODO: Implement differently
     var marketDetail: MarketDetail? {
         let currType = PreviousMarketDataModel.EntryType.current.rawValue
@@ -42,7 +47,7 @@ actor CacheActor {
             return nil
         }
         
-        return MarketDetail(id: current.marketId)
+        return MarketDetail(id: current.marketId, name: "")
     }
     
     var state: PreviousMarketDataModel.CacheState {
