@@ -9,7 +9,6 @@ import WidgetKit
 import SwiftUI
 import SwiftData
 
-
 private extension PIJSONMarketContract {
     var contract: MarketContract {
         MarketContract(id: self.id, name: self.shortName, cents: self.lastTradePrice, change: nil)
@@ -48,46 +47,9 @@ struct Provider: AppIntentTimelineProvider {
             entries.append(MarketEntry(date: .now, type: .error))
         }
         
-        /*
-        if let marketId = defaults.value(.widgetMarket) as? Int {
-            do {
-                let marketData = try await PredictItAPI.fetchMarketData(marketId: "\(marketId)")
-                // TODO
-                try await CacheActor.shared.insertCache(marketData: marketData, now: .now)
-                // TODO: New timeline approach (just to indicate that a valid market exists)
-                // May not even need these enums
-                let entry = MarketEntry(date: Date.now, type: .market(Market(id: marketData.id, name: marketData.shortName, contracts: marketData.contracts.map({$0.contract}))))
-                entries.append(entry)
-            } catch {
-                // TODO: Handle cache error
-                print("Failed timeline update: \(error)")
-            }
-        } else {
-            entries.append(MarketEntry(date: .now, type: .market(nil)))
-        }
-         */
-        
         return Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(60*15)))
-
-        /*
-        if let marketId = defaults?.value(.widgetMarket) as? Int {
-            do {
-                let market = try await PredictItAPI.fetchMarketData(marketId: "\(marketId)")
-                let entry = MarketEntry(date: Date.now, type: .market(Market(id: market.id, name: market.shortName, contracts: market.contracts.map({$0.contract}))))
-                entries.append(entry)
-            } catch {
-                entries.append(MarketEntry(date: .now, type: .error))
-            }
-        } else {
-            entries.append(MarketEntry(date: .now, type: .market(nil)))
-        }
-         */
-
-        //return Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(60*15)))
     }
 }
-
-
 
 struct PredictionMarketWidget: Widget {
     let kind: String = "PredictionMarketWidget"
@@ -102,22 +64,6 @@ struct PredictionMarketWidget: Widget {
         .supportedFamilies([.systemSmall])
     }
 }
-
-/*
-extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "😀"
-        return intent
-    }
-    
-    fileprivate static var starEyes: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "🤩"
-        return intent
-    }
-}
- */
 
 #Preview(as: .systemSmall) {
     PredictionMarketWidget()
