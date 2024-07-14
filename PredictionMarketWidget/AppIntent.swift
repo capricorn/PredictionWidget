@@ -19,7 +19,9 @@ struct MarketQuery: EntityQuery {
     func suggestedEntities() async throws -> [Entity] {
         let entries = await CacheActor.shared.markets
         
-        return entries.map { MarketDetail(id: $0.id, name: $0.name) }
+        return entries
+            .map { MarketDetail(id: $0.id, name: $0.name) }
+            .sorted(by: { $0.name < $1.name })
     }
 }
 
