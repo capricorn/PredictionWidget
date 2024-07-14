@@ -53,6 +53,7 @@
 		F00EC69F2C41900600AF1237 /* CacheActorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC69E2C41900600AF1237 /* CacheActorTests.swift */; };
 		F00EC6A12C4192CA00AF1237 /* CacheActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A02C4192CA00AF1237 /* CacheActor.swift */; };
 		F00EC6A22C4192CA00AF1237 /* CacheActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A02C4192CA00AF1237 /* CacheActor.swift */; };
+		F00EC6A32C437B9E00AF1237 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6632C3A386E00AF1237 /* AppIntent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -533,6 +534,7 @@
 				F00EC6922C3DDC2B00AF1237 /* ContractEntryModel.swift in Sources */,
 				F00EC6372C3791D000AF1237 /* PredictItAPI.swift in Sources */,
 				F00EC64B2C38969500AF1237 /* MarketContractListView.swift in Sources */,
+				F00EC6A32C437B9E00AF1237 /* AppIntent.swift in Sources */,
 				F00EC6962C3EF82800AF1237 /* TimestampContainerView.swift in Sources */,
 				F00EC6942C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift in Sources */,
 				F00EC6422C37970700AF1237 /* PIMarketContract.swift in Sources */,

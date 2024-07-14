@@ -29,6 +29,22 @@ actor CacheActor {
         try modelContext.delete(model: PreviousMarketDataModel.self)
     }
     
+    // TODO: Implement differently
+    var marketDetail: MarketDetail? {
+        let currType = PreviousMarketDataModel.EntryType.current.rawValue
+        let pred = #Predicate<PreviousMarketDataModel> { (model: PreviousMarketDataModel) in
+            model.entryType == currType
+        }
+        let query = FetchDescriptor(predicate: pred)
+        let results = try! modelContext.fetch(query)
+        
+        guard let current = results.first else {
+            return nil
+        }
+        
+        return MarketDetail(id: current.marketId)
+    }
+    
     var state: PreviousMarketDataModel.CacheState {
         // Query to find current and previous
         let currType = PreviousMarketDataModel.EntryType.current.rawValue

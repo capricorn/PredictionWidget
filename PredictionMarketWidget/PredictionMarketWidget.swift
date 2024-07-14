@@ -84,6 +84,7 @@ struct PredictionMarketWidget: Widget {
     }
 }
 
+/*
 extension ConfigurationAppIntent {
     fileprivate static var smiley: ConfigurationAppIntent {
         let intent = ConfigurationAppIntent()
@@ -97,6 +98,7 @@ extension ConfigurationAppIntent {
         return intent
     }
 }
+ */
 
 #Preview(as: .systemSmall) {
     PredictionMarketWidget()
