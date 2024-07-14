@@ -39,18 +39,7 @@ struct ConfigurationAppIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Configuration"
     static var description = IntentDescription("This is an example widget.")
     
-    // WIP: List available cached markets
-    // Modify the main app to store all market IDs (short name, id) on refresh
-    // Then query swiftdata for these (it will reference the same app group as the main app)
-
-    // An example configurable parameter.
-    // Pass options provider here
-    /*
-    @Parameter(title: "Favorite Emoji", default: "😃")
-    var favoriteEmoji: String
-     */
+    // TODO: Requires special 'None' option..?
     @Parameter(title: "Market")
-    var selectedMarket: MarketDetail
-    
-    
+    var selectedMarket: MarketDetail?
 }

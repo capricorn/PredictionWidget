@@ -31,6 +31,24 @@ struct Provider: AppIntentTimelineProvider {
         let defaults = UserDefaults.predictionWidget
         var entries: [MarketEntry] = []
         
+        do {
+            if let marketId = configuration.selectedMarket?.id {
+                let marketData = try await PredictItAPI.fetchMarketData(marketId: "\(marketId)")
+                let entry = MarketEntry(
+                    date: Date.now,
+                    type: .market(Market(
+                        id: marketData.id,
+                        name: marketData.shortName,
+                        contracts: marketData.contracts.map({$0.contract}))))
+                entries.append(entry)
+            } else {
+                entries.append(MarketEntry(date: .now, type: .market(nil)))
+            }
+        } catch {
+            entries.append(MarketEntry(date: .now, type: .error))
+        }
+        
+        /*
         if let marketId = defaults.value(.widgetMarket) as? Int {
             do {
                 let marketData = try await PredictItAPI.fetchMarketData(marketId: "\(marketId)")
@@ -47,6 +65,7 @@ struct Provider: AppIntentTimelineProvider {
         } else {
             entries.append(MarketEntry(date: .now, type: .market(nil)))
         }
+         */
         
         return Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(60*15)))
 
@@ -64,7 +83,7 @@ struct Provider: AppIntentTimelineProvider {
         }
          */
 
-        return Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(60*15)))
+        //return Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(60*15)))
     }
 }
 

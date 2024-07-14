@@ -38,63 +38,27 @@ struct MarketEntry: TimelineEntry {
     let type: EntryType
 }
 
-// TODO: Implement queries for curr/prev price
-// curr is necessary for displaying anything at this point -- so adjust state machine as necessary..?
 struct PredictionMarketWidgetEntryView : View {
     @Environment(\.modelContext) var modelContext
-    // TODO: Remove enum usage -- apparently not supported by swiftdata atm
-    static let currentType = PreviousMarketDataModel.EntryType.current.rawValue
-    static let previousType = PreviousMarketDataModel.EntryType.previous.rawValue
-
-    // TODO: Setup in init instead
-    @Query(FetchDescriptor(predicate: #Predicate<PreviousMarketDataModel> { model in model.entryType == currentType })) var currentMarketEntryQuery: [PreviousMarketDataModel]
-    /*
-    @Query var currentMarketEntryQuery: [PreviousMarketDataModel]
-    @Query var previousMarketEntryQuery: [PreviousMarketDataModel]
-     */
-    @Query(FetchDescriptor(predicate: #Predicate<PreviousMarketDataModel> { model in model.entryType == previousType })) var previousMarketEntryQuery: [PreviousMarketDataModel]
     
-    var currentEntry: PreviousMarketDataModel? {
-        currentMarketEntryQuery.first
-    }
-    
-    var previousEntry: PreviousMarketDataModel? {
-        previousMarketEntryQuery.first
-    }
-
-    var entry: MarketEntry //Provider.Entry
-    
-    var cacheState: PreviousMarketDataModel.CacheState {
+    var currentEntry: Market? {
         switch entry.type {
         case .market(let market):
-            if let market {
-                return try! PreviousMarketDataModel.cacheState(selectedMarketId: market.id, context: modelContext)
-            } else {
-                return .empty
-            }
+            return market
         default:
-            return .empty
+            return nil
         }
     }
+
+    var entry: MarketEntry
     
-    
-    // TODO: Relying on cache state is one thing -- should it also take timeline state into account..?
     var contracts: [MarketContract] {
-        let c: [MarketContract] = switch cacheState {
-        case .empty:
-            []
-        case .currentSet(let previousMarketDataModel):
-            previousMarketDataModel.contracts.map {
-                MarketContract(id: $0.id, name: $0.name, cents: $0.price, change: nil)
-            }
-        case .currentAndPreviousSet(let current, let previous):
-            zip(current.contracts.sorted(by: { $0.id < $1.id }), previous.contracts.sorted(by: { $0.id < $1.id })).map {
-                let change = $0.price - $1.price
-                return MarketContract(id: $0.id, name: $0.name, cents: $0.price, change: (change == 0) ? nil : change)
-            }
+        guard let currentEntry else {
+            return []
         }
         
-        return Array(c
+        return Array(currentEntry
+            .contracts
             .sorted(by: { ($0.cents ?? 0) > ($1.cents ?? 0) })
             .prefix(3))
     }
