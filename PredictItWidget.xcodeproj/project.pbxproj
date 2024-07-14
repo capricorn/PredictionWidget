@@ -56,6 +56,7 @@
 		F00EC6A32C437B9E00AF1237 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6632C3A386E00AF1237 /* AppIntent.swift */; };
 		F00EC6A52C437E2E00AF1237 /* MarketEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */; };
 		F00EC6A62C437E2E00AF1237 /* MarketEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */; };
+		F00EC6A82C44774100AF1237 /* TimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A72C44774100AF1237 /* TimelineProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 		F00EC69E2C41900600AF1237 /* CacheActorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheActorTests.swift; sourceTree = "<group>"; };
 		F00EC6A02C4192CA00AF1237 /* CacheActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheActor.swift; sourceTree = "<group>"; };
 		F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEntryModel.swift; sourceTree = "<group>"; };
+		F00EC6A72C44774100AF1237 /* TimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +312,7 @@
 				F00EC65F2C3A386E00AF1237 /* PredictionMarketWidgetBundle.swift */,
 				F00EC6612C3A386E00AF1237 /* PredictionMarketWidget.swift */,
 				F00EC6632C3A386E00AF1237 /* AppIntent.swift */,
+				F00EC6A72C44774100AF1237 /* TimelineProvider.swift */,
 				F00EC6652C3A387000AF1237 /* Assets.xcassets */,
 				F00EC6672C3A387000AF1237 /* Info.plist */,
 				F00EC6932C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift */,
@@ -578,6 +581,7 @@
 				F00EC6602C3A386E00AF1237 /* PredictionMarketWidgetBundle.swift in Sources */,
 				F00EC6952C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift in Sources */,
 				F00EC6642C3A386E00AF1237 /* AppIntent.swift in Sources */,
+				F00EC6A82C44774100AF1237 /* TimelineProvider.swift in Sources */,
 				F00EC68C2C3DD18300AF1237 /* ContractEntryModel.swift in Sources */,
 				F00EC67E2C3B4F5A00AF1237 /* UserDefaultsExtensions.swift in Sources */,
 				F00EC6712C3A44D500AF1237 /* PredictItAPI.swift in Sources */,
