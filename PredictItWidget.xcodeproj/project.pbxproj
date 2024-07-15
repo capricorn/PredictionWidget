@@ -51,6 +51,7 @@
 		F00EC6A52C437E2E00AF1237 /* MarketEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */; };
 		F00EC6A62C437E2E00AF1237 /* MarketEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */; };
 		F00EC6A82C44774100AF1237 /* TimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A72C44774100AF1237 /* TimelineProvider.swift */; };
+		F00EC6AA2C45CC6900AF1237 /* WidgetCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		F00EC6A02C4192CA00AF1237 /* CacheActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheActor.swift; sourceTree = "<group>"; };
 		F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEntryModel.swift; sourceTree = "<group>"; };
 		F00EC6A72C44774100AF1237 /* TimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineProvider.swift; sourceTree = "<group>"; };
+		F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +302,7 @@
 				F00EC6652C3A387000AF1237 /* Assets.xcassets */,
 				F00EC6672C3A387000AF1237 /* Info.plist */,
 				F00EC6932C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift */,
+				F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */,
 			);
 			path = PredictionMarketWidget;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				F00EC6892C3DD10D00AF1237 /* PreviousMarketDataModel.swift in Sources */,
 				F00EC6732C3A452100AF1237 /* PIJSONMarket.swift in Sources */,
 				F00EC69A2C3EFB7A00AF1237 /* PriceValueView.swift in Sources */,
+				F00EC6AA2C45CC6900AF1237 /* WidgetCache.swift in Sources */,
 				F00EC6822C3C87E000AF1237 /* TimestampContainerView.swift in Sources */,
 				F00EC6622C3A386E00AF1237 /* PredictionMarketWidget.swift in Sources */,
 				F00EC6602C3A386E00AF1237 /* PredictionMarketWidgetBundle.swift in Sources */,

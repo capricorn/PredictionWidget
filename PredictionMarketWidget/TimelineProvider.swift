@@ -20,6 +20,7 @@ struct Provider: AppIntentTimelineProvider {
     let modelContext: ModelContext
     static let queue = DispatchQueue(label: "PredictionWidgetQueue")
     static let group = DispatchGroup()
+    static let cache = WidgetCache()
     
     func placeholder(in context: Context) -> MarketEntry {
         MarketEntry(date: Date.now, type: .market(Market(id: 0, name: "Test Market", contracts: [])))
