@@ -18,6 +18,8 @@ private extension PIJSONMarketContract {
 
 struct Provider: AppIntentTimelineProvider {
     let modelContext: ModelContext
+    static let queue = DispatchQueue(label: "PredictionWidgetQueue")
+    static let group = DispatchGroup()
     
     func placeholder(in context: Context) -> MarketEntry {
         MarketEntry(date: Date.now, type: .market(Market(id: 0, name: "Test Market", contracts: [])))
@@ -28,26 +30,51 @@ struct Provider: AppIntentTimelineProvider {
     }
     
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<MarketEntry> {
-        let defaults = UserDefaults.predictionWidget
-        var entries: [MarketEntry] = []
-        
-        do {
-            if let marketId = configuration.selectedMarket?.id {
-                let marketData = try await PredictItAPI.fetchMarketData(marketId: "\(marketId)")
-                let entry = MarketEntry(
-                    date: Date.now,
-                    type: .market(Market(
-                        id: marketData.id,
-                        name: marketData.shortName,
-                        contracts: marketData.contracts.map({$0.contract}))))
-                entries.append(entry)
-            } else {
-                entries.append(MarketEntry(date: .now, type: .market(nil)))
+        return await withUnsafeContinuation { (continuation: UnsafeContinuation<Timeline<MarketEntry>, Never>) in
+            // Instead, pass an escaping closure here; it'll handle the continuation
+            // TODO: Simpler approach?
+            // TODO: CheckedContinuation?
+            Provider.queue.sync {
+                print("Running")
+                Provider.group.enter()
+                // TODO: Need to block utnil
+                //let defaults = UserDefaults.predictionWidget
+                var entries: [MarketEntry] = []
+                
+                do {
+                    if let marketId = configuration.selectedMarket?.id {
+                        try PredictItAPI.fetchMarketData(marketId: "\(marketId)") { marketData in
+                            guard let marketData else {
+                                let entry = MarketEntry(date: .now, type: .error)
+                                continuation.resume(returning: Timeline(entries: [entry], policy: .after(Date.now.addingTimeInterval(60*15))))
+                                Provider.group.leave()
+                                return
+                            }
+                            
+                            let entry = MarketEntry(
+                            date: Date.now,
+                            type: .market(Market(
+                                id: marketData.id,
+                                name: marketData.shortName,
+                                contracts: marketData.contracts.map({$0.contract}))))
+                            
+                            continuation.resume(returning: Timeline(entries: [entry], policy: .after(Date.now.addingTimeInterval(60*15))))
+                            Provider.group.leave()
+                        }
+                        
+                        return
+                    } else {
+                        entries.append(MarketEntry(date: .now, type: .market(nil)))
+                    }
+                } catch {
+                    entries.append(MarketEntry(date: .now, type: .error))
+                }
+                
+                continuation.resume(returning: Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(60*15))))
+                Provider.group.leave()
             }
-        } catch {
-            entries.append(MarketEntry(date: .now, type: .error))
+            
+            Provider.group.wait()
         }
-        
-        return Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(60*15)))
     }
 }

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import XMLCoder
 
 enum PredictItAPI {
     static let apiBasePath = URL(string: "https://www.predictit.org/api")!
@@ -21,6 +20,28 @@ enum PredictItAPI {
         // TODO: Handle API errors..?
         
         return try JSONDecoder().decode(PIJSONMarket.self, from: data)
+    }
+    
+    static func fetchMarketData(marketId: String, result: @escaping (PIJSONMarket?) -> Void) throws {
+        var req = URLRequest(url: apiBasePath.appending(path: "/marketdata/markets/\(marketId)"))
+        let task = URLSession.shared.dataTask(with: req) { (data: Data?, resp: URLResponse?, error: Error?) in
+            guard let data else {
+                result(nil)
+                return
+            }
+            
+            if let error {
+                result(nil)
+            }
+            
+            if let resp, (resp as? HTTPURLResponse)?.statusCode != 200 {
+                result(nil)
+            }
+            
+            let market = try? JSONDecoder().decode(PIJSONMarket.self, from: data)
+            result(market)
+        }
+        task.resume()
     }
     
     /// Fetch data from all markets
