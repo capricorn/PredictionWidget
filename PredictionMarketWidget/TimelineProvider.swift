@@ -35,19 +35,21 @@ struct Provider: AppIntentTimelineProvider {
             // TODO: Simpler approach?
             // TODO: CheckedContinuation?
             Provider.queue.sync {
-                print("Running")
                 Provider.group.enter()
                 // TODO: Need to block utnil
                 //let defaults = UserDefaults.predictionWidget
                 var entries: [MarketEntry] = []
+                let finish = { (entry: MarketEntry) in
+                    continuation.resume(returning: Timeline(entries: [entry], policy: .after(Date.now.addingTimeInterval(60*15))))
+                    Provider.group.leave()
+                }
                 
                 do {
                     if let marketId = configuration.selectedMarket?.id {
                         try PredictItAPI.fetchMarketData(marketId: "\(marketId)") { marketData in
                             guard let marketData else {
                                 let entry = MarketEntry(date: .now, type: .error)
-                                continuation.resume(returning: Timeline(entries: [entry], policy: .after(Date.now.addingTimeInterval(60*15))))
-                                Provider.group.leave()
+                                finish(entry)
                                 return
                             }
                             
@@ -58,8 +60,7 @@ struct Provider: AppIntentTimelineProvider {
                                 name: marketData.shortName,
                                 contracts: marketData.contracts.map({$0.contract}))))
                             
-                            continuation.resume(returning: Timeline(entries: [entry], policy: .after(Date.now.addingTimeInterval(60*15))))
-                            Provider.group.leave()
+                            finish(entry)
                         }
                         
                         return
@@ -70,8 +71,7 @@ struct Provider: AppIntentTimelineProvider {
                     entries.append(MarketEntry(date: .now, type: .error))
                 }
                 
-                continuation.resume(returning: Timeline(entries: entries, policy: .after(Date.now.addingTimeInterval(60*15))))
-                Provider.group.leave()
+                finish(entries[0])
             }
             
             Provider.group.wait()
