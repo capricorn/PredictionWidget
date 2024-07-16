@@ -10,11 +10,6 @@ import WidgetKit
 import SwiftUI
 import SwiftData
 
-private extension PIJSONMarketContract {
-    var contract: MarketContract {
-        MarketContract(id: self.id, name: self.shortName, cents: self.lastTradePrice, change: nil)
-    }
-}
 
 private extension URLSession {
     // TODO: Any way to just wrap a callback generically with this?
@@ -67,23 +62,31 @@ struct Provider: AppIntentTimelineProvider {
         MarketEntry(date: Date.now, type: .market(Market(id: 0, name: "Test Market", contracts: [])))
     }
     
-    static func getTimelineEntry(selectedMarketId: Int?, fetcher: MarketDataFetcher = PredictItAPI.syncFetchMarketData) -> MarketEntry {
-        if let marketId = selectedMarketId {
-            if let marketData = fetcher(marketId) {
-                let entry = MarketEntry(
-                date: Date.now,
-                type: .market(Market(
-                    id: marketData.id,
-                    name: marketData.shortName,
-                    contracts: marketData.contracts.map({$0.contract}))))
-                
-                return entry
-            } else {
-                let entry = MarketEntry(date: .now, type: .error)
-                return entry
-            }
-        } else {
+    static func getTimelineEntry(
+        selectedMarketId: Int?,
+        fetcher: MarketDataFetcher = PredictItAPI.syncFetchMarketData,
+        cache: WidgetCache = .shared,
+        now: Date = .now
+    ) -> MarketEntry {
+        guard let selectedMarketId else {
             return MarketEntry(date: .now, type: .market(nil))
+        }
+        
+        guard cache.stale(marketId: selectedMarketId) else {
+            let market = cache.market(marketId: selectedMarketId)
+            return MarketEntry(date: now, type: .market(market))
+        }
+        
+        // Otherwise, perform a fetch and update the cache
+        if let marketData = fetcher(selectedMarketId) {
+            // TODO: Consider sane option here?
+            try! cache.insert(marketData, now: now)
+            
+            let market = cache.market(marketId: selectedMarketId)
+            return MarketEntry(date: now, type: .market(market))
+        } else {
+            let entry = MarketEntry(date: .now, type: .error)
+            return entry
         }
     }
     

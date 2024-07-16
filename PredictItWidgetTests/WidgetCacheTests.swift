@@ -46,13 +46,13 @@ final class WidgetCacheTests: XCTestCase {
         let refreshDate = Date.now
         let current = PreviousMarketDataModel(marketId: market.id, refreshDate: refreshDate, entryType: .current)
         
-        try cache.insert(current)
+        try cache.insert(market, now: refreshDate)
         let state = cache.state(marketId: market.id)
         switch state {
         case .currentSet(let entry):
             XCTAssert(entry.refreshDate == refreshDate)
             XCTAssert(entry.marketId == market.id)
-            XCTAssert(entry.entryType == PreviousMarketDataModel.EntryType.current.rawValue)
+            XCTAssert(entry.entryType == "\(entry.marketId)_current")
         default:
             XCTFail("Unexpected state, found: \(state)")
         }
@@ -67,19 +67,19 @@ final class WidgetCacheTests: XCTestCase {
         let current = PreviousMarketDataModel(marketId: market.id, refreshDate: currentDate, entryType: .current)
         let prev = PreviousMarketDataModel(marketId: market.id, refreshDate: prevDate, entryType: .previous)
         
-        try cache.insert(prev, now: prevDate)
-        try cache.insert(current, now: currentDate)
+        try cache.insert(market, now: prevDate)
+        try cache.insert(market, now: currentDate)
         
         let state = cache.state(marketId: market.id)
         switch state {
         case .currentAndPreviousSet(let currEntry, let prevEntry):
             XCTAssert(currEntry.refreshDate == currentDate)
             XCTAssert(currEntry.marketId == market.id)
-            XCTAssert(currEntry.entryType == PreviousMarketDataModel.EntryType.current.rawValue)
+            XCTAssert(currEntry.entryType == "\(currEntry.marketId)_current")
             
             XCTAssert(prevEntry.refreshDate == prevDate)
             XCTAssert(prevEntry.marketId == market.id)
-            XCTAssert(prevEntry.entryType == PreviousMarketDataModel.EntryType.previous.rawValue)
+            XCTAssert(prevEntry.entryType == "\(prevEntry.marketId)_previous")
         default:
             XCTFail("Unexpected state, found: \(state)")
         }
@@ -89,27 +89,27 @@ final class WidgetCacheTests: XCTestCase {
         let currentDate = Date.now.addingTimeInterval(WidgetCache.minimumStaleElapsedTime+1)
         let prevDate = Date.now
         
-        let current = PreviousMarketDataModel(marketId: market.id, refreshDate: currentDate, entryType: .current)
-        let prev = PreviousMarketDataModel(marketId: market.id, refreshDate: prevDate, entryType: .previous)
+        //let current = PreviousMarketDataModel(marketId: market.id, refreshDate: currentDate, entryType: .current)
+        //let prev = PreviousMarketDataModel(marketId: market.id, refreshDate: prevDate, entryType: .previous)
         
-        try cache.insert(prev, now: prevDate)
-        try cache.insert(current, now: currentDate)
+        try cache.insert(market, now: prevDate)
+        try cache.insert(market, now: currentDate)
         
         let newEntryDate = currentDate.addingTimeInterval(WidgetCache.minimumStaleElapsedTime+1)
-        let newEntry = PreviousMarketDataModel(marketId: market.id, refreshDate: newEntryDate, entryType: .current)
+        //let newEntry = PreviousMarketDataModel(marketId: market.id, refreshDate: newEntryDate, entryType: .current)
         
-        try cache.insert(newEntry, now: newEntryDate)
+        try cache.insert(market, now: newEntryDate)
         
         let state = cache.state(marketId: market.id)
         switch state {
         case .currentAndPreviousSet(let currEntry, let prevEntry):
             XCTAssert(currEntry.refreshDate == newEntryDate)
             XCTAssert(currEntry.marketId == market.id)
-            XCTAssert(currEntry.entryType == PreviousMarketDataModel.EntryType.current.rawValue)
+            XCTAssert(currEntry.entryType == "\(currEntry.marketId)_current")
             
             XCTAssert(prevEntry.refreshDate == currentDate)
             XCTAssert(prevEntry.marketId == market.id)
-            XCTAssert(prevEntry.entryType == PreviousMarketDataModel.EntryType.previous.rawValue)
+            XCTAssert(prevEntry.entryType == "\(prevEntry.marketId)_previous")
         default:
             XCTFail("Unexpected state, found: \(state)")
         }
@@ -117,22 +117,18 @@ final class WidgetCacheTests: XCTestCase {
     
     func testCacheNotStale() throws {
         let refreshDate = Date.now
-        let current = PreviousMarketDataModel(marketId: market.id, refreshDate: refreshDate, entryType: .current)
         
-        try cache.insert(current)
-        
-        let newEntryDate = refreshDate.addingTimeInterval(WidgetCache.minimumStaleElapsedTime-1)
-        let newEntry = PreviousMarketDataModel(marketId: market.id, refreshDate: newEntryDate, entryType: .current)
+        try cache.insert(market, now: refreshDate)
         
         // Insert ignored since the prior cache occurred recently enough.
-        try cache.insert(newEntry)
-        
+        try cache.insert(market, now: refreshDate)
+
         let state = cache.state(marketId: market.id)
         switch state {
         case .currentSet(let entry):
             XCTAssert(entry.refreshDate == refreshDate)
             XCTAssert(entry.marketId == market.id)
-            XCTAssert(entry.entryType == PreviousMarketDataModel.EntryType.current.rawValue)
+            XCTAssert(entry.entryType == "\(entry.marketId)_current")
         default:
             XCTFail("Unexpected state, found: \(state)")
         }

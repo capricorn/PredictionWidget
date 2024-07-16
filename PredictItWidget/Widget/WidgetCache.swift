@@ -8,6 +8,26 @@
 import Foundation
 import SwiftData
 
+
+extension PIJSONMarketContract {
+    /*
+    var contract: MarketContract {
+        MarketContract(id: self.id, name: self.shortName, cents: self.lastTradePrice, change: nil)
+    }
+     */
+    func contract(market: PreviousMarketDataModel) -> ContractEntryModel {
+        return ContractEntryModel(id: self.id, price: self.lastTradePrice ?? 0, name: self.shortName, market: market)
+    }
+}
+
+/*
+private extension ContractEntryModel {
+    var marketContract: MarketContract {
+        MarketContract(id: self.id, name: self.name, cents: self.price, change: nil)
+    }
+}
+ */
+ 
 class WidgetCache {
     static let minimumStaleElapsedTime: TimeInterval = 60*15
     static let shared: WidgetCache = WidgetCache()
@@ -19,15 +39,38 @@ class WidgetCache {
         case currentAndPreviousSet(current: PreviousMarketDataModel, previous: PreviousMarketDataModel)
     }
     
+    func market(marketId: Int) -> Market? {
+        switch state(marketId: marketId) {
+        case .empty:
+            return nil
+        case .currentSet(let current):
+            let contracts = current.contracts.map {
+                // TODO: Need to account for non-existent price
+                MarketContract(id: $0.id, name: $0.name, cents: $0.price, change: nil)
+            }
+            return Market(id: marketId, name: "", contracts: contracts)
+        case .currentAndPreviousSet(let current, let previous):
+            let currContracts = current.contracts.sorted(by: { $0.id < $1.id })
+            let prevContracts = previous.contracts.sorted(by: { $0.id < $1.id })
+            
+            let contracts = zip(currContracts, prevContracts).map {
+                let (curr, prev) = $0
+                return MarketContract(id: curr.id, name: curr.name, cents: curr.price, change: curr.price - prev.price)
+            }
+            
+            return Market(id: marketId, name: "", contracts: contracts)
+        }
+    }
+    
     func currentEntry(marketId: Int) -> PreviousMarketDataModel? {
         return try? modelContext.fetch(FetchDescriptor(predicate: #Predicate<PreviousMarketDataModel> { model in
-            model.marketId == marketId && model.entryType == "current"
+            model.marketId == marketId && model.entryType == "\(marketId)_current"
         })).first
     }
     
     func previousEntry(marketId: Int) -> PreviousMarketDataModel? {
         return try? modelContext.fetch(FetchDescriptor(predicate: #Predicate<PreviousMarketDataModel> { model in
-            model.marketId == marketId && model.entryType == "previous"
+            model.marketId == marketId && model.entryType == "\(marketId)_previous"
         })).first
     }
     
@@ -64,26 +107,47 @@ class WidgetCache {
     }
     
     // TODO: Write cache tests
-    func insert(_ entry: PreviousMarketDataModel, now:Date = .now) throws {
+    func insert(_ marketData: PIJSONMarket, now: Date = .now) throws {
+        let entry = PreviousMarketDataModel(marketId: marketData.id, refreshDate: now, entryType: .current)
+        // TODO: Better approach
+        entry.entryType = "\(marketData.id)_current"
+        
         switch state(marketId: entry.marketId) {
         case .empty:
-            entry.entryType = "current"
-            modelContext.insert(entry)
+            try modelContext.transaction {
+                modelContext.insert(entry)
+                
+                for contract in marketData.contracts {
+                    modelContext.insert(contract.contract(market: entry))
+                }
+            }
         case .currentSet(let current):
             if stale(marketId: entry.marketId, now: now) {
                 try modelContext.transaction {
-                    entry.entryType = "current"
+                    current.entryType = "\(entry.marketId)_previous"
                     modelContext.insert(entry)
-                    current.entryType = "previous"
+                    
+                    for contract in marketData.contracts {
+                        modelContext.insert(contract.contract(market: entry))
+                    }
                 }
             }
         case .currentAndPreviousSet(let current, let previous):
             if stale(marketId: entry.marketId, now: now) {
                 try modelContext.transaction {
-                    entry.entryType = "current"
-                    modelContext.insert(entry)
-                    current.entryType = "previous"
+                    // NB. Required as cascade delete doesn't seem to apply in a transaction...
+                    // see: https://forums.developer.apple.com/forums/thread/740649
+                    for contract in previous.contracts {
+                        modelContext.delete(contract)
+                    }
+                    
                     modelContext.delete(previous)
+                    current.entryType = "\(entry.marketId)_previous"
+                    modelContext.insert(entry)
+
+                    for contract in marketData.contracts {
+                        modelContext.insert(contract.contract(market: entry))
+                    }
                 }
             }
         }
