@@ -52,6 +52,8 @@ private extension PredictItAPI {
 }
 
 struct Provider: AppIntentTimelineProvider {
+    typealias MarketDataFetcher = (Int) -> PIJSONMarket?
+    
     let modelContext: ModelContext
     static let queue = DispatchQueue(label: "PredictionWidgetQueue")
     static let group = DispatchGroup()
@@ -65,9 +67,9 @@ struct Provider: AppIntentTimelineProvider {
         MarketEntry(date: Date.now, type: .market(Market(id: 0, name: "Test Market", contracts: [])))
     }
     
-    static func getTimelineEntry(selectedMarketId: Int?) -> MarketEntry {
+    static func getTimelineEntry(selectedMarketId: Int?, fetcher: MarketDataFetcher = PredictItAPI.syncFetchMarketData) -> MarketEntry {
         if let marketId = selectedMarketId {
-            if let marketData = PredictItAPI.syncFetchMarketData(marketId: marketId) {
+            if let marketData = fetcher(marketId) {
                 let entry = MarketEntry(
                 date: Date.now,
                 type: .market(Market(
