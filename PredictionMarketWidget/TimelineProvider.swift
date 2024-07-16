@@ -16,6 +16,41 @@ private extension PIJSONMarketContract {
     }
 }
 
+private extension URLSession {
+    // TODO: Any way to just wrap a callback generically with this?
+    func syncDataTask(with req: URLRequest) -> (Data?, URLResponse?, Error?) {
+        let group = DispatchGroup()
+        var data: Data? = nil
+        var resp: URLResponse? = nil
+        var error: Error? = nil
+        
+        group.enter()
+        let task = URLSession.shared.dataTask(with: req) { (d, r, e) in
+            data = d
+            resp = r
+            error = e
+            group.leave()
+        }
+        task.resume()
+        // TODO: Consider timeout w/ exception?
+        group.wait()
+        return (data, resp, error)
+    }
+}
+
+private extension PredictItAPI {
+    static func syncFetchMarketData(marketId: Int) -> PIJSONMarket? {
+        let req = URLRequest(url: PredictItAPI.apiBasePath.appending(path: "/marketdata/markets/\(marketId)"))
+        let (data,_,_) = URLSession.shared.syncDataTask(with: req)
+        
+        if let data, let market = try? JSONDecoder().decode(PIJSONMarket.self, from: data) {
+            return market
+        }
+        
+        return nil
+    }
+}
+
 struct Provider: AppIntentTimelineProvider {
     let modelContext: ModelContext
     static let queue = DispatchQueue(label: "PredictionWidgetQueue")
@@ -32,47 +67,35 @@ struct Provider: AppIntentTimelineProvider {
     
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<MarketEntry> {
         return await withUnsafeContinuation { (continuation: UnsafeContinuation<Timeline<MarketEntry>, Never>) in
-            // Instead, pass an escaping closure here; it'll handle the continuation
-            // TODO: Simpler approach?
-            // TODO: CheckedContinuation?
             Provider.queue.sync {
                 Provider.group.enter()
-                // TODO: Need to block utnil
-                //let defaults = UserDefaults.predictionWidget
                 var entries: [MarketEntry] = []
                 let finish = { (entry: MarketEntry) in
                     continuation.resume(returning: Timeline(entries: [entry], policy: .after(Date.now.addingTimeInterval(60*15))))
                     Provider.group.leave()
                 }
                 
-                do {
-                    if let marketId = configuration.selectedMarket?.id {
-                        try PredictItAPI.fetchMarketData(marketId: "\(marketId)") { marketData in
-                            guard let marketData else {
-                                let entry = MarketEntry(date: .now, type: .error)
-                                finish(entry)
-                                return
-                            }
-                            
-                            let entry = MarketEntry(
-                            date: Date.now,
-                            type: .market(Market(
-                                id: marketData.id,
-                                name: marketData.shortName,
-                                contracts: marketData.contracts.map({$0.contract}))))
-                            
-                            finish(entry)
-                        }
+                if let marketId = configuration.selectedMarket?.id {
+                    if let marketData = PredictItAPI.syncFetchMarketData(marketId: marketId) {
+                        let entry = MarketEntry(
+                        date: Date.now,
+                        type: .market(Market(
+                            id: marketData.id,
+                            name: marketData.shortName,
+                            contracts: marketData.contracts.map({$0.contract}))))
                         
+                        finish(entry)
                         return
                     } else {
-                        entries.append(MarketEntry(date: .now, type: .market(nil)))
+                        let entry = MarketEntry(date: .now, type: .error)
+                        finish(entry)
+                        return
                     }
-                } catch {
-                    entries.append(MarketEntry(date: .now, type: .error))
+                } else {
+                    entries.append(MarketEntry(date: .now, type: .market(nil)))
+                    finish(entries[0])
+                    return
                 }
-                
-                finish(entries[0])
             }
             
             Provider.group.wait()
