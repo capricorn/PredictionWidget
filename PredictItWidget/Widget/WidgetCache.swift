@@ -9,6 +9,7 @@ import Foundation
 import SwiftData
 
 class WidgetCache {
+    static let minimumStaleElapsedTime: TimeInterval = 60*15
     static let shared: WidgetCache = WidgetCache()
     let modelContext: ModelContext
     
@@ -51,7 +52,7 @@ class WidgetCache {
     }
     
     func stale(marketId: Int, now: Date = .now) -> Bool {
-        if let lastModified = lastModified(marketId: marketId), now.timeIntervalSince(lastModified) <= 15*60 {
+        if let lastModified = lastModified(marketId: marketId), now.timeIntervalSince(lastModified) <= WidgetCache.minimumStaleElapsedTime {
             return false
         }
         
@@ -66,9 +67,10 @@ class WidgetCache {
     func insert(_ entry: PreviousMarketDataModel, now:Date = .now) throws {
         switch state(marketId: entry.marketId) {
         case .empty:
+            entry.entryType = "current"
             modelContext.insert(entry)
         case .currentSet(let current):
-            if stale(marketId: entry.marketId) {
+            if stale(marketId: entry.marketId, now: now) {
                 try modelContext.transaction {
                     entry.entryType = "current"
                     modelContext.insert(entry)
@@ -76,7 +78,7 @@ class WidgetCache {
                 }
             }
         case .currentAndPreviousSet(let current, let previous):
-            if stale(marketId: entry.marketId) {
+            if stale(marketId: entry.marketId, now: now) {
                 try modelContext.transaction {
                     entry.entryType = "current"
                     modelContext.insert(entry)

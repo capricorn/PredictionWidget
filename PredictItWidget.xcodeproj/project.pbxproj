@@ -52,6 +52,8 @@
 		F00EC6A62C437E2E00AF1237 /* MarketEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */; };
 		F00EC6A82C44774100AF1237 /* TimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A72C44774100AF1237 /* TimelineProvider.swift */; };
 		F00EC6AA2C45CC6900AF1237 /* WidgetCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */; };
+		F029C7CC2C46D03D00380C8C /* WidgetCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C7CB2C46D03D00380C8C /* WidgetCacheTests.swift */; };
+		F029C7CD2C46D0F700380C8C /* WidgetCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,8 @@
 		F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEntryModel.swift; sourceTree = "<group>"; };
 		F00EC6A72C44774100AF1237 /* TimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineProvider.swift; sourceTree = "<group>"; };
 		F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCache.swift; sourceTree = "<group>"; };
+		F00EC6AB2C45D36D00AF1237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F029C7CB2C46D03D00380C8C /* WidgetCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCacheTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,7 @@
 		F00EC6082C377EC900AF1237 /* PredictItWidget */ = {
 			isa = PBXGroup;
 			children = (
+				F00EC6AB2C45D36D00AF1237 /* Info.plist */,
 				F00EC6972C3EFB6500AF1237 /* Widget */,
 				F00EC6852C3DD06D00AF1237 /* DB */,
 				F00EC67A2C3B4B1F00AF1237 /* Extensions */,
@@ -226,6 +231,7 @@
 				F00EC61A2C377ECA00AF1237 /* PredictItWidgetTests.swift */,
 				F00EC68D2C3DDA2300AF1237 /* DBTests.swift */,
 				F00EC69E2C41900600AF1237 /* CacheActorTests.swift */,
+				F029C7CB2C46D03D00380C8C /* WidgetCacheTests.swift */,
 			);
 			path = PredictItWidgetTests;
 			sourceTree = "<group>";
@@ -302,7 +308,6 @@
 				F00EC6652C3A387000AF1237 /* Assets.xcassets */,
 				F00EC6672C3A387000AF1237 /* Info.plist */,
 				F00EC6932C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift */,
-				F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */,
 			);
 			path = PredictionMarketWidget;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 		F00EC6972C3EFB6500AF1237 /* Widget */ = {
 			isa = PBXGroup;
 			children = (
+				F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */,
 				F00EC6982C3EFB7A00AF1237 /* PriceValueView.swift */,
 			);
 			path = Widget;
@@ -526,6 +532,7 @@
 				F00EC6A32C437B9E00AF1237 /* AppIntent.swift in Sources */,
 				F00EC6962C3EF82800AF1237 /* TimestampContainerView.swift in Sources */,
 				F00EC6942C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift in Sources */,
+				F029C7CD2C46D0F700380C8C /* WidgetCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +540,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F029C7CC2C46D03D00380C8C /* WidgetCacheTests.swift in Sources */,
 				F00EC69F2C41900600AF1237 /* CacheActorTests.swift in Sources */,
 				F00EC61B2C377ECA00AF1237 /* PredictItWidgetTests.swift in Sources */,
 				F00EC6902C3DDB3B00AF1237 /* DBTests.swift in Sources */,
@@ -724,6 +732,7 @@
 				DEVELOPMENT_TEAM = Q49KLF9VPG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PredictItWidget/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -756,6 +765,7 @@
 				DEVELOPMENT_TEAM = Q49KLF9VPG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PredictItWidget/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
