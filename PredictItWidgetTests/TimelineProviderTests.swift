@@ -45,4 +45,22 @@ final class TimelineProviderTests: XCTestCase {
             XCTFail("Unexpected entry type: \(entry.type)")
         }
     }
+    
+    /// If a market is selected and the fetch fails, return an error.
+    func testMarketFetchError() throws {
+        let fetcher: Provider.MarketDataFetcher = { _ in throw URLError(.badServerResponse) }
+        
+        let entry = Provider.getTimelineEntry(
+            selectedMarketId: 1,
+            fetcher: fetcher,
+            cache: cache
+        )
+        
+        switch entry.type {
+        case .error:
+            return
+        default:
+            XCTFail("Unexpected entry type: \(entry.type)")
+        }
+    }
 }

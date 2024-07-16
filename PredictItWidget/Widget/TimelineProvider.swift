@@ -34,20 +34,28 @@ private extension URLSession {
 }
 
 private extension PredictItAPI {
-    static func syncFetchMarketData(marketId: Int) -> PIJSONMarket? {
+    static func syncFetchMarketData(marketId: Int) throws -> PIJSONMarket {
         let req = URLRequest(url: PredictItAPI.apiBasePath.appending(path: "/marketdata/markets/\(marketId)"))
-        let (data,_,_) = URLSession.shared.syncDataTask(with: req)
+        let (data,resp,error) = URLSession.shared.syncDataTask(with: req)
         
-        if let data, let market = try? JSONDecoder().decode(PIJSONMarket.self, from: data) {
-            return market
+        if let error {
+            throw error
         }
         
-        return nil
+        if let httpResp = resp as? HTTPURLResponse, httpResp.statusCode != 200 {
+            throw URLError(.badServerResponse)
+        }
+        
+        guard let data else {
+            throw URLError(.badServerResponse)
+        }
+        
+        return try JSONDecoder().decode(PIJSONMarket.self, from: data)
     }
 }
 
 struct Provider: AppIntentTimelineProvider {
-    typealias MarketDataFetcher = (Int) -> PIJSONMarket?
+    typealias MarketDataFetcher = (Int) throws -> PIJSONMarket
     
     let modelContext: ModelContext
     static let queue = DispatchQueue(label: "PredictionWidgetQueue")
@@ -78,13 +86,14 @@ struct Provider: AppIntentTimelineProvider {
         }
         
         // Otherwise, perform a fetch and update the cache
-        if let marketData = fetcher(selectedMarketId) {
+        do {
+            let marketData = try fetcher(selectedMarketId)
             // TODO: Consider sane option here?
             try! cache.insert(marketData, now: now)
             
             let market = cache.market(marketId: selectedMarketId)
             return MarketEntry(date: now, type: .market(market))
-        } else {
+        } catch {
             let entry = MarketEntry(date: .now, type: .error)
             return entry
         }
