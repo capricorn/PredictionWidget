@@ -51,13 +51,70 @@ final class TimelineProviderTests: XCTestCase {
         let fetcher: Provider.MarketDataFetcher = { _ in throw URLError(.badServerResponse) }
         
         let entry = Provider.getTimelineEntry(
-            selectedMarketId: 1,
+            selectedMarketId: market.id,
             fetcher: fetcher,
             cache: cache
         )
         
         switch entry.type {
         case .error:
+            return
+        default:
+            XCTFail("Unexpected entry type: \(entry.type)")
+        }
+    }
+    
+    func testStaleCache() throws {
+        let fetcher: Provider.MarketDataFetcher = { _ in self.market }
+        let insertDate = Date.now
+        
+        _ = Provider.getTimelineEntry(
+            selectedMarketId: market.id,
+            fetcher: fetcher,
+            cache: cache,
+            now: insertDate
+        )
+        
+        let refreshDate = insertDate.addingTimeInterval(WidgetCache.minimumStaleElapsedTime + 1)
+        
+        let entry = Provider.getTimelineEntry(
+            selectedMarketId: market.id,
+            fetcher: fetcher,
+            cache: cache,
+            now: refreshDate
+        )
+        
+        switch entry.type {
+        case .market(let market) where market != nil:
+            return
+        default:
+            XCTFail("Unexpected entry type: \(entry.type)")
+        }
+    }
+    
+    func testFreshCache() throws {
+        let fetcher: Provider.MarketDataFetcher = { _ in self.market }
+        let insertDate = Date.now
+        
+        _ = Provider.getTimelineEntry(
+            selectedMarketId: market.id,
+            fetcher: fetcher,
+            cache: cache,
+            now: insertDate
+        )
+        
+        let refreshDate = insertDate.addingTimeInterval(WidgetCache.minimumStaleElapsedTime - 1)
+        
+        let entry = Provider.getTimelineEntry(
+            selectedMarketId: market.id,
+            fetcher: fetcher,
+            cache: cache,
+            now: refreshDate
+        )
+        
+        switch entry.type {
+        case .market(let market) where market != nil:
+            XCTAssert(cache.previousEntry(marketId: market!.id) == nil)
             return
         default:
             XCTFail("Unexpected entry type: \(entry.type)")
