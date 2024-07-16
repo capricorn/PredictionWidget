@@ -54,6 +54,8 @@
 		F00EC6AA2C45CC6900AF1237 /* WidgetCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */; };
 		F029C7CC2C46D03D00380C8C /* WidgetCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C7CB2C46D03D00380C8C /* WidgetCacheTests.swift */; };
 		F029C7CD2C46D0F700380C8C /* WidgetCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */; };
+		F029C7CF2C47191F00380C8C /* TimelineProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C7CE2C47191F00380C8C /* TimelineProviderTests.swift */; };
+		F029C7D02C471AE100380C8C /* TimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A72C44774100AF1237 /* TimelineProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +138,7 @@
 		F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCache.swift; sourceTree = "<group>"; };
 		F00EC6AB2C45D36D00AF1237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F029C7CB2C46D03D00380C8C /* WidgetCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCacheTests.swift; sourceTree = "<group>"; };
+		F029C7CE2C47191F00380C8C /* TimelineProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineProviderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +235,7 @@
 				F00EC68D2C3DDA2300AF1237 /* DBTests.swift */,
 				F00EC69E2C41900600AF1237 /* CacheActorTests.swift */,
 				F029C7CB2C46D03D00380C8C /* WidgetCacheTests.swift */,
+				F029C7CE2C47191F00380C8C /* TimelineProviderTests.swift */,
 			);
 			path = PredictItWidgetTests;
 			sourceTree = "<group>";
@@ -304,7 +308,6 @@
 				F00EC65F2C3A386E00AF1237 /* PredictionMarketWidgetBundle.swift */,
 				F00EC6612C3A386E00AF1237 /* PredictionMarketWidget.swift */,
 				F00EC6632C3A386E00AF1237 /* AppIntent.swift */,
-				F00EC6A72C44774100AF1237 /* TimelineProvider.swift */,
 				F00EC6652C3A387000AF1237 /* Assets.xcassets */,
 				F00EC6672C3A387000AF1237 /* Info.plist */,
 				F00EC6932C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift */,
@@ -343,6 +346,7 @@
 			children = (
 				F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */,
 				F00EC6982C3EFB7A00AF1237 /* PriceValueView.swift */,
+				F00EC6A72C44774100AF1237 /* TimelineProvider.swift */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -531,6 +535,7 @@
 				F00EC64B2C38969500AF1237 /* MarketContractListView.swift in Sources */,
 				F00EC6A32C437B9E00AF1237 /* AppIntent.swift in Sources */,
 				F00EC6962C3EF82800AF1237 /* TimestampContainerView.swift in Sources */,
+				F029C7D02C471AE100380C8C /* TimelineProvider.swift in Sources */,
 				F00EC6942C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift in Sources */,
 				F029C7CD2C46D0F700380C8C /* WidgetCache.swift in Sources */,
 			);
@@ -540,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F029C7CF2C47191F00380C8C /* TimelineProviderTests.swift in Sources */,
 				F029C7CC2C46D03D00380C8C /* WidgetCacheTests.swift in Sources */,
 				F00EC69F2C41900600AF1237 /* CacheActorTests.swift in Sources */,
 				F00EC61B2C377ECA00AF1237 /* PredictItWidgetTests.swift in Sources */,
