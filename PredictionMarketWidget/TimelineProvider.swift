@@ -65,37 +65,34 @@ struct Provider: AppIntentTimelineProvider {
         MarketEntry(date: Date.now, type: .market(Market(id: 0, name: "Test Market", contracts: [])))
     }
     
+    static func getTimelineEntry(selectedMarketId: Int?) -> MarketEntry {
+        if let marketId = selectedMarketId {
+            if let marketData = PredictItAPI.syncFetchMarketData(marketId: marketId) {
+                let entry = MarketEntry(
+                date: Date.now,
+                type: .market(Market(
+                    id: marketData.id,
+                    name: marketData.shortName,
+                    contracts: marketData.contracts.map({$0.contract}))))
+                
+                return entry
+            } else {
+                let entry = MarketEntry(date: .now, type: .error)
+                return entry
+            }
+        } else {
+            return MarketEntry(date: .now, type: .market(nil))
+        }
+    }
+    
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<MarketEntry> {
         return await withUnsafeContinuation { (continuation: UnsafeContinuation<Timeline<MarketEntry>, Never>) in
             Provider.queue.sync {
                 Provider.group.enter()
-                var entries: [MarketEntry] = []
-                let finish = { (entry: MarketEntry) in
-                    continuation.resume(returning: Timeline(entries: [entry], policy: .after(Date.now.addingTimeInterval(60*15))))
-                    Provider.group.leave()
-                }
                 
-                if let marketId = configuration.selectedMarket?.id {
-                    if let marketData = PredictItAPI.syncFetchMarketData(marketId: marketId) {
-                        let entry = MarketEntry(
-                        date: Date.now,
-                        type: .market(Market(
-                            id: marketData.id,
-                            name: marketData.shortName,
-                            contracts: marketData.contracts.map({$0.contract}))))
-                        
-                        finish(entry)
-                        return
-                    } else {
-                        let entry = MarketEntry(date: .now, type: .error)
-                        finish(entry)
-                        return
-                    }
-                } else {
-                    entries.append(MarketEntry(date: .now, type: .market(nil)))
-                    finish(entries[0])
-                    return
-                }
+                let entry = Provider.getTimelineEntry(selectedMarketId: configuration.selectedMarket?.id)
+                continuation.resume(returning: Timeline(entries: [entry], policy: .after(Date.now.addingTimeInterval(60*15))))
+                Provider.group.leave()
             }
             
             Provider.group.wait()
