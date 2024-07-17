@@ -59,6 +59,8 @@
 		F029C7D22C48675100380C8C /* 8069_archived.json in Resources */ = {isa = PBXBuildFile; fileRef = F029C7D12C48675100380C8C /* 8069_archived.json */; };
 		F029C7D52C486B2D00380C8C /* WidgetURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C7D42C486B2D00380C8C /* WidgetURL.swift */; };
 		F029C7D62C486B2D00380C8C /* WidgetURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C7D42C486B2D00380C8C /* WidgetURL.swift */; };
+		F029C7D82C486F4300380C8C /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C7D72C486F4300380C8C /* AppViewModel.swift */; };
+		F029C7D92C486F4300380C8C /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C7D72C486F4300380C8C /* AppViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +146,7 @@
 		F029C7CE2C47191F00380C8C /* TimelineProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineProviderTests.swift; sourceTree = "<group>"; };
 		F029C7D12C48675100380C8C /* 8069_archived.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 8069_archived.json; sourceTree = "<group>"; };
 		F029C7D42C486B2D00380C8C /* WidgetURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetURL.swift; sourceTree = "<group>"; };
+		F029C7D72C486F4300380C8C /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +223,7 @@
 				F00EC60F2C377ECA00AF1237 /* Preview Content */,
 				F00EC6802C3C87AE00AF1237 /* TimestampContainerView.swift */,
 				F00EC6A02C4192CA00AF1237 /* CacheActor.swift */,
+				F029C7D72C486F4300380C8C /* AppViewModel.swift */,
 			);
 			path = PredictItWidget;
 			sourceTree = "<group>";
@@ -538,6 +542,7 @@
 				F00EC60A2C377EC900AF1237 /* PredictItWidgetApp.swift in Sources */,
 				F00EC6A12C4192CA00AF1237 /* CacheActor.swift in Sources */,
 				F00EC6512C38E57100AF1237 /* PIJSONMarket.swift in Sources */,
+				F029C7D82C486F4300380C8C /* AppViewModel.swift in Sources */,
 				F00EC6922C3DDC2B00AF1237 /* ContractEntryModel.swift in Sources */,
 				F00EC6372C3791D000AF1237 /* PredictItAPI.swift in Sources */,
 				F00EC64B2C38969500AF1237 /* MarketContractListView.swift in Sources */,
@@ -577,6 +582,7 @@
 			files = (
 				F00EC6A62C437E2E00AF1237 /* MarketEntryModel.swift in Sources */,
 				F00EC6892C3DD10D00AF1237 /* PreviousMarketDataModel.swift in Sources */,
+				F029C7D92C486F4300380C8C /* AppViewModel.swift in Sources */,
 				F00EC6732C3A452100AF1237 /* PIJSONMarket.swift in Sources */,
 				F00EC69A2C3EFB7A00AF1237 /* PriceValueView.swift in Sources */,
 				F00EC6AA2C45CC6900AF1237 /* WidgetCache.swift in Sources */,

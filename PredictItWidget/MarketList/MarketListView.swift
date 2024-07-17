@@ -16,6 +16,7 @@ struct MarketListView: View {
     }
     
     @Environment(\.modelContext) var modelContext
+    @EnvironmentObject var appViewModel: AppViewModel
     @State private var markets: [PIJSONMarket] = []
     @State private var viewState: ViewState = .loading
     @AppStorage(PredictionWidgetUserDefaultsKeys.widgetMarket.rawValue, store: .predictionWidget) var selectedMarketId: Int?
@@ -99,6 +100,11 @@ struct MarketListView: View {
                             }
                         }
                         // TODO: Iterate contract list in separate view
+                    }
+                    .onReceive(appViewModel.openURLPublisher) { url in
+                        if let marketId = Int(url.lastPathComponent) {
+                            reader.scrollTo(marketId)
+                        }
                     }
                 }
                 .refreshable {

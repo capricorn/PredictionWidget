@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct PredictItWidgetApp: App {
+    @StateObject var appModel: AppViewModel = AppViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -17,7 +19,9 @@ struct PredictItWidgetApp: App {
                         return
                     }
                     print("Opening url: \(url)")
+                    appModel.openURLSubject.send(url)
                 }
+                .environmentObject(appModel)
         }
     }
 }
