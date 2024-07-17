@@ -120,4 +120,47 @@ final class TimelineProviderTests: XCTestCase {
             XCTFail("Unexpected entry type: \(entry.type)")
         }
     }
+    
+    func testContractPriceDiff() throws {
+        guard let contractIndex = market.contracts.firstIndex(where: {$0.id == 24808}) else {
+            XCTFail("Failed to find contract.")
+            return
+        }
+        
+        var modifiedContract = market.contracts[contractIndex]
+        modifiedContract.lastTradePrice! = 40
+        
+        var changedMarket = market!
+        changedMarket.contracts[contractIndex] = modifiedContract
+        
+        let firstFetcher: Provider.MarketDataFetcher = { _ in self.market }
+        let secondFetcher: Provider.MarketDataFetcher = { _ in changedMarket }
+        
+        
+        let initialRefresh = Date.now
+        
+        _ = Provider.getTimelineEntry(
+            selectedMarketId: market.id,
+            fetcher: firstFetcher,
+            cache: cache,
+            now: initialRefresh
+        )
+        
+        let entry = Provider.getTimelineEntry(
+            selectedMarketId: market.id,
+            fetcher: secondFetcher,
+            cache: cache,
+            now: initialRefresh.addingTimeInterval(WidgetCache.minimumStaleElapsedTime + 1)
+        )
+        
+        // WIP: Why is widgetMarket.contracts empty? Maybe something to do with cache deletion?
+        // Consider: manual save after transaction..?
+        switch entry.type {
+        case .market(let widgetMarket):
+            let diffContract = widgetMarket!.contracts.first(where: {$0.id == 24808})
+            XCTAssert(diffContract?.change == -4)
+        default:
+            XCTFail("Unexpected entry type: \(entry.type)")
+        }
+    }
 }

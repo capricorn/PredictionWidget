@@ -63,9 +63,11 @@ class WidgetCache {
     }
     
     func currentEntry(marketId: Int) -> PreviousMarketDataModel? {
-        return try? modelContext.fetch(FetchDescriptor(predicate: #Predicate<PreviousMarketDataModel> { model in
+        var descriptor = FetchDescriptor(predicate: #Predicate<PreviousMarketDataModel> { model in
             model.marketId == marketId && model.entryType == "\(marketId)_current"
-        })).first
+        })
+        //descriptor.relationshipKeyPathsForPrefetching = [\.contracts]
+        return try? modelContext.fetch(descriptor).first
     }
     
     func previousEntry(marketId: Int) -> PreviousMarketDataModel? {
@@ -118,7 +120,9 @@ class WidgetCache {
                 modelContext.insert(entry)
                 
                 for contract in marketData.contracts {
-                    modelContext.insert(contract.contract(market: entry))
+                    //modelContext.insert(contract.contract(market: entry))
+                    let marketContract = contract.contract(market: entry)
+                    entry.contracts.append(marketContract)
                 }
             }
         case .currentSet(let current):
@@ -128,7 +132,9 @@ class WidgetCache {
                     modelContext.insert(entry)
                     
                     for contract in marketData.contracts {
-                        modelContext.insert(contract.contract(market: entry))
+                        //modelContext.insert(contract.contract(market: entry))
+                        let marketContract = contract.contract(market: entry)
+                        entry.contracts.append(marketContract)
                     }
                 }
             }
@@ -146,7 +152,9 @@ class WidgetCache {
                     modelContext.insert(entry)
 
                     for contract in marketData.contracts {
-                        modelContext.insert(contract.contract(market: entry))
+                        //modelContext.insert(contract.contract(market: entry))
+                        let marketContract = contract.contract(market: entry)
+                        entry.contracts.append(marketContract)
                     }
                 }
             }

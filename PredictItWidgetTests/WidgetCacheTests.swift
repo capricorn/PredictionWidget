@@ -44,7 +44,7 @@ final class WidgetCacheTests: XCTestCase {
     
     func testCacheCurrentSetState() throws {
         let refreshDate = Date.now
-        let current = PreviousMarketDataModel(marketId: market.id, refreshDate: refreshDate, entryType: .current)
+        //let current = PreviousMarketDataModel(marketId: market.id, refreshDate: refreshDate, entryType: .current)
         
         try cache.insert(market, now: refreshDate)
         let state = cache.state(marketId: market.id)
@@ -53,6 +53,7 @@ final class WidgetCacheTests: XCTestCase {
             XCTAssert(entry.refreshDate == refreshDate)
             XCTAssert(entry.marketId == market.id)
             XCTAssert(entry.entryType == "\(entry.marketId)_current")
+            XCTAssert(entry.contracts.count > 0, "\(entry.contracts.count)")
         default:
             XCTFail("Unexpected state, found: \(state)")
         }

@@ -80,7 +80,7 @@ struct Provider: AppIntentTimelineProvider {
             return MarketEntry(date: .now, type: .market(nil))
         }
         
-        guard cache.stale(marketId: selectedMarketId) else {
+        guard cache.stale(marketId: selectedMarketId, now: now) else {
             let market = cache.market(marketId: selectedMarketId)
             return MarketEntry(date: now, type: .market(market))
         }
