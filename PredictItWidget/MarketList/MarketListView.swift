@@ -50,53 +50,56 @@ struct MarketListView: View {
                 Text("\(markets.count) Market\(markets.count == 1 ? "" : "s")")
                 .font(.title.weight(.light))
                 .padding()
-                List(markets) { market in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                if market.id == selectedMarketId {
-                                    Text("\(Image(systemName: "star"))\(market.name)")
-                                } else {
-                                    Text(market.name)
-                                        .padding()
+                ScrollViewReader { reader in
+                    List(markets) { market in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    if market.id == selectedMarketId {
+                                        Text("\(Image(systemName: "star"))\(market.name)")
+                                    } else {
+                                        Text(market.name)
+                                            .padding()
+                                    }
                                 }
+                                MarketContractListView(contracts: market.contracts)
+                                    .padding()
                             }
-                            MarketContractListView(contracts: market.contracts)
-                                .padding()
+                            VStack {
+                                Image(systemName: "link")
+                                    .padding(.top, 8)
+                                    .onTapGesture {
+                                        UIApplication.shared.open(market.marketURL)
+                                    }
+                                Spacer()
+                            }
                         }
-                        VStack {
-                            Image(systemName: "link")
-                                .padding(.top, 8)
-                                .onTapGesture {
-                                    UIApplication.shared.open(market.marketURL)
+                        .id(market.id)
+                        .onTapGesture {
+                            Task {
+                                // TODO: Guarantee of all of this in a transaction..? (Worried about bad state)
+                                await MainActor.run {
+                                    if (UserDefaults.predictionWidget.value(.widgetMarket) as? Int) == market.id {
+                                        UserDefaults.predictionWidget.set(.widgetMarket(marketId: nil))
+                                    } else {
+                                        UserDefaults.predictionWidget.set(.widgetMarket(marketId: market.id))
+                                    }
                                 }
-                            Spacer()
+                                
+                                do {
+                                    try await CacheActor.shared.clearCache()
+                                } catch {
+                                    print("Failed to clear cache: \(error)")
+                                }
+                                
+                                await MainActor.run {
+                                    WidgetCenter.shared.reloadTimelines(ofKind: "PredictionMarketWidget")
+                                }
+                                // TODO: Shared identifier
+                            }
                         }
+                        // TODO: Iterate contract list in separate view
                     }
-                    .onTapGesture {
-                        Task {
-                            // TODO: Guarantee of all of this in a transaction..? (Worried about bad state)
-                            await MainActor.run {
-                                if (UserDefaults.predictionWidget.value(.widgetMarket) as? Int) == market.id {
-                                    UserDefaults.predictionWidget.set(.widgetMarket(marketId: nil))
-                                } else {
-                                    UserDefaults.predictionWidget.set(.widgetMarket(marketId: market.id))
-                                }
-                            }
-                            
-                            do {
-                                try await CacheActor.shared.clearCache()
-                            } catch {
-                                print("Failed to clear cache: \(error)")
-                            }
-                            
-                            await MainActor.run {
-                                WidgetCenter.shared.reloadTimelines(ofKind: "PredictionMarketWidget")
-                            }
-                            // TODO: Shared identifier
-                        }
-                    }
-                    // TODO: Iterate contract list in separate view
                 }
                 .refreshable {
                     await refreshMarkets()
