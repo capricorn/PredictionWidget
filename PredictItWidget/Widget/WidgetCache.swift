@@ -48,7 +48,7 @@ class WidgetCache {
                 // TODO: Need to account for non-existent price
                 MarketContract(id: $0.id, name: $0.name, cents: $0.price, change: nil)
             }
-            return Market(id: marketId, name: "", contracts: contracts)
+            return Market(id: marketId, name: current.name, contracts: contracts)
         case .currentAndPreviousSet(let current, let previous):
             let currContracts = current.contracts.sorted(by: { $0.id < $1.id })
             let prevContracts = previous.contracts.sorted(by: { $0.id < $1.id })
@@ -58,7 +58,7 @@ class WidgetCache {
                 return MarketContract(id: curr.id, name: curr.name, cents: curr.price, change: curr.price - prev.price)
             }
             
-            return Market(id: marketId, name: "", contracts: contracts)
+            return Market(id: marketId, name: current.name, contracts: contracts)
         }
     }
     
@@ -110,7 +110,7 @@ class WidgetCache {
     
     // TODO: Write cache tests
     func insert(_ marketData: PIJSONMarket, now: Date = .now) throws {
-        let entry = PreviousMarketDataModel(marketId: marketData.id, refreshDate: now, entryType: .current)
+        let entry = PreviousMarketDataModel(marketId: marketData.id, name: marketData.shortName, refreshDate: now, entryType: .current)
         // TODO: Better approach
         entry.entryType = "\(marketData.id)_current"
         

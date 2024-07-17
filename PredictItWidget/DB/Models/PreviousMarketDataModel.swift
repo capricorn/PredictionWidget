@@ -24,6 +24,7 @@ class PreviousMarketDataModel {
     }
     
     var marketId: Int
+    var name: String
     var refreshDate: Date
     // Would use the enum here but swift predicates fail.
     // (Should only have a single set of current + previous
@@ -33,8 +34,9 @@ class PreviousMarketDataModel {
     @Relationship(deleteRule: .cascade, inverse: \ContractEntryModel.market)
     var contracts: [ContractEntryModel] = []
     
-    init(marketId: Int, refreshDate: Date, entryType: EntryType) {
+    init(marketId: Int, name: String, refreshDate: Date, entryType: EntryType) {
         self.marketId = marketId
+        self.name = name
         self.refreshDate = refreshDate
         self.entryType = entryType.rawValue
         //self.contracts = contracts

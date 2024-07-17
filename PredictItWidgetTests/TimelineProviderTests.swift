@@ -86,6 +86,7 @@ final class TimelineProviderTests: XCTestCase {
         
         switch entry.type {
         case .market(let market) where market != nil:
+            XCTAssert(market!.name == "Democratic 2024 presidential nominee?", "\(market!.name)")
             return
         default:
             XCTFail("Unexpected entry type: \(entry.type)")

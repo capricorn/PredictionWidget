@@ -44,8 +44,6 @@ final class WidgetCacheTests: XCTestCase {
     
     func testCacheCurrentSetState() throws {
         let refreshDate = Date.now
-        //let current = PreviousMarketDataModel(marketId: market.id, refreshDate: refreshDate, entryType: .current)
-        
         try cache.insert(market, now: refreshDate)
         let state = cache.state(marketId: market.id)
         switch state {
@@ -64,9 +62,6 @@ final class WidgetCacheTests: XCTestCase {
     func testCacheCurrentAndPreviousSetState() throws {
         let currentDate = Date.now.addingTimeInterval(WidgetCache.minimumStaleElapsedTime+1)
         let prevDate = Date.now
-        
-        let current = PreviousMarketDataModel(marketId: market.id, refreshDate: currentDate, entryType: .current)
-        let prev = PreviousMarketDataModel(marketId: market.id, refreshDate: prevDate, entryType: .previous)
         
         try cache.insert(market, now: prevDate)
         try cache.insert(market, now: currentDate)

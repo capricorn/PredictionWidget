@@ -79,7 +79,7 @@ actor CacheActor {
     
     // Compute cache state here and perform insert accordingly
     func insertCache(marketData: PIJSONMarket, now: Date = Date.now) throws {
-        let newCurr = PreviousMarketDataModel(marketId: marketData.id, refreshDate: now, entryType: .current)
+        let newCurr = PreviousMarketDataModel(marketId: marketData.id, name: marketData.shortName, refreshDate: now, entryType: .current)
 
         switch self.state {
         case .empty:
