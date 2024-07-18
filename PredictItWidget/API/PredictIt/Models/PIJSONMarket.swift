@@ -20,7 +20,17 @@ struct PIJSONMarket: Codable, Identifiable {
     // TODO: contracts
     var contracts: [PIJSONMarketContract]
     var timestamp: String
+    // TODO: Verify all plausible states?
     var status: String
+    
+    enum MarketStatus: String {
+        case closed = "Closed"
+        case open = "Open"
+    }
+    
+    var archived: Bool {
+        return status == MarketStatus.closed.rawValue
+    }
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,6 +41,10 @@ struct PIJSONMarket: Codable, Identifiable {
         case contracts
         case timestamp = "timeStamp"
         case status = "status"
+    }
+    
+    var market: Market {
+        Market(id: self.id, name: self.shortName, contracts: self.contracts.map { $0.marketContract })
     }
     
     init(from decoder: any Decoder) throws {

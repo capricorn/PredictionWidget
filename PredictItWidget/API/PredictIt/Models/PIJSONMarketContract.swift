@@ -21,6 +21,10 @@ struct PIJSONMarketContract: Codable, Identifiable {
     var bestNoBid: Int?
     var displayOrder: Int
     
+    var marketContract: MarketContract {
+        MarketContract(id: self.id, name: self.shortName, cents: self.lastTradePrice, change: nil)
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id
         case endDate = "dateEnd"
