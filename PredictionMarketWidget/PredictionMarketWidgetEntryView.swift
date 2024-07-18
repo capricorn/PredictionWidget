@@ -23,6 +23,7 @@ struct Market: Identifiable {
     let id: Int
     let name: String
     let contracts: [MarketContract]
+    var archived: Bool = false
 }
 
 enum EntryType {
@@ -73,25 +74,29 @@ struct PredictionMarketWidgetEntryView : View {
             switch entry.type {
             case .market(let market):
                 if let market {
-                    Text(market.name)
-                        .lineLimit(2)
-                        .truncationMode(.tail)
-                        .font(.caption.bold())
-                        .padding(.bottom, 8)
-                    ForEach(contracts) { contract in
-                        HStack {
-                            Text(contract.name.uppercased())
-                                .font(.caption2.smallCaps())
-                                .lineLimit(1)
-                                .truncationMode(.tail)
-                                .padding(.bottom, 2)
-                            Spacer()
-                            PriceValueView(price: contract.cents!, change: contract.change)
+                    if market.archived {
+                        MarketArchivedView(market: market)
+                    } else {
+                        Text(market.name)
+                            .lineLimit(2)
+                            .truncationMode(.tail)
+                            .font(.caption.bold())
+                            .padding(.bottom, 8)
+                        ForEach(contracts) { contract in
+                            HStack {
+                                Text(contract.name.uppercased())
+                                    .font(.caption2.smallCaps())
+                                    .lineLimit(1)
+                                    .truncationMode(.tail)
+                                    .padding(.bottom, 2)
+                                Spacer()
+                                PriceValueView(price: contract.cents!, change: contract.change)
+                            }
+                            .font(.caption2)
                         }
-                        .font(.caption2)
+                        Spacer()
+                        refreshTimestamp
                     }
-                    Spacer()
-                    refreshTimestamp
                 } else {
                     TimestampContainerView(entry: entry) {
                         Text("No market selected.")
