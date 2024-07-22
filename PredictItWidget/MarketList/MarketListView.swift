@@ -104,6 +104,6 @@ struct MarketListView: View {
     let context = ModelContext(container)
     return MarketListView()
         .environment(\.modelContext, context)
-        .environment(\.predictItAPI, PredictItAPI())
+        .environment(\.predictItAPI, MockFetchAllMarketData())
         .environmentObject(AppViewModel())
 }

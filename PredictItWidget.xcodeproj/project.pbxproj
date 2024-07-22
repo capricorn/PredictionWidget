@@ -69,6 +69,8 @@
 		F029C7E32C49C16100380C8C /* NSDataAssetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C7E12C49C16100380C8C /* NSDataAssetExtensions.swift */; };
 		F029C81B2C4EF88E00380C8C /* PredictItAPIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C81A2C4EF88E00380C8C /* PredictItAPIRepresentable.swift */; };
 		F029C81C2C4EF88E00380C8C /* PredictItAPIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C81A2C4EF88E00380C8C /* PredictItAPIRepresentable.swift */; };
+		F029C8202C4EFB0600380C8C /* MockFetchAllMarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C81F2C4EFB0600380C8C /* MockFetchAllMarketData.swift */; };
+		F029C8212C4EFB0600380C8C /* MockFetchAllMarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C81F2C4EFB0600380C8C /* MockFetchAllMarketData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +161,7 @@
 		F029C7DE2C49B9EF00380C8C /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		F029C7E12C49C16100380C8C /* NSDataAssetExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDataAssetExtensions.swift; sourceTree = "<group>"; };
 		F029C81A2C4EF88E00380C8C /* PredictItAPIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictItAPIRepresentable.swift; sourceTree = "<group>"; };
+		F029C81F2C4EFB0600380C8C /* MockFetchAllMarketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFetchAllMarketData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +225,7 @@
 		F00EC6082C377EC900AF1237 /* PredictItWidget */ = {
 			isa = PBXGroup;
 			children = (
+				F029C81D2C4EFAD400380C8C /* Util */,
 				F00EC6AB2C45D36D00AF1237 /* Info.plist */,
 				F00EC6972C3EFB6500AF1237 /* Widget */,
 				F00EC6852C3DD06D00AF1237 /* DB */,
@@ -376,6 +380,22 @@
 				F029C7DA2C49B7EF00380C8C /* MarketArchivedView.swift */,
 			);
 			path = Widget;
+			sourceTree = "<group>";
+		};
+		F029C81D2C4EFAD400380C8C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				F029C81E2C4EFAD800380C8C /* Previews */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		F029C81E2C4EFAD800380C8C /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+				F029C81F2C4EFB0600380C8C /* MockFetchAllMarketData.swift */,
+			);
+			path = Previews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -563,6 +583,7 @@
 				F00EC6512C38E57100AF1237 /* PIJSONMarket.swift in Sources */,
 				F029C7D82C486F4300380C8C /* AppViewModel.swift in Sources */,
 				F00EC6922C3DDC2B00AF1237 /* ContractEntryModel.swift in Sources */,
+				F029C8202C4EFB0600380C8C /* MockFetchAllMarketData.swift in Sources */,
 				F00EC6372C3791D000AF1237 /* PredictItAPI.swift in Sources */,
 				F00EC64B2C38969500AF1237 /* MarketContractListView.swift in Sources */,
 				F00EC6A32C437B9E00AF1237 /* AppIntent.swift in Sources */,
@@ -613,6 +634,7 @@
 				F029C7E32C49C16100380C8C /* NSDataAssetExtensions.swift in Sources */,
 				F00EC6952C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift in Sources */,
 				F029C7D62C486B2D00380C8C /* WidgetURL.swift in Sources */,
+				F029C8212C4EFB0600380C8C /* MockFetchAllMarketData.swift in Sources */,
 				F00EC6642C3A386E00AF1237 /* AppIntent.swift in Sources */,
 				F00EC6A82C44774100AF1237 /* TimelineProvider.swift in Sources */,
 				F00EC68C2C3DD18300AF1237 /* ContractEntryModel.swift in Sources */,
