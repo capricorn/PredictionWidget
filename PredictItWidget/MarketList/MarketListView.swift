@@ -54,19 +54,19 @@ struct MarketListView: View {
                 .padding()
                 ScrollViewReader { reader in
                     List(markets) { market in
-                        HStack {
+                        HStack(alignment: .center) {
                             VStack(alignment: .leading) {
-                                HStack {
-                                    Text(market.name)
-                                        .font(.body.bold())
-                                        .padding()
-                                }
+                                Text(market.name)
+                                    .font(.body.bold())
+                                    .padding([.horizontal,.bottom], 16)
+                                    .padding(.top, 8)
                                 MarketContractListView(contracts: market.contracts)
-                                    .padding()
+                                    .padding(.horizontal, 16)
+                                    .padding(.bottom, 8)
                             }
                             VStack {
                                 Image(systemName: "link")
-                                    .padding(.top, 8)
+                                    .padding(.top, 16)
                                     .onTapGesture {
                                         UIApplication.shared.open(market.marketURL)
                                     }
