@@ -19,7 +19,6 @@ struct MarketListView: View {
     @EnvironmentObject var appViewModel: AppViewModel
     @State private var markets: [PIJSONMarket] = []
     @State private var viewState: ViewState = .loading
-    @AppStorage(PredictionWidgetUserDefaultsKeys.widgetMarket.rawValue, store: .predictionWidget) var selectedMarketId: Int?
     
     private func refreshMarkets() async {
         do {
@@ -56,12 +55,8 @@ struct MarketListView: View {
                         HStack {
                             VStack(alignment: .leading) {
                                 HStack {
-                                    if market.id == selectedMarketId {
-                                        Text("\(Image(systemName: "star"))\(market.name)")
-                                    } else {
-                                        Text(market.name)
-                                            .padding()
-                                    }
+                                    Text(market.name)
+                                        .padding()
                                 }
                                 MarketContractListView(contracts: market.contracts)
                                     .padding()
@@ -76,30 +71,6 @@ struct MarketListView: View {
                             }
                         }
                         .id(market.id)
-                        .onTapGesture {
-                            Task {
-                                // TODO: Guarantee of all of this in a transaction..? (Worried about bad state)
-                                await MainActor.run {
-                                    if (UserDefaults.predictionWidget.value(.widgetMarket) as? Int) == market.id {
-                                        UserDefaults.predictionWidget.set(.widgetMarket(marketId: nil))
-                                    } else {
-                                        UserDefaults.predictionWidget.set(.widgetMarket(marketId: market.id))
-                                    }
-                                }
-                                
-                                do {
-                                    try await CacheActor.shared.clearCache()
-                                } catch {
-                                    print("Failed to clear cache: \(error)")
-                                }
-                                
-                                await MainActor.run {
-                                    WidgetCenter.shared.reloadTimelines(ofKind: "PredictionMarketWidget")
-                                }
-                                // TODO: Shared identifier
-                            }
-                        }
-                        // TODO: Iterate contract list in separate view
                     }
                     .onReceive(appViewModel.openURLPublisher) { url in
                         if let marketId = Int(url.lastPathComponent) {
