@@ -16,6 +16,7 @@ struct MarketContractListView: View {
                 HStack {
                     Text(contract.name)
                         .lineLimit(1)
+                        .font(.body.smallCaps().weight(.light))
                         .truncationMode(.tail)
                     Spacer()
                     if let lastTradePrice = contract.lastTradePrice {
@@ -31,9 +32,9 @@ struct MarketContractListView: View {
     }
 }
 
-// TODO: Load from xml
-/*
- #Preview {
- MarketContractListView(contract: <#T##PIMarketContract#>)
- }
- */
+#Preview {
+    let marketData = NSDataAsset(preview: .json8069Archived).data
+    let marketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: marketData)
+    
+    return MarketContractListView(contracts: marketJSON.contracts)
+}
