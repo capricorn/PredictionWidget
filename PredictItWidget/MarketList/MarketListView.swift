@@ -7,6 +7,7 @@
 
 import SwiftUI
 import WidgetKit
+import SwiftData
 
 struct MarketListView: View {
     enum ViewState {
@@ -97,5 +98,10 @@ struct MarketListView: View {
 }
 
 #Preview {
-    MarketListView()
+    // TODO: If you want to preview this view easily, have to inject API (imo inject via environment key)
+    let container = try! ModelContainer(for: ContractEntryModel.self, MarketEntryModel.self, configurations: ModelConfiguration())
+    let context = ModelContext(container)
+    return MarketListView()
+        .environment(\.modelContext, context)
+        .environmentObject(AppViewModel())
 }
