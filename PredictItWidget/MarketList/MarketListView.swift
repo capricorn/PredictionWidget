@@ -58,6 +58,7 @@ struct MarketListView: View {
                             VStack(alignment: .leading) {
                                 HStack {
                                     Text(market.name)
+                                        .font(.body.bold())
                                         .padding()
                                 }
                                 MarketContractListView(contracts: market.contracts)
