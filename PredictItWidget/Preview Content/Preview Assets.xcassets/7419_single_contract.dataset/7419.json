@@ -1,0 +1,26 @@
+{
+  "id": 7419,
+  "name": "Will Kamala Harris be the 47th US president?",
+  "shortName": "Harris the 47th US president?",
+  "image": "https://az620379.vo.msecnd.net/images/Markets/42e624ca-be5f-4c3e-8939-86bb42b0314d.jpg",
+  "url": "https://www.predictit.org/markets/detail/7419/Will-Kamala-Harris-be-the-47th-US-president",
+  "contracts": [
+    {
+      "id": 27224,
+      "dateEnd": "NA",
+      "image": "https://az620379.vo.msecnd.net/images/Contracts/small_42e624ca-be5f-4c3e-8939-86bb42b0314d.jpg",
+      "name": "Will Kamala Harris be the 47th US president?",
+      "shortName": "Harris the 47th US president?",
+      "status": "Open",
+      "lastTradePrice": 0.48,
+      "bestBuyYesCost": 0.48,
+      "bestBuyNoCost": 0.53,
+      "bestSellYesCost": 0.47,
+      "bestSellNoCost": 0.52,
+      "lastClosePrice": 0.42,
+      "displayOrder": 0
+    }
+  ],
+  "timeStamp": "2024-07-22T17:15:59.8579535",
+  "status": "Open"
+}

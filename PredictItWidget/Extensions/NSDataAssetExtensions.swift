@@ -12,6 +12,7 @@ enum PreviewAssetName: String {
     case json7057 = "7057"
     case json8069Archived = "8069_archived"
     case jsonAll = "all"
+    case json7419SingleContract = "7419_single_contract"
 }
 
 extension NSDataAsset {

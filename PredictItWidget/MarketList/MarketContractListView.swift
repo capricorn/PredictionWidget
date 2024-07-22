@@ -14,7 +14,7 @@ struct MarketContractListView: View {
         VStack(alignment: .leading) {
             ForEach(contracts) { contract in
                 HStack {
-                    Text(contract.name)
+                    Text((contracts.count == 1) ? "YES" : contract.name)
                         .lineLimit(1)
                         .font(.body.smallCaps().weight(.light))
                         .truncationMode(.tail)
@@ -34,6 +34,13 @@ struct MarketContractListView: View {
 
 #Preview {
     let marketData = NSDataAsset(preview: .json8069Archived).data
+    let marketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: marketData)
+    
+    return MarketContractListView(contracts: marketJSON.contracts)
+}
+
+#Preview("Single contract market") {
+    let marketData = NSDataAsset(preview: .json7419SingleContract).data
     let marketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: marketData)
     
     return MarketContractListView(contracts: marketJSON.contracts)
