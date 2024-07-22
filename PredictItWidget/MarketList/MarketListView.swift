@@ -17,13 +17,14 @@ struct MarketListView: View {
     }
     
     @Environment(\.modelContext) var modelContext
+    @Environment(\.predictItAPI) var predictItAPI
     @EnvironmentObject var appViewModel: AppViewModel
     @State private var markets: [PIJSONMarket] = []
     @State private var viewState: ViewState = .loading
     
     private func refreshMarkets() async {
         do {
-            let data = try await PredictItAPI.fetchMarketData()
+            let data = try await predictItAPI.fetchMarketData()
             
             try modelContext.delete(model: MarketEntryModel.self)
             
@@ -103,5 +104,6 @@ struct MarketListView: View {
     let context = ModelContext(container)
     return MarketListView()
         .environment(\.modelContext, context)
+        .environment(\.predictItAPI, PredictItAPI())
         .environmentObject(AppViewModel())
 }

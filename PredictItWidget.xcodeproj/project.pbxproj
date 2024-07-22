@@ -67,6 +67,8 @@
 		F029C7E02C49B9EF00380C8C /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C7DE2C49B9EF00380C8C /* ViewExtensions.swift */; };
 		F029C7E22C49C16100380C8C /* NSDataAssetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C7E12C49C16100380C8C /* NSDataAssetExtensions.swift */; };
 		F029C7E32C49C16100380C8C /* NSDataAssetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C7E12C49C16100380C8C /* NSDataAssetExtensions.swift */; };
+		F029C81B2C4EF88E00380C8C /* PredictItAPIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C81A2C4EF88E00380C8C /* PredictItAPIRepresentable.swift */; };
+		F029C81C2C4EF88E00380C8C /* PredictItAPIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C81A2C4EF88E00380C8C /* PredictItAPIRepresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +158,7 @@
 		F029C7DA2C49B7EF00380C8C /* MarketArchivedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketArchivedView.swift; sourceTree = "<group>"; };
 		F029C7DE2C49B9EF00380C8C /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		F029C7E12C49C16100380C8C /* NSDataAssetExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDataAssetExtensions.swift; sourceTree = "<group>"; };
+		F029C81A2C4EF88E00380C8C /* PredictItAPIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictItAPIRepresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +283,7 @@
 			children = (
 				F00EC63B2C3792D400AF1237 /* Models */,
 				F00EC6362C3791D000AF1237 /* PredictItAPI.swift */,
+				F029C81A2C4EF88E00380C8C /* PredictItAPIRepresentable.swift */,
 			);
 			path = PredictIt;
 			sourceTree = "<group>";
@@ -552,6 +556,7 @@
 				F00EC6532C38E63B00AF1237 /* PIJSONMarketContract.swift in Sources */,
 				F029C7E22C49C16100380C8C /* NSDataAssetExtensions.swift in Sources */,
 				F00EC60C2C377EC900AF1237 /* ContentView.swift in Sources */,
+				F029C81B2C4EF88E00380C8C /* PredictItAPIRepresentable.swift in Sources */,
 				F00EC6912C3DDC1F00AF1237 /* PreviousMarketDataModel.swift in Sources */,
 				F00EC60A2C377EC900AF1237 /* PredictItWidgetApp.swift in Sources */,
 				F00EC6A12C4192CA00AF1237 /* CacheActor.swift in Sources */,
@@ -615,6 +620,7 @@
 				F00EC6712C3A44D500AF1237 /* PredictItAPI.swift in Sources */,
 				F00EC6722C3A451D00AF1237 /* PIJSONMarketContract.swift in Sources */,
 				F029C7E02C49B9EF00380C8C /* ViewExtensions.swift in Sources */,
+				F029C81C2C4EF88E00380C8C /* PredictItAPIRepresentable.swift in Sources */,
 				F00EC6A22C4192CA00AF1237 /* CacheActor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

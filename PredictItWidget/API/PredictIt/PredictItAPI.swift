@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PredictItAPI {
+struct PredictItAPI: PredictItAPIRepresentable {
     static let apiBasePath = URL(string: "https://www.predictit.org/api")!
 
     static func fetchMarketData(marketId: String) async throws -> PIJSONMarket {
@@ -22,8 +22,8 @@ enum PredictItAPI {
         return try JSONDecoder().decode(PIJSONMarket.self, from: data)
     }
     
-    static func fetchMarketData(marketId: String, result: @escaping (PIJSONMarket?) -> Void) throws {
-        var req = URLRequest(url: apiBasePath.appending(path: "/marketdata/markets/\(marketId)"))
+    func fetchMarketData(marketId: String, result: @escaping (PIJSONMarket?) -> Void) throws {
+        var req = URLRequest(url: PredictItAPI.apiBasePath.appending(path: "/marketdata/markets/\(marketId)"))
         let task = URLSession.shared.dataTask(with: req) { (data: Data?, resp: URLResponse?, error: Error?) in
             guard let data else {
                 result(nil)
@@ -45,8 +45,8 @@ enum PredictItAPI {
     }
     
     /// Fetch data from all markets
-    static func fetchMarketData() async throws -> [PIJSONMarket] {
-        var req = URLRequest(url: apiBasePath.appending(path: "/marketdata/all"))
+    func fetchMarketData() async throws -> [PIJSONMarket] {
+        var req = URLRequest(url: PredictItAPI.apiBasePath.appending(path: "/marketdata/all"))
         // TODO: Switch over to json (May as well keep the xml encoding version)
         //req.setValue("application/xml", forHTTPHeaderField: "Accept")
         let (data, _) = try await URLSession.shared.data(for: req)
