@@ -12,7 +12,7 @@ import SwiftData
 struct MarketListView: View {
     enum ViewState {
         case loading
-        case ready
+        case ready(refreshDate: Date)
         case refreshError
     }
     
@@ -35,7 +35,7 @@ struct MarketListView: View {
             
             await MainActor.run {
                 markets = data
-                viewState = .ready
+                viewState = .ready(refreshDate: .now)
             }
         } catch {
             print("Failed to fetch market data: \(error)")
@@ -48,10 +48,14 @@ struct MarketListView: View {
             switch viewState {
             case .loading:
                 ProgressView()
-            case .ready:
-                Text("\(markets.count) Market\(markets.count == 1 ? "" : "s")")
-                .font(.title.weight(.light))
-                .padding()
+            case .ready(let refreshDate):
+                VStack(alignment: .leading) {
+                    Text("\(markets.count) Market\(markets.count == 1 ? "" : "s")")
+                        .font(.title.weight(.light))
+                    Text("Updated \(refreshDate.formatted())")
+                        .font(.caption.weight(.light))
+                }
+                .padding(.horizontal)
                 ScrollViewReader { reader in
                     List(markets) { market in
                         VStack(alignment: .leading) {
