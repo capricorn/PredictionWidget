@@ -51,14 +51,14 @@ struct PredictionMarketWidgetEntryView: View {
                         ForEach(contracts) { contract in
                             HStack {
                                 Text(contract.name.uppercased())
-                                    .font(.caption2.smallCaps())
+                                    .font(.caption.smallCaps())
                                     .lineLimit(1)
                                     .truncationMode(.tail)
                                     .padding(.bottom, 2)
                                 Spacer()
                                 PriceValueView(price: contract.cents!, change: contract.change)
                             }
-                            .font(.caption2)
+                            .font(.caption)
                         }
                     }
                     Spacer()
