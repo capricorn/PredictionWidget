@@ -63,7 +63,10 @@ struct Provider: AppIntentTimelineProvider {
     static let cache = WidgetCache()
     
     func placeholder(in context: Context) -> MarketEntry {
-        MarketEntry(date: Date.now, type: .market(Market(id: 0, name: "Test Market", contracts: [])))
+        let marketData = NSDataAsset(preview: .json8069Archived).data
+        let marketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: marketData)
+        
+        return MarketEntry(date: .now, type: .market(marketJSON.market))
     }
 
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> MarketEntry {
