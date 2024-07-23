@@ -60,9 +60,9 @@ struct PredictionMarketWidgetEntryView: View {
                             }
                             .font(.caption2)
                         }
-                        Spacer()
-                        refreshTimestamp
                     }
+                    Spacer()
+                    refreshTimestamp
                 } else {
                     TimestampContainerView(entry: entry) {
                         Text("No market selected.")
