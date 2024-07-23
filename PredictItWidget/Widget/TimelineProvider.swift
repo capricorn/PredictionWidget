@@ -70,7 +70,12 @@ struct Provider: AppIntentTimelineProvider {
     }
 
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> MarketEntry {
-        MarketEntry(date: Date.now, type: .market(Market(id: 0, name: "Test Market", contracts: [])))
+        if context.isPreview {
+            return self.placeholder(in: context)
+        } else {
+            // TODO: Load current widget state
+            return MarketEntry(date: Date.now, type: .market(Market(id: 0, name: "Test Market", contracts: [])))
+        }
     }
     
     static func getTimelineEntry(
