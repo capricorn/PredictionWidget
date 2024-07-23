@@ -77,7 +77,7 @@ struct PredictionMarketWidgetEntryView: View {
     }
 }
 
-#Preview {
+#Preview("Archived market") {
     let marketData = NSDataAsset(preview: .json8069Archived).data
     let marketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: marketData)
     
@@ -91,6 +91,27 @@ struct PredictionMarketWidgetEntryView: View {
     let marketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: marketData)
     
     let entry = MarketEntry(date: .now, type: .market(marketJSON.market))
+    return PredictionMarketWidgetEntryView(entry: entry)
+        .widgetPreview()
+}
+
+#Preview("Multiple-contract market") {
+    let marketData = NSDataAsset(preview: .json7057).data
+    let marketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: marketData)
+    
+    let entry = MarketEntry(date: .now, type: .market(marketJSON.market))
+    return PredictionMarketWidgetEntryView(entry: entry)
+        .widgetPreview()
+}
+
+#Preview("No market selected") {
+    let entry = MarketEntry(date: .now, type: .market(nil))
+    return PredictionMarketWidgetEntryView(entry: entry)
+        .widgetPreview()
+}
+
+#Preview("Market error") {
+    let entry = MarketEntry(date: .now, type: .error)
     return PredictionMarketWidgetEntryView(entry: entry)
         .widgetPreview()
 }
