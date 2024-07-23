@@ -58,3 +58,13 @@ struct MarketArchivedView: View {
     }
     .widgetPreview()
 }
+
+#Preview("Single-contract market") {
+    let marketData = NSDataAsset(preview: .json7419SingleContract).data
+    let marketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: marketData)
+    
+    return TimestampContainerView(entry: MarketEntry(date: .now, type: .market(nil))) {
+        MarketArchivedView(market: marketJSON.market)
+    }
+    .widgetPreview()   
+}

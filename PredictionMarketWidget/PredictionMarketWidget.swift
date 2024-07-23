@@ -34,38 +34,39 @@ struct PredictionMarketWidget: Widget {
             PredictionMarketWidgetEntryView(entry: entry)
                 .widgetURL(widgetURL(entry))
                 .containerBackground(.fill.tertiary, for: .widget)
-                .environment(\.modelContext, context)
         }
         .supportedFamilies([.systemSmall])
     }
 }
 
-#Preview(as: .systemSmall) {
+#Preview("Single-contract market", as: .systemSmall) {
     PredictionMarketWidget()
 } timeline: {
-    MarketEntry(
-        date: Date.now,
-        type: .market(Market(
-            id: 10,
-            name: "Democratic 2024 presidential nominee?",  // Shortnmae
-            contracts: [
-                MarketContract(id: 0, name: "Trump", cents: 64, change: nil),
-                MarketContract(id: 1, name: "Biden", cents: 33, change: nil),
-            ])))
-     MarketEntry(
-        date: Date.now,
-        type: .market(nil))
-    MarketEntry(
-       date: Date.now,
-       type: .error)
-    MarketEntry(
-        date: Date.now,
-        type: .market(Market(
-            id: 10,
-            name: "Democratic 2024 presidential nominee?",  // Shortnmae
-            contracts: [
-                MarketContract(id: 0, name: "Trump", cents: 64, change: nil),
-                MarketContract(id: 1, name: "Biden", cents: 33, change: 8),
-                MarketContract(id: 1, name: "Jeb", cents: 33, change: -4),
-            ])))
+    let singleMarketData = NSDataAsset(preview: .json7419SingleContract).data
+    let singleMarketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: singleMarketData)
+    let singleEntry = MarketEntry(date: .now, type: .market(singleMarketJSON.market))
+    
+    return [singleEntry]
+}
+
+#Preview("Live market", as: .systemSmall) {
+    PredictionMarketWidget()
+} timeline: {
+    let liveMarketData = NSDataAsset(preview: .json7057).data
+    let liveMarketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: liveMarketData)
+    let liveEntry = MarketEntry(date: .now, type: .market(liveMarketJSON.market))
+    
+    // TODO: Date for transition to archived?
+    
+    return [liveEntry]
+}
+
+#Preview("Archived market", as: .systemSmall) {
+    PredictionMarketWidget()
+} timeline: {
+    let archivedMarketData = NSDataAsset(preview: .json8069Archived).data
+    let archivedMarketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: archivedMarketData)
+    let archivedEntry = MarketEntry(date: .now, type: .market(archivedMarketJSON.market))
+    
+    return [archivedEntry]
 }

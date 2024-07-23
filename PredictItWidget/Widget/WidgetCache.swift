@@ -110,9 +110,14 @@ class WidgetCache {
     
     // TODO: Write cache tests
     func insert(_ marketData: PIJSONMarket, now: Date = .now) throws {
+        var marketData = marketData
         let entry = PreviousMarketDataModel(marketId: marketData.id, name: marketData.shortName, refreshDate: now, entryType: .current)
         // TODO: Better approach
         entry.entryType = "\(marketData.id)_current"
+        
+        if marketData.contracts.count == 1 {
+            marketData.contracts[0].shortName = "Yes"
+        }
         
         switch state(marketId: entry.marketId) {
         case .empty:

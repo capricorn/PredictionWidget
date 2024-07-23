@@ -39,8 +39,6 @@
 		F00EC6902C3DDB3B00AF1237 /* DBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC68D2C3DDA2300AF1237 /* DBTests.swift */; };
 		F00EC6912C3DDC1F00AF1237 /* PreviousMarketDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6872C3DD10D00AF1237 /* PreviousMarketDataModel.swift */; };
 		F00EC6922C3DDC2B00AF1237 /* ContractEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC68A2C3DD18300AF1237 /* ContractEntryModel.swift */; };
-		F00EC6942C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6932C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift */; };
-		F00EC6952C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6932C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift */; };
 		F00EC6962C3EF82800AF1237 /* TimestampContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6802C3C87AE00AF1237 /* TimestampContainerView.swift */; };
 		F00EC6992C3EFB7A00AF1237 /* PriceValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6982C3EFB7A00AF1237 /* PriceValueView.swift */; };
 		F00EC69A2C3EFB7A00AF1237 /* PriceValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6982C3EFB7A00AF1237 /* PriceValueView.swift */; };
@@ -71,6 +69,12 @@
 		F029C81C2C4EF88E00380C8C /* PredictItAPIRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C81A2C4EF88E00380C8C /* PredictItAPIRepresentable.swift */; };
 		F029C8202C4EFB0600380C8C /* MockFetchAllMarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C81F2C4EFB0600380C8C /* MockFetchAllMarketData.swift */; };
 		F029C8212C4EFB0600380C8C /* MockFetchAllMarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029C81F2C4EFB0600380C8C /* MockFetchAllMarketData.swift */; };
+		F06E03B92C50145B00E3AB33 /* PredictionMarketWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06E03B82C50145B00E3AB33 /* PredictionMarketWidgetEntryView.swift */; };
+		F06E03BA2C50145B00E3AB33 /* PredictionMarketWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06E03B82C50145B00E3AB33 /* PredictionMarketWidgetEntryView.swift */; };
+		F06E03BB2C50161800E3AB33 /* PredictionMarketWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6612C3A386E00AF1237 /* PredictionMarketWidget.swift */; };
+		F06E03BC2C50169F00E3AB33 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F00EC6102C377ECA00AF1237 /* Preview Assets.xcassets */; };
+		F06E03BE2C5017FA00E3AB33 /* MarketEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06E03BD2C5017FA00E3AB33 /* MarketEntry.swift */; };
+		F06E03BF2C5017FA00E3AB33 /* MarketEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06E03BD2C5017FA00E3AB33 /* MarketEntry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,7 +148,6 @@
 		F00EC6872C3DD10D00AF1237 /* PreviousMarketDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousMarketDataModel.swift; sourceTree = "<group>"; };
 		F00EC68A2C3DD18300AF1237 /* ContractEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEntryModel.swift; sourceTree = "<group>"; };
 		F00EC68D2C3DDA2300AF1237 /* DBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTests.swift; sourceTree = "<group>"; };
-		F00EC6932C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionMarketWidgetEntryView.swift; sourceTree = "<group>"; };
 		F00EC6982C3EFB7A00AF1237 /* PriceValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceValueView.swift; sourceTree = "<group>"; };
 		F00EC69E2C41900600AF1237 /* CacheActorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheActorTests.swift; sourceTree = "<group>"; };
 		F00EC6A02C4192CA00AF1237 /* CacheActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheActor.swift; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 		F029C7E12C49C16100380C8C /* NSDataAssetExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDataAssetExtensions.swift; sourceTree = "<group>"; };
 		F029C81A2C4EF88E00380C8C /* PredictItAPIRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictItAPIRepresentable.swift; sourceTree = "<group>"; };
 		F029C81F2C4EFB0600380C8C /* MockFetchAllMarketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFetchAllMarketData.swift; sourceTree = "<group>"; };
+		F06E03B82C50145B00E3AB33 /* PredictionMarketWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionMarketWidgetEntryView.swift; sourceTree = "<group>"; };
+		F06E03BD2C5017FA00E3AB33 /* MarketEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,7 +342,6 @@
 				F00EC6632C3A386E00AF1237 /* AppIntent.swift */,
 				F00EC6652C3A387000AF1237 /* Assets.xcassets */,
 				F00EC6672C3A387000AF1237 /* Info.plist */,
-				F00EC6932C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift */,
 			);
 			path = PredictionMarketWidget;
 			sourceTree = "<group>";
@@ -378,6 +382,8 @@
 				F00EC6A72C44774100AF1237 /* TimelineProvider.swift */,
 				F029C7D42C486B2D00380C8C /* WidgetURL.swift */,
 				F029C7DA2C49B7EF00380C8C /* MarketArchivedView.swift */,
+				F06E03B82C50145B00E3AB33 /* PredictionMarketWidgetEntryView.swift */,
+				F06E03BD2C5017FA00E3AB33 /* MarketEntry.swift */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -557,6 +563,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F06E03BC2C50169F00E3AB33 /* Preview Assets.xcassets in Resources */,
 				F00EC6662C3A387000AF1237 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,9 +580,11 @@
 				F00EC6492C3892A800AF1237 /* MarketListView.swift in Sources */,
 				F00EC6992C3EFB7A00AF1237 /* PriceValueView.swift in Sources */,
 				F00EC67C2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift in Sources */,
+				F06E03BB2C50161800E3AB33 /* PredictionMarketWidget.swift in Sources */,
 				F00EC6532C38E63B00AF1237 /* PIJSONMarketContract.swift in Sources */,
 				F029C7E22C49C16100380C8C /* NSDataAssetExtensions.swift in Sources */,
 				F00EC60C2C377EC900AF1237 /* ContentView.swift in Sources */,
+				F06E03B92C50145B00E3AB33 /* PredictionMarketWidgetEntryView.swift in Sources */,
 				F029C81B2C4EF88E00380C8C /* PredictItAPIRepresentable.swift in Sources */,
 				F00EC6912C3DDC1F00AF1237 /* PreviousMarketDataModel.swift in Sources */,
 				F00EC60A2C377EC900AF1237 /* PredictItWidgetApp.swift in Sources */,
@@ -591,7 +600,7 @@
 				F00EC6962C3EF82800AF1237 /* TimestampContainerView.swift in Sources */,
 				F029C7D02C471AE100380C8C /* TimelineProvider.swift in Sources */,
 				F029C7D52C486B2D00380C8C /* WidgetURL.swift in Sources */,
-				F00EC6942C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift in Sources */,
+				F06E03BE2C5017FA00E3AB33 /* MarketEntry.swift in Sources */,
 				F029C7CD2C46D0F700380C8C /* WidgetCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -632,9 +641,10 @@
 				F00EC6622C3A386E00AF1237 /* PredictionMarketWidget.swift in Sources */,
 				F00EC6602C3A386E00AF1237 /* PredictionMarketWidgetBundle.swift in Sources */,
 				F029C7E32C49C16100380C8C /* NSDataAssetExtensions.swift in Sources */,
-				F00EC6952C3EF6E400AF1237 /* PredictionMarketWidgetEntryView.swift in Sources */,
+				F06E03BF2C5017FA00E3AB33 /* MarketEntry.swift in Sources */,
 				F029C7D62C486B2D00380C8C /* WidgetURL.swift in Sources */,
 				F029C8212C4EFB0600380C8C /* MockFetchAllMarketData.swift in Sources */,
+				F06E03BA2C50145B00E3AB33 /* PredictionMarketWidgetEntryView.swift in Sources */,
 				F00EC6642C3A386E00AF1237 /* AppIntent.swift in Sources */,
 				F00EC6A82C44774100AF1237 /* TimelineProvider.swift in Sources */,
 				F00EC68C2C3DD18300AF1237 /* ContractEntryModel.swift in Sources */,

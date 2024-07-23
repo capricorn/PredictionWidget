@@ -29,7 +29,8 @@ struct MarketListView: View {
             try modelContext.delete(model: MarketEntryModel.self)
             
             for market in data {
-                let entry = MarketEntryModel(id: market.id, name: market.shortName)
+                let m = market.market
+                let entry = MarketEntryModel(id: m.id, name: m.name)
                 modelContext.insert(entry)
             }
             

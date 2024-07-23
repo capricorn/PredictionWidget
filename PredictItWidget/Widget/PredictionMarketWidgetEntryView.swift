@@ -1,46 +1,14 @@
 //
-//  PredictionMarketWidgetEntryView.swift
+//  MarketLiveView.swift
 //  PredictItWidget
 //
-//  Created by Collin Palmer on 7/10/24.
+//  Created by Collin Palmer on 7/23/24.
 //
 
-import Foundation
 import SwiftUI
-import SwiftData
-import WidgetKit
 
-import PredictionMarketWidgetExtension
-
-struct MarketContract: Identifiable {
-    let id: Int
-    let name: String
-    let cents: Int?
-    let change: Int?
-}
-
-struct Market: Identifiable {
-    let id: Int
-    let name: String
-    let contracts: [MarketContract]
-    var archived: Bool = false
-}
-
-enum EntryType {
-    /// `nil` if no market is selected.
-    case market(Market?)
-    case error
-}
-
-// TODO: -- define necessary fields
-struct MarketEntry: TimelineEntry {
-    let date: Date
-    //let configuration: ConfigurationAppIntent
-    let type: EntryType
-}
-
-struct PredictionMarketWidgetEntryView : View {
-    @Environment(\.modelContext) var modelContext
+struct PredictionMarketWidgetEntryView: View {
+    var entry: MarketEntry
     
     var currentEntry: Market? {
         switch entry.type {
@@ -50,8 +18,6 @@ struct PredictionMarketWidgetEntryView : View {
             return nil
         }
     }
-
-    var entry: MarketEntry
     
     var contracts: [MarketContract] {
         guard let currentEntry else {
@@ -68,7 +34,7 @@ struct PredictionMarketWidgetEntryView : View {
         Text("\(Image(systemName: "clock.arrow.2.circlepath")) \(entry.date.formatted())")
             .font(.system(size: 8).weight(.light))
     }
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             switch entry.type {
@@ -111,37 +77,20 @@ struct PredictionMarketWidgetEntryView : View {
     }
 }
 
-
 #Preview {
-    let container = try! ModelContainer(for: PreviousMarketDataModel.self, ContractEntryModel.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-    let context = ModelContext(container)
-    let marketId = 0
+    let marketData = NSDataAsset(preview: .json8069Archived).data
+    let marketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: marketData)
     
-    let entry1 = PreviousMarketDataModel(marketId: marketId, name: "2024 President", refreshDate: .now, entryType: .current)
-    entry1.contracts = [
-        .init(id: 1, price: 50, name: "Biden", market: entry1),
-        .init(id: 2, price: 36, name: "Trump", market: entry1),
-    ]
-    context.insert(entry1)
-    
-    let entry2 = PreviousMarketDataModel(marketId: marketId, name: "2024 President", refreshDate: .now, entryType: .current)
-    entry2.contracts = [
-        .init(id: 1, price: 50, name: "Biden", market: entry2),
-        .init(id: 2, price: 36, name: "Trump", market: entry2),
-    ]
-    
-    context.insert(entry2)
+    let entry = MarketEntry(date: .now, type: .market(marketJSON.market))
+    return PredictionMarketWidgetEntryView(entry: entry)
+        .widgetPreview()
+}
 
-    return PredictionMarketWidgetEntryView(entry: MarketEntry(
-        date: Date.now,
-        type: .market(Market(
-            id: marketId,
-            name: "Democratic 2024 presidential nominee?",  // Shortnmae
-            contracts: [
-                MarketContract(id: 0, name: "Trump", cents: 64, change: nil),
-                MarketContract(id: 1, name: "Biden", cents: 33, change: 8),
-                MarketContract(id: 1, name: "Jeb", cents: 33, change: -4),
-            ]))))
-    .environment(\.modelContext, context)
-    .previewContext(WidgetPreviewContext(family: .systemSmall))
+#Preview("Single-contract market") {
+    let marketData = NSDataAsset(preview: .json7419SingleContract).data
+    let marketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: marketData)
+    
+    let entry = MarketEntry(date: .now, type: .market(marketJSON.market))
+    return PredictionMarketWidgetEntryView(entry: entry)
+        .widgetPreview()
 }

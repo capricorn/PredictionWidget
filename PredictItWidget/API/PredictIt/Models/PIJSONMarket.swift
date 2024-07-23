@@ -44,7 +44,12 @@ struct PIJSONMarket: Codable, Identifiable {
     }
     
     var market: Market {
-        Market(id: self.id, name: self.shortName, contracts: self.contracts.map { $0.marketContract }, archived: self.archived)
+        var m = Market(id: self.id, name: self.shortName, contracts: self.contracts.map { $0.marketContract }, archived: self.archived)
+        if m.contracts.count == 1 {
+            m.contracts[0].name = "Yes"
+        }
+        
+        return m
     }
     
     init(from decoder: any Decoder) throws {
