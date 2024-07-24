@@ -9,6 +9,7 @@ import Foundation
 
 struct PredictItAPI: PredictItAPIRepresentable {
     static let apiBasePath = URL(string: "https://www.predictit.org/api")!
+    static let userAgent = "Ergo-iOS"
 
     static func fetchMarketData(marketId: String) async throws -> PIJSONMarket {
         var req = URLRequest(url: apiBasePath.appending(path: "/marketdata/markets/\(marketId)"))
@@ -24,6 +25,8 @@ struct PredictItAPI: PredictItAPIRepresentable {
     
     func fetchMarketData(marketId: String, result: @escaping (PIJSONMarket?) -> Void) throws {
         var req = URLRequest(url: PredictItAPI.apiBasePath.appending(path: "/marketdata/markets/\(marketId)"))
+        req.setValue(PredictItAPI.userAgent, forHTTPHeaderField: "User-Agent")
+        
         let task = URLSession.shared.dataTask(with: req) { (data: Data?, resp: URLResponse?, error: Error?) in
             guard let data else {
                 result(nil)
@@ -47,6 +50,7 @@ struct PredictItAPI: PredictItAPIRepresentable {
     /// Fetch data from all markets
     func fetchMarketData() async throws -> [PIJSONMarket] {
         var req = URLRequest(url: PredictItAPI.apiBasePath.appending(path: "/marketdata/all"))
+        req.setValue(PredictItAPI.userAgent, forHTTPHeaderField: "User-Agent")
         // TODO: Switch over to json (May as well keep the xml encoding version)
         //req.setValue("application/xml", forHTTPHeaderField: "Accept")
         let (data, _) = try await URLSession.shared.data(for: req)
