@@ -10,7 +10,7 @@ import SwiftData
 
 struct ContentView: View {
     @State private var marketName: String?
-    let modelContext = ModelContext(try! ModelContainer(for: PreviousMarketDataModel.self, ContractEntryModel.self, MarketEntryModel.self, configurations: ModelConfiguration()))
+    let modelContext = ModelContext(try! ModelContainer(for: appSchema, configurations: ModelConfiguration()))
     
     var body: some View {
         MarketListView()

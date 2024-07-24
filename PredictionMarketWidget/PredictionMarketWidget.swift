@@ -11,8 +11,7 @@ import SwiftData
 
 struct PredictionMarketWidget: Widget {
     let kind: String = "PredictionMarketWidget"
-    let context = ModelContext(try! ModelContainer(for: PreviousMarketDataModel.self, ContractEntryModel.self, MarketEntryModel.self, configurations: ModelConfiguration()))
-    
+
     private func widgetURL(_ entry: MarketEntry) -> URL {
         let url = URL(string: "\(widgetURLScheme)://")!
         let marketOverviewURL = url.appending(path: "/all")
@@ -30,7 +29,7 @@ struct PredictionMarketWidget: Widget {
     }
 
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider(modelContext: context)) { entry in
+        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
             PredictionMarketWidgetEntryView(entry: entry)
                 .widgetURL(widgetURL(entry))
                 .containerBackground(.fill.tertiary, for: .widget)

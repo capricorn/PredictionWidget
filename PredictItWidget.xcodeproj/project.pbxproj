@@ -76,6 +76,8 @@
 		F06E03BE2C5017FA00E3AB33 /* MarketEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06E03BD2C5017FA00E3AB33 /* MarketEntry.swift */; };
 		F06E03BF2C5017FA00E3AB33 /* MarketEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06E03BD2C5017FA00E3AB33 /* MarketEntry.swift */; };
 		F06E03C02C504B7A00E3AB33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F00EC60D2C377ECA00AF1237 /* Assets.xcassets */; };
+		F0CDC0452C516A67007483B2 /* AppSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDC0442C516A67007483B2 /* AppSchema.swift */; };
+		F0CDC0462C516A67007483B2 /* AppSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDC0442C516A67007483B2 /* AppSchema.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +170,7 @@
 		F029C81F2C4EFB0600380C8C /* MockFetchAllMarketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFetchAllMarketData.swift; sourceTree = "<group>"; };
 		F06E03B82C50145B00E3AB33 /* PredictionMarketWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionMarketWidgetEntryView.swift; sourceTree = "<group>"; };
 		F06E03BD2C5017FA00E3AB33 /* MarketEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEntry.swift; sourceTree = "<group>"; };
+		F0CDC0442C516A67007483B2 /* AppSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSchema.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +374,7 @@
 				F00EC6872C3DD10D00AF1237 /* PreviousMarketDataModel.swift */,
 				F00EC68A2C3DD18300AF1237 /* ContractEntryModel.swift */,
 				F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */,
+				F0CDC0442C516A67007483B2 /* AppSchema.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -581,6 +585,7 @@
 				F00EC6A52C437E2E00AF1237 /* MarketEntryModel.swift in Sources */,
 				F00EC6492C3892A800AF1237 /* MarketListView.swift in Sources */,
 				F00EC6992C3EFB7A00AF1237 /* PriceValueView.swift in Sources */,
+				F0CDC0452C516A67007483B2 /* AppSchema.swift in Sources */,
 				F00EC67C2C3B4B2B00AF1237 /* UserDefaultsExtensions.swift in Sources */,
 				F06E03BB2C50161800E3AB33 /* PredictionMarketWidget.swift in Sources */,
 				F00EC6532C38E63B00AF1237 /* PIJSONMarketContract.swift in Sources */,
@@ -637,6 +642,7 @@
 				F029C7DC2C49B7EF00380C8C /* MarketArchivedView.swift in Sources */,
 				F029C7D92C486F4300380C8C /* AppViewModel.swift in Sources */,
 				F00EC6732C3A452100AF1237 /* PIJSONMarket.swift in Sources */,
+				F0CDC0462C516A67007483B2 /* AppSchema.swift in Sources */,
 				F00EC69A2C3EFB7A00AF1237 /* PriceValueView.swift in Sources */,
 				F00EC6AA2C45CC6900AF1237 /* WidgetCache.swift in Sources */,
 				F00EC6822C3C87E000AF1237 /* TimestampContainerView.swift in Sources */,

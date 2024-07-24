@@ -105,7 +105,7 @@ class WidgetCache {
     }
     
     init(configuration: ModelConfiguration = ModelConfiguration()) {
-        self.modelContext = ModelContext(try! ModelContainer(for: PreviousMarketDataModel.self, ContractEntryModel.self, MarketEntryModel.self, configurations: configuration))
+        self.modelContext = ModelContext(try! ModelContainer(for: appSchema, configurations: configuration))
     }
     
     // TODO: Write cache tests

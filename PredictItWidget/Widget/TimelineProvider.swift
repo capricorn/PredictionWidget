@@ -10,7 +10,6 @@ import WidgetKit
 import SwiftUI
 import SwiftData
 
-
 private extension URLSession {
     // TODO: Any way to just wrap a callback generically with this?
     func syncDataTask(with req: URLRequest) -> (Data?, URLResponse?, Error?) {
@@ -57,7 +56,6 @@ private extension PredictItAPI {
 struct Provider: AppIntentTimelineProvider {
     typealias MarketDataFetcher = (Int) throws -> PIJSONMarket
     
-    let modelContext: ModelContext
     static let queue = DispatchQueue(label: "PredictionWidgetQueue")
     static let group = DispatchGroup()
     static let cache = WidgetCache()
