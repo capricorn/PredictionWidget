@@ -17,7 +17,8 @@ struct MarketQuery: EntityQuery {
     }
     
     func suggestedEntities() async throws -> [Entity] {
-        let entries = await CacheActor.shared.markets
+        // TODO: Is this acceptable? Or does it need to be an actor?
+        let entries = WidgetCache.shared.markets()
         
         return entries
             .map { MarketDetail(id: $0.id, name: $0.name) }

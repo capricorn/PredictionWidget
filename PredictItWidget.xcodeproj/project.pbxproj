@@ -42,9 +42,6 @@
 		F00EC6962C3EF82800AF1237 /* TimestampContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6802C3C87AE00AF1237 /* TimestampContainerView.swift */; };
 		F00EC6992C3EFB7A00AF1237 /* PriceValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6982C3EFB7A00AF1237 /* PriceValueView.swift */; };
 		F00EC69A2C3EFB7A00AF1237 /* PriceValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6982C3EFB7A00AF1237 /* PriceValueView.swift */; };
-		F00EC69F2C41900600AF1237 /* CacheActorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC69E2C41900600AF1237 /* CacheActorTests.swift */; };
-		F00EC6A12C4192CA00AF1237 /* CacheActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A02C4192CA00AF1237 /* CacheActor.swift */; };
-		F00EC6A22C4192CA00AF1237 /* CacheActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A02C4192CA00AF1237 /* CacheActor.swift */; };
 		F00EC6A32C437B9E00AF1237 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6632C3A386E00AF1237 /* AppIntent.swift */; };
 		F00EC6A52C437E2E00AF1237 /* MarketEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */; };
 		F00EC6A62C437E2E00AF1237 /* MarketEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */; };
@@ -152,8 +149,6 @@
 		F00EC68A2C3DD18300AF1237 /* ContractEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractEntryModel.swift; sourceTree = "<group>"; };
 		F00EC68D2C3DDA2300AF1237 /* DBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBTests.swift; sourceTree = "<group>"; };
 		F00EC6982C3EFB7A00AF1237 /* PriceValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceValueView.swift; sourceTree = "<group>"; };
-		F00EC69E2C41900600AF1237 /* CacheActorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheActorTests.swift; sourceTree = "<group>"; };
-		F00EC6A02C4192CA00AF1237 /* CacheActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheActor.swift; sourceTree = "<group>"; };
 		F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEntryModel.swift; sourceTree = "<group>"; };
 		F00EC6A72C44774100AF1237 /* TimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineProvider.swift; sourceTree = "<group>"; };
 		F00EC6A92C45CC6900AF1237 /* WidgetCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCache.swift; sourceTree = "<group>"; };
@@ -247,7 +242,6 @@
 				F00EC60D2C377ECA00AF1237 /* Assets.xcassets */,
 				F00EC60F2C377ECA00AF1237 /* Preview Content */,
 				F00EC6802C3C87AE00AF1237 /* TimestampContainerView.swift */,
-				F00EC6A02C4192CA00AF1237 /* CacheActor.swift */,
 				F029C7D72C486F4300380C8C /* AppViewModel.swift */,
 			);
 			path = PredictItWidget;
@@ -267,7 +261,6 @@
 				F00EC63E2C3794AB00AF1237 /* TestData */,
 				F00EC61A2C377ECA00AF1237 /* PredictItWidgetTests.swift */,
 				F00EC68D2C3DDA2300AF1237 /* DBTests.swift */,
-				F00EC69E2C41900600AF1237 /* CacheActorTests.swift */,
 				F029C7CB2C46D03D00380C8C /* WidgetCacheTests.swift */,
 				F029C7CE2C47191F00380C8C /* TimelineProviderTests.swift */,
 			);
@@ -363,6 +356,7 @@
 		F00EC6852C3DD06D00AF1237 /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				F0CDC0442C516A67007483B2 /* AppSchema.swift */,
 				F00EC6862C3DD07200AF1237 /* Models */,
 			);
 			path = DB;
@@ -374,7 +368,6 @@
 				F00EC6872C3DD10D00AF1237 /* PreviousMarketDataModel.swift */,
 				F00EC68A2C3DD18300AF1237 /* ContractEntryModel.swift */,
 				F00EC6A42C437E2E00AF1237 /* MarketEntryModel.swift */,
-				F0CDC0442C516A67007483B2 /* AppSchema.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -595,7 +588,6 @@
 				F029C81B2C4EF88E00380C8C /* PredictItAPIRepresentable.swift in Sources */,
 				F00EC6912C3DDC1F00AF1237 /* PreviousMarketDataModel.swift in Sources */,
 				F00EC60A2C377EC900AF1237 /* PredictItWidgetApp.swift in Sources */,
-				F00EC6A12C4192CA00AF1237 /* CacheActor.swift in Sources */,
 				F00EC6512C38E57100AF1237 /* PIJSONMarket.swift in Sources */,
 				F029C7D82C486F4300380C8C /* AppViewModel.swift in Sources */,
 				F00EC6922C3DDC2B00AF1237 /* ContractEntryModel.swift in Sources */,
@@ -618,7 +610,6 @@
 			files = (
 				F029C7CF2C47191F00380C8C /* TimelineProviderTests.swift in Sources */,
 				F029C7CC2C46D03D00380C8C /* WidgetCacheTests.swift in Sources */,
-				F00EC69F2C41900600AF1237 /* CacheActorTests.swift in Sources */,
 				F00EC61B2C377ECA00AF1237 /* PredictItWidgetTests.swift in Sources */,
 				F00EC6902C3DDB3B00AF1237 /* DBTests.swift in Sources */,
 			);
@@ -661,7 +652,6 @@
 				F00EC6722C3A451D00AF1237 /* PIJSONMarketContract.swift in Sources */,
 				F029C7E02C49B9EF00380C8C /* ViewExtensions.swift in Sources */,
 				F029C81C2C4EF88E00380C8C /* PredictItAPIRepresentable.swift in Sources */,
-				F00EC6A22C4192CA00AF1237 /* CacheActor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

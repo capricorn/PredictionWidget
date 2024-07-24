@@ -62,6 +62,10 @@ class WidgetCache {
         }
     }
     
+    func markets() -> [MarketEntryModel] {
+        return (try? modelContext.fetch(FetchDescriptor<MarketEntryModel>())) ?? []
+    }
+    
     func currentEntry(marketId: Int) -> PreviousMarketDataModel? {
         var descriptor = FetchDescriptor(predicate: #Predicate<PreviousMarketDataModel> { model in
             model.marketId == marketId && model.entryType == "\(marketId)_current"
