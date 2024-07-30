@@ -50,11 +50,17 @@ struct MarketListView: View {
             case .loading:
                 ProgressView()
             case .ready(let refreshDate):
-                VStack(alignment: .leading) {
-                    Text("\(markets.count) Market\(markets.count == 1 ? "" : "s")")
-                        .font(.title.weight(.light))
-                    Text("Updated \(refreshDate.formatted())")
-                        .font(.caption.weight(.light))
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("\(markets.count) Market\(markets.count == 1 ? "" : "s")")
+                            .font(.title.weight(.light))
+                        Text("Updated \(refreshDate.formatted())")
+                            .font(.caption.weight(.light))
+                    }
+                    Spacer()
+                    Button("\(Image(systemName: "plus")) Add Widget") {
+                        UIApplication.shared.open(URL(string: "https://support.apple.com/guide/iphone/add-edit-and-remove-widgets-iphb8f1bf206/ios")!)
+                    }
                 }
                 .padding(.horizontal)
                 ScrollViewReader { reader in
