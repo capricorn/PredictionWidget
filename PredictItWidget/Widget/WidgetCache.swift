@@ -16,7 +16,7 @@ extension PIJSONMarketContract {
     }
      */
     func contract(market: PreviousMarketDataModel) -> ContractEntryModel {
-        return ContractEntryModel(id: self.id, price: self.lastTradePrice ?? 0, name: self.shortName, market: market)
+        return ContractEntryModel(id: self.id, price: self.lastTradePrice, name: self.shortName, market: market)
     }
 }
 
@@ -55,7 +55,9 @@ class WidgetCache {
             
             let contracts = zip(currContracts, prevContracts).map {
                 let (curr, prev) = $0
-                return MarketContract(id: curr.id, name: curr.name, cents: curr.price, change: curr.price - prev.price)
+                let change = (curr.price ?? 0) - (prev.price ?? 0)
+                // If no change exists between prices, don't display a change of zero.
+                return MarketContract(id: curr.id, name: curr.name, cents: curr.price, change: (change == 0) ? nil : change)
             }
             
             return Market(id: marketId, name: current.name, contracts: contracts)
