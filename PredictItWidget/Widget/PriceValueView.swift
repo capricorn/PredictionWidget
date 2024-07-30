@@ -67,10 +67,14 @@ struct PriceValueView: View {
     }
     
     var twoDigitPrice: Bool {
-        abs(price) >= 10
+        guard let price else {
+            return true
+        }
+        
+        return abs(price) >= 10
     }
     
-    let price: Int
+    let price: Int?
     // TODO: Handle when change is zero? (Always nil in that case?)
     let change: Int?
     
@@ -83,7 +87,11 @@ struct PriceValueView: View {
     }
     
     var priceLabel: String {
-        "\(price)¢"
+        guard let price else {
+            return "--¢"
+        }
+        
+        return "\(price)¢"
     }
     
     // TODO: Subviews for these (less repetition..?) Want to keep state machine..
@@ -134,5 +142,6 @@ struct PriceValueView: View {
         PriceValueView(price: 91, change: 16)
         PriceValueView(price: 9, change: 32)
         PriceValueView(price: 9, change: -3)
+        PriceValueView(price: nil, change: nil)
     }
 }

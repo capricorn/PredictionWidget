@@ -56,7 +56,7 @@ struct PredictionMarketWidgetEntryView: View {
                                     .truncationMode(.tail)
                                     .padding(.bottom, 2)
                                 Spacer()
-                                PriceValueView(price: contract.cents!, change: contract.change)
+                                PriceValueView(price: contract.cents, change: contract.change)
                             }
                             .font(.caption)
                         }
@@ -114,4 +114,13 @@ struct PredictionMarketWidgetEntryView: View {
     let entry = MarketEntry(date: .now, type: .error)
     return PredictionMarketWidgetEntryView(entry: entry)
         .widgetPreview()
+}
+
+#Preview("Missing price") {
+    let marketData = NSDataAsset(preview: .json6867MissingPrice).data
+    let marketJSON: PIJSONMarket = try! JSONDecoder().decode(PIJSONMarket.self, from: marketData)
+    
+    let entry = MarketEntry(date: .now, type: .market(marketJSON.market))
+    return PredictionMarketWidgetEntryView(entry: entry)
+        .widgetPreview()   
 }
