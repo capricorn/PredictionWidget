@@ -106,12 +106,20 @@ struct MarketListView: View {
     }
 }
 
-#Preview {
-    // TODO: If you want to preview this view easily, have to inject API (imo inject via environment key)
-    let container = try! ModelContainer(for: ContractEntryModel.self, MarketEntryModel.self, configurations: ModelConfiguration())
+#Preview("ready state") {
+    let container = try! ModelContainer(for: appSchema, configurations: ModelConfiguration())
     let context = ModelContext(container)
     return MarketListView()
         .environment(\.modelContext, context)
         .environment(\.predictItAPI, MockFetchAllMarketData())
+        .environmentObject(AppViewModel())
+}
+
+#Preview("error state") {
+    let container = try! ModelContainer(for: appSchema, configurations: ModelConfiguration())
+    let context = ModelContext(container)
+    return MarketListView()
+        .environment(\.modelContext, context)
+        .environment(\.predictItAPI, MockFetchError())
         .environmentObject(AppViewModel())
 }

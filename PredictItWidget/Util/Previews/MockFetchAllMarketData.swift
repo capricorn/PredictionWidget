@@ -20,3 +20,13 @@ struct MockFetchAllMarketData: PredictItAPIRepresentable {
         return markets.markets
     }
 }
+
+struct MockFetchError: PredictItAPIRepresentable {
+    func fetchMarketData(marketId: String, result: @escaping (PIJSONMarket?) -> Void) throws {
+        throw URLError(.badServerResponse)
+    }
+    
+    func fetchMarketData() async throws -> [PIJSONMarket] {
+        throw URLError(.badServerResponse)
+    }
+}
