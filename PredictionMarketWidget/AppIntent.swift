@@ -39,8 +39,8 @@ struct MarketDetail: AppEntity {
 }
 
 struct ConfigurationAppIntent: WidgetConfigurationIntent {
-    static var title: LocalizedStringResource = "Configuration"
-    static var description = IntentDescription("This is an example widget.")
+    static var title: LocalizedStringResource = "Market Selection"
+    static var description = IntentDescription("Display recent market odds.")
     
     // TODO: Requires special 'None' option..?
     @Parameter(title: "Market")
