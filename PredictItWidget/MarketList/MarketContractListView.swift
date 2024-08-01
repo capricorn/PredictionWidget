@@ -10,9 +10,15 @@ import SwiftUI
 struct MarketContractListView: View {
     let contracts: [PIJSONMarketContract]
     
+    var enumeratedContracts: [(Int,PIJSONMarketContract)] {
+        contracts
+            .enumerated()
+            .map { ($0.offset, $0.element) }
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
-            ForEach(contracts) { contract in
+            ForEach(enumeratedContracts, id: \.0) { index, contract in
                 HStack {
                     Text((contracts.count == 1) ? "YES" : contract.name)
                         .lineLimit(1)
@@ -26,6 +32,9 @@ struct MarketContractListView: View {
                         Text("--¢")
                             .monospaced()
                     }
+                }
+                .background {
+                    (index % 2 == 0) ? Color.clear : Color.gray.opacity(0.1)
                 }
             }
         }
