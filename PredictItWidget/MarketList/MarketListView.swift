@@ -44,6 +44,11 @@ struct MarketListView: View {
         }
     }
     
+    private var marketCountLabel: Text {
+        Text("\(markets.count) Market\(markets.count == 1 ? "" : "s")")
+            .font(.title.weight(.light))
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             switch viewState {
@@ -52,9 +57,8 @@ struct MarketListView: View {
             case .ready(let refreshDate):
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("\(markets.count) Market\(markets.count == 1 ? "" : "s")")
-                            .font(.title.weight(.light))
-                        Text("Updated \(refreshDate.formatted())")
+                        marketCountLabel
+                        Text("\(Image(systemName: "clock.arrow.2.circlepath")) Updated \(refreshDate.formatted())")
                             .font(.caption.weight(.light))
                     }
                     Spacer()

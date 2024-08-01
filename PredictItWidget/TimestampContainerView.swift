@@ -33,6 +33,8 @@ struct TimestampContainerView<Content: View>: View {
                 HStack {
                     refreshTimestamp
                     Spacer()
+                    LogoView()
+                        .sizeToTextHeight(Text("").font(.system(size: 8)))
                 }
             }
         }

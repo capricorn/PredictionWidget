@@ -75,6 +75,8 @@
 		F06E03C02C504B7A00E3AB33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F00EC60D2C377ECA00AF1237 /* Assets.xcassets */; };
 		F0CDC0452C516A67007483B2 /* AppSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDC0442C516A67007483B2 /* AppSchema.swift */; };
 		F0CDC0462C516A67007483B2 /* AppSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDC0442C516A67007483B2 /* AppSchema.swift */; };
+		F0CDC0482C5C2EEB007483B2 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDC0472C5C2EEA007483B2 /* LogoView.swift */; };
+		F0CDC0492C5C2EEB007483B2 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDC0472C5C2EEA007483B2 /* LogoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +168,7 @@
 		F06E03B82C50145B00E3AB33 /* PredictionMarketWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionMarketWidgetEntryView.swift; sourceTree = "<group>"; };
 		F06E03BD2C5017FA00E3AB33 /* MarketEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEntry.swift; sourceTree = "<group>"; };
 		F0CDC0442C516A67007483B2 /* AppSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSchema.swift; sourceTree = "<group>"; };
+		F0CDC0472C5C2EEA007483B2 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +246,7 @@
 				F00EC60F2C377ECA00AF1237 /* Preview Content */,
 				F00EC6802C3C87AE00AF1237 /* TimestampContainerView.swift */,
 				F029C7D72C486F4300380C8C /* AppViewModel.swift */,
+				F0CDC0472C5C2EEA007483B2 /* LogoView.swift */,
 			);
 			path = PredictItWidget;
 			sourceTree = "<group>";
@@ -599,6 +603,7 @@
 				F00EC6962C3EF82800AF1237 /* TimestampContainerView.swift in Sources */,
 				F029C7D02C471AE100380C8C /* TimelineProvider.swift in Sources */,
 				F029C7D52C486B2D00380C8C /* WidgetURL.swift in Sources */,
+				F0CDC0482C5C2EEB007483B2 /* LogoView.swift in Sources */,
 				F06E03BE2C5017FA00E3AB33 /* MarketEntry.swift in Sources */,
 				F029C7CD2C46D0F700380C8C /* WidgetCache.swift in Sources */,
 			);
@@ -648,6 +653,7 @@
 				F00EC6A82C44774100AF1237 /* TimelineProvider.swift in Sources */,
 				F00EC68C2C3DD18300AF1237 /* ContractEntryModel.swift in Sources */,
 				F00EC67E2C3B4F5A00AF1237 /* UserDefaultsExtensions.swift in Sources */,
+				F0CDC0492C5C2EEB007483B2 /* LogoView.swift in Sources */,
 				F00EC6712C3A44D500AF1237 /* PredictItAPI.swift in Sources */,
 				F00EC6722C3A451D00AF1237 /* PIJSONMarketContract.swift in Sources */,
 				F029C7E02C49B9EF00380C8C /* ViewExtensions.swift in Sources */,

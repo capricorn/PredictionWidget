@@ -62,7 +62,13 @@ struct PredictionMarketWidgetEntryView: View {
                         }
                     }
                     Spacer()
-                    refreshTimestamp
+                    // TODO: Should use the same wrapper for all views
+                    HStack {
+                        refreshTimestamp
+                        Spacer()
+                        LogoView()
+                            .sizeToTextHeight(Text("").font(.system(size: 8)))
+                    }
                 } else {
                     TimestampContainerView(entry: entry) {
                         Text("No market selected.")
