@@ -97,6 +97,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "Ergo"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

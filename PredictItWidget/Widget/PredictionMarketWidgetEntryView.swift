@@ -74,6 +74,7 @@ struct PredictionMarketWidgetEntryView: View {
                 }
             }
         }
+        .dynamicTypeSize(.large)
     }
 }
 
